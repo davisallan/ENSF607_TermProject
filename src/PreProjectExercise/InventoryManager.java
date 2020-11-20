@@ -48,16 +48,57 @@ public class InventoryManager implements IDBCredentials {
 
     public void searchAllTools() {
         try {
-            String searchAll = "SELECT * FROM ToolTable";
+            String query = "SELECT * FROM ToolTable";
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(searchAll);
+            rs = stmt.executeQuery(query);
             while (rs.next()) {
-                System.out.println(rs.getString("id") + rs.getString("name") + rs.getString("quantity")
-                + rs.getString("price") + rs.getString("supplierId"));
+                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("quantity") + " "
+                + rs.getString("price") + " " + rs.getString("supplierId"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // TASK 1
+    public void searchTool() {
+        try {
+            System.out.println("\nSearching table for tool 1002: should return 'Grommets'");
+            String query = "SELECT * FROM ToolTable WHERE id = 1002";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                System.out.print("Search Result: ");
+                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("quantity") + " "
+                        + rs.getString("price") + " " + rs.getString("supplierId"));
+            }
+
+            System.out.println("\nSearching table for tool 9000: should fail to find a tool");
+            query = "SELECT * FROM ToolTable WHERE id = 9000";
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                System.out.print("Search Result: ");
+                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("quantity") + " "
+                        + rs.getString("price") + " " + rs.getString("supplierId"));
+            }
+             if (!rs.next()) {
+                System.out.println("Search Failed to find a tool matching ID: 9000");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dropTable() {
+        System.out.println("\nTrying to remove the table");
+        String query = "DROP TABLE ToolTable";
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Removed Table ToolTable");
     }
 
     private void addTool(Tool t) {
@@ -70,7 +111,7 @@ public class InventoryManager implements IDBCredentials {
             pStat.setInt(3, t.getQuantity());
             pStat.setDouble(4,t.getPrice());
             pStat.setInt(5,t.getSupplierId());
-
+            pStat.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,5 +130,8 @@ public class InventoryManager implements IDBCredentials {
         manager.initializeConnection();
         manager.createTable();
         manager.searchAllTools();
+        manager.searchTool();
+        manager.dropTable();
+        System.out.println("\nThe program is finished running");
     }
 }
