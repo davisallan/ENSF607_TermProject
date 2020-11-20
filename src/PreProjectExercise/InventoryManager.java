@@ -46,6 +46,20 @@ public class InventoryManager implements IDBCredentials {
         loadTools();
     }
 
+    public void searchAllTools() {
+        try {
+            String searchAll = "SELECT * FROM ToolTable";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(searchAll);
+            while (rs.next()) {
+                System.out.println(rs.getString("id") + rs.getString("name") + rs.getString("quantity")
+                + rs.getString("price") + rs.getString("supplierId"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void addTool(Tool t) {
         try {
             String insert = "INSERT INTO toolTable (id, name, quantity, price, supplierId) values (?,?,?,?,?)";
@@ -74,5 +88,6 @@ public class InventoryManager implements IDBCredentials {
         InventoryManager manager = new InventoryManager();
         manager.initializeConnection();
         manager.createTable();
+        manager.searchAllTools();
     }
 }
