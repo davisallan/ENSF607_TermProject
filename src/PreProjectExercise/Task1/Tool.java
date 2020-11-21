@@ -1,4 +1,4 @@
-package PreProjectExercise;
+package PreProjectExercise.Task1;
 
 /**
  * Class representing a Tool
