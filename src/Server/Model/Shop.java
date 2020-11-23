@@ -1,6 +1,6 @@
 package Server.Model;
 
-
+import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -34,18 +34,29 @@ public class Shop {
         //Will need at some point
     }
 
-    public void addTool(ResultSet rs) {
-        try {
-            while (rs.next()) {
-                toolList.addItem(new Tool(rs.getInt("toolId"),
-                        rs.getString("name"),
-                        rs.getInt("quantity"),
-                        rs.getFloat("price"),
-                        rs.getInt("supplierId")));
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void addTools(ResultSet rs) {
+//        try {
+//            while (rs.next()) {
+//                if (rs.getString("type").equals("Electrical"))
+//                toolList.addItem(new Tool(rs.getInt("toolId"),
+//                        rs.getString("name"),
+//                        rs.getInt("quantity"),
+//                        rs.getFloat("price"),
+//                        rs.getInt("supplierId")));
+//            }
+//            rs.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public void addCustomers(ResultSet rs) {
+//        try {
+//            while (rs.next()) {
+//                customerList.addCustomer(new C);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

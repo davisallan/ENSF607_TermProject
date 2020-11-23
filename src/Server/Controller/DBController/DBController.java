@@ -30,9 +30,10 @@ public class DBController implements DBCredentials{
         }
     }
 
-    public ResultSet searchByID(int id, String tableName, String idType) {
+    public ResultSet searchToolById(int id) {
         try {
-            String query = "SELECT * FROM " + tableName +" WHERE " + idType + "= ?";
+            String query = "SELECT T.toolId, T.name, T.type, T.quantity, T.price, T.supplierId, E.powerType " +
+                           "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId) WHERE T.toolId= ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -79,16 +80,16 @@ public class DBController implements DBCredentials{
         //testing functions
         DBController controller = new DBController();
         controller.initializeConnection();
-        ResultSet resultSet = controller.searchByName("Pong Works", "supplier", "name");
+        ResultSet resultSet = controller.searchToolById(1001);
         try {
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("supplierId") + " " +
+                System.out.println(resultSet.getInt("toolId") + " " +
                         resultSet.getString("name") + " " +
                         resultSet.getString("type") + " " +
-                        resultSet.getString("address") + " " +
-                        resultSet.getString("cName") + " " +
-                        resultSet.getString("phone"));
-
+                        resultSet.getInt("quantity") + " " +
+                        resultSet.getFloat("price") + " " +
+                        resultSet.getInt("supplierId") + " " +
+                        resultSet.getString("powerType"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
