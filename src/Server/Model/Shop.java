@@ -34,21 +34,32 @@ public class Shop {
         //Will need at some point
     }
 
-//    public void addTools(ResultSet rs) {
-//        try {
-//            while (rs.next()) {
-//                if (rs.getString("type").equals("Electrical"))
-//                toolList.addItem(new Tool(rs.getInt("toolId"),
-//                        rs.getString("name"),
-//                        rs.getInt("quantity"),
-//                        rs.getFloat("price"),
-//                        rs.getInt("supplierId")));
-//            }
-//            rs.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void addTools(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                if (rs.getString("type").equals("electrical")) {
+                    toolList.addItem(new Electrical(rs.getInt("toolId"),
+                            rs.getString("name"),
+                            rs.getString("type"),
+                            rs.getInt("quantity"),
+                            rs.getFloat("price"),
+                            rs.getInt("supplierId"),
+                            rs.getString("powerType")));
+                }
+                else {
+                    toolList.addItem(new NonElectrical(rs.getInt("toolId"),
+                            rs.getString("name"),
+                            rs.getString("type"),
+                            rs.getInt("quantity"),
+                            rs.getFloat("price"),
+                            rs.getInt("supplierId")));
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 //    public void addCustomers(ResultSet rs) {
 //        try {

@@ -37,30 +37,36 @@ public class ModelController implements Runnable {
 
         while (true) {
             String [] query = serverController.listenForQuery();
-            if (query[0].equals("tool")){
-                rs = dbController.searchToolById(Integer.parseInt(query[1])); //query in the form of "id tableName idType"
-                try {
-                    if (rs.next()) {
-                        if (rs.getString("type").equals("non-electrical")) {
-                            System.out.println(rs.getInt("toolId") + " " +
-                                    rs.getString("name") + " " +
-                                    rs.getString("type") + " " +
-                                    rs.getInt("quantity") + " " +
-                                    rs.getFloat("price") + " " +
-                                    rs.getString("supplierId"));
-                        } else {
-                            System.out.println(rs.getInt("toolId") + " " +
-                                    rs.getString("name") + " " +
-                                    rs.getString("type") + " " +
-                                    rs.getInt("quantity") + " " +
-                                    rs.getFloat("price") + " " +
-                                    rs.getString("supplierId") + " " +
-                                    rs.getString("powerType"));
-                        }
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            options(query);
+        }
+    }
+
+    private void options(String[] query) {
+        switch (query[0]) {
+            case "toolId": {
+                rs = dbController.searchToolById(Integer.parseInt(query[1]));
+                theShop.addTools(rs);
+            }
+            case "toolName": {
+
+            }
+            case "allTools": {
+
+            }
+            case "checkQty": {
+
+            }
+            case "decreaseQty": {
+
+            }
+            case "customerId": {
+
+            }
+            case "customerLName": {
+
+            }
+            case "customerType": {
+
             }
         }
     }
