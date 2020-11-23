@@ -5,6 +5,7 @@ import Server.Controller.ServerController.ServerController;
 import Server.Model.Shop;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ModelController implements Runnable {
 
@@ -13,7 +14,7 @@ public class ModelController implements Runnable {
     Shop theShop;
     private ResultSet rs;
 
-    public ModelController(ServerController serverController, DBController dbController, Shop theShop) {
+    public ModelController(ServerController serverController,DBController dbController, Shop theShop) {
         setTheShop(theShop);
         setDbController(dbController);
         setServerController(serverController);
@@ -35,14 +36,38 @@ public class ModelController implements Runnable {
     public void run() {
 
         while (true) {
-            String[] query = serverController.listenForQuery();
-            if (query[1].equals("tool")) {
-                rs = dbController.searchByID(Integer.parseInt(query[0]), query[1], query[2]); //query in the form of "id tableName idType"
+            String [] query = serverController.listenForQuery();
+            options(query);
+        }
+    }
+
+    private void options(String[] query) {
+        switch (query[0]) {
+            case "toolId": {
+                rs = dbController.searchToolById(Integer.parseInt(query[1]));
                 theShop.addTools(rs);
-                System.out.println("Added tools to toolList");
-                serverController.sendObject("toolList", theShop.getToolList());
+            }
+            case "toolName": {
+
+            }
+            case "allTools": {
+
+            }
+            case "checkQty": {
+
+            }
+            case "decreaseQty": {
+
+            }
+            case "customerId": {
+
+            }
+            case "customerLName": {
+
+            }
+            case "customerType": {
+
             }
         }
     }
 }
-

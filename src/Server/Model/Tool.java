@@ -2,21 +2,19 @@ package Server.Model;
 
 import java.io.Serializable;
 
-public class Tool implements Serializable {
+public abstract class Tool implements Serializable {
 
     private int id;
-
     private String name;
-
+    private String type;
     private int quantity;
-
     private double price;
-
     private int supplierId;
 
-    public Tool(int id, String name, int quantity, double price, int supplierID) {
+    public Tool(int id, String name, String type, int quantity, double price, int supplierID) {
         setId(id);
         setName(name);
+        setType(type);
         setQuantity(quantity);
         setPrice(price);
         setSupplierID(supplierID);
@@ -96,5 +94,13 @@ public class Tool implements Serializable {
     @Override
     public String toString() {
         return String.format("%s %18s %14s %10s %15s\n", getId(), getName(), getPrice(), getQuantity(), getSupplierID());
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
