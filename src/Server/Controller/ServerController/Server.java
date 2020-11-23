@@ -1,5 +1,7 @@
 package Server.Controller.ServerController;
 
+import Server.Controller.ModelController.ModelController;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -39,8 +41,8 @@ public class Server {
                 client = serverSocket.accept();
                 System.out.println("Client has connected...starting new controller");
 
-                ServerController serverController = new ServerController();
-                pool.execute(serverController);
+                ModelController modelController = new ModelController();
+                pool.execute(modelController);
             }
         } catch (IOException e) {
             e.printStackTrace();

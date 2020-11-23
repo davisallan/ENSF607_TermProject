@@ -36,7 +36,28 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public ResultSet searchByID(int id, String tableName, String idType) {
+        try {
+            String query = "SELECT * FROM ? WHERE ? = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, tableName);
+            stmt.setString(2, idType);
+            stmt.setInt(3, id);
+            rs = stmt.executeQuery();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public static void main(String[] args) {
+        //testing functions
+        DBController controller = new DBController();
+        controller.initializeConnection();
+        ResultSet test = controller.searchByID(1000, "tool", "toolId");
+
+        controller.close();
 
     }
 
