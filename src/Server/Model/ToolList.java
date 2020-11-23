@@ -1,9 +1,10 @@
 package Server.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class ToolList {
+public class ToolList implements Serializable {
 
     private ArrayList<Tool> ToolList;
 

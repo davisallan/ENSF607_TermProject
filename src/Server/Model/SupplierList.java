@@ -1,8 +1,9 @@
 package Server.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SupplierList {
+public class SupplierList implements Serializable {
 
     private final ArrayList<Supplier> supplierList;
 

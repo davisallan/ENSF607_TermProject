@@ -1,14 +1,9 @@
 package Server.Model;
 
 
-/**
- * Provides the data fields and methods to create a data type representing the tool shop. Contains a list of
- * all Items (tools) and Suppliers for the given shop
- *
- * @author Davis Allan, 10016543
- * @version 1.0
- * @since 2020-10-10
- */
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Shop {
 
     private ToolList toolList;
@@ -35,7 +30,22 @@ public class Shop {
         return customerList;
     }
 
-    public void decreaseQty()  {
+    public void decreaseQty() {
+        //Will need at some point
+    }
 
+    public void addTool(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                toolList.addItem(new Tool(rs.getInt("toolId"),
+                        rs.getString("name"),
+                        rs.getInt("quantity"),
+                        rs.getFloat("price"),
+                        rs.getInt("supplierId")));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
