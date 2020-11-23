@@ -1,5 +1,6 @@
 package Server.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,37 +12,20 @@ import java.util.Random;
  * @version 1.0
  * @since 2020-10-10
  */
-public class Order {
-    /**
-     * ArrayList of OrderLines which represent the information for ordering additional stock
-     */
+public class Order implements Serializable {
+
     private final ArrayList<OrderLine> orderLines;
-    /**
-     * Randomly generated 5 digit integer ID
-     */
     private final int orderNum;
 
-    /**
-     * Constructs the Order object and assigns a randomized 5 digit integer ID to orderNum
-     * random 5 digit order number code adapted from https://programming.guide/java/genercate-random-number-of-given-length.html
-     */
     public Order() {
         orderLines = new ArrayList<>();
         orderNum = 10000 + new Random().nextInt(90000);
     }
 
-    /**
-     * Returns the order number
-     * @return order number
-     */
     public int getOrderNum() {
         return orderNum;
     }
 
-    /**
-     * Adds the OrderLine object to the Order's ArrayList instance variable.
-     * @param line the OrderLine to be added
-     */
     public void addOrderLine(OrderLine line) {
         orderLines.add(line);
         System.out.println("\033[0;32m" + "\t*OrderLine created for Order " + getOrderNum() + "\033[0m");

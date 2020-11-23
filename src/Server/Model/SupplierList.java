@@ -15,18 +15,4 @@ public class SupplierList implements Serializable {
         supplierList.add(supplier);
     }
 
-    public void displaySuppliers() {
-        for (Supplier s : supplierList){
-            System.out.println(s);
-        }
-    }
-
-    public Supplier findSupplier (int supplierID) {
-        for (Supplier s : supplierList) {
-            if (s.getSupplierID() == supplierID) {
-                return s;
-            }
-        }
-        return null;
-    }
 }
