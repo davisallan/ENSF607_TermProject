@@ -35,23 +35,33 @@ public class ModelController implements Runnable {
     @Override
     public void run() {
 
-//        while (true) {
-//            String [] query = serverController.listenForQuery();
-//            if (query[1].equals("tool")){
-//                rs = dbController.searchToolById(Integer.parseInt(query[0]), query[1], query[2]); //query in the form of "id tableName idType"
-//                try {
-//                    if (rs.next()) {
-//                        System.out.println(rs.getInt("toolId") + " " +
-//                                rs.getString("name") + " " +
-//                                rs.getString("type") + " " +
-//                                rs.getInt("quantity") + " " +
-//                                rs.getFloat("price") + " " +
-//                                rs.getString("supplierId"));
-//                    }
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+        while (true) {
+            String [] query = serverController.listenForQuery();
+            if (query[0].equals("tool")){
+                rs = dbController.searchToolById(Integer.parseInt(query[1])); //query in the form of "id tableName idType"
+                try {
+                    if (rs.next()) {
+                        if (rs.getString("type").equals("non-electrical")) {
+                            System.out.println(rs.getInt("toolId") + " " +
+                                    rs.getString("name") + " " +
+                                    rs.getString("type") + " " +
+                                    rs.getInt("quantity") + " " +
+                                    rs.getFloat("price") + " " +
+                                    rs.getString("supplierId"));
+                        } else {
+                            System.out.println(rs.getInt("toolId") + " " +
+                                    rs.getString("name") + " " +
+                                    rs.getString("type") + " " +
+                                    rs.getInt("quantity") + " " +
+                                    rs.getFloat("price") + " " +
+                                    rs.getString("supplierId") + " " +
+                                    rs.getString("powerType"));
+                        }
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

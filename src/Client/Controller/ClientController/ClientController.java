@@ -30,7 +30,7 @@ public class ClientController {
         String query = "";
         while (true) {
             try {
-                System.out.println("Enter a query in the form: {id tableName idType}");
+                System.out.println("Enter a query in the form: {tableName id}");
                 System.out.println("Where 'tableName' is tool, supplier, or customer:");
                 query = stdIn.readLine();
                 messageOut.println(query);
