@@ -46,6 +46,7 @@ public class ModelController implements Runnable {
             case "toolId": {
                 rs = dbController.searchToolById(Integer.parseInt(query[1]));
                 theShop.addTools(rs);
+                serverController.sendObject("toolList", theShop.getToolList());
             }
             case "toolName": {
 
