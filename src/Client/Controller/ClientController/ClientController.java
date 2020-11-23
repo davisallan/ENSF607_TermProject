@@ -47,7 +47,7 @@ public class ClientController {
                 switch (response){
                     case "toolList":
                         try {
-                            clientModelController.setToolList((ToolList) objectIn.readObject());
+                            clientModelController.setToolList(objectIn.readObject());
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }

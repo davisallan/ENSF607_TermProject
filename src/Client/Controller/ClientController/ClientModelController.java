@@ -4,15 +4,47 @@ import Server.Model.*;
 
 public class ClientModelController {
 
-    private Shop clientShop;
+    private ToolList toolList;
+    private SupplierList supplierList;
+    private CustomerList customerList;
 
     public ClientModelController() {
-        clientShop = new Shop();
+
+    }
+
+    public void printAllTools() {
+        for (Tool t: toolList.getToolList()) {
+            System.out.println(t);
+        }
+    }
+
+    public void setToolList(Object toolList) {
+        setToolList((ToolList) toolList);
+        System.out.println("holy fuck it worked!");
+        printAllTools();
+    }
+
+    public ToolList getToolList() {
+        return toolList;
     }
 
     public void setToolList(ToolList toolList) {
-        clientShop.setToolList(toolList);
-        System.out.println("holy fuck it worked!");
+        this.toolList = toolList;
+    }
 
+    public SupplierList getSupplierList() {
+        return supplierList;
+    }
+
+    public void setSupplierList(SupplierList supplierList) {
+        this.supplierList = supplierList;
+    }
+
+    public CustomerList getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(CustomerList customerList) {
+        this.customerList = customerList;
     }
 }
