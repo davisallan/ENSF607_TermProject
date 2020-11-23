@@ -8,7 +8,7 @@ package Server.Model;
  * @version 1.0
  * @since 2020-10-10
  */
-public class Item {
+public class Tool {
     /**
      * The unique tool ID
      */
@@ -41,7 +41,7 @@ public class Item {
      * @param quantity the current quantity of the tool in stock
      * @param price the current price of the tool
      */
-    public Item(int id, String name, int quantity, double price) {
+    public Tool(int id, String name, int quantity, double price) {
         setId(id);
         setName(name);
         setQuantity(quantity);
@@ -135,21 +135,21 @@ public class Item {
      * Simulates the sale of a Item by decreasing the current quantity by a specific amount. Ensures if
      * quantity is decreased below 40, it will trigger the creation of an OrderLine with a default order
      * size of 50 - current quantity. Values of data fields are supplied by the given parameters.
-     * @param item the Item that is being sold
+     * @param tool the Item that is being sold
      * @param amount the number of Items being sold
      * @param order the current day's Order
      */
-    public void decreaseQty(Item item, int amount, Order order) {
+    public void decreaseQty(Tool tool, int amount, Order order) {
         int qty = getQuantity() - amount;
         //ensures qty is always > 0
         if (qty < 0) {
             qty = 0;
         }
         setQuantity(qty); //update current stock with amount sold reduced
-        System.out.println("\033[0;32m" + "Quantity reduced to " + item.getQuantity() + "\033[0m");
+        System.out.println("\033[0;32m" + "Quantity reduced to " + tool.getQuantity() + "\033[0m");
         //create an OrderLine if current stock is < 40
         if (getQuantity() < 40) {
-            OrderLine OL = new OrderLine(item, 50 - getQuantity());
+            OrderLine OL = new OrderLine(tool, 50 - getQuantity());
             order.addOrderLine(OL);
             setQuantity(50 - getQuantity());
         }

@@ -12,7 +12,7 @@ public class OrderLine {
     /**
      * The Item that is being ordered
      */
-    private Item itemToOrder;
+    private Tool toolToOrder;
 
     /**
      * The amount to order
@@ -22,11 +22,11 @@ public class OrderLine {
     /**
      * Constructs the OrderLine object with the specified values for item and orderQty. Values
      * of the data fields are supplied by the given parameters.
-     * @param item the Item to be ordered
+     * @param tool the Item to be ordered
      * @param orderQty the quantity to order
      */
-    public OrderLine(Item item, int orderQty) {
-        setItemToOrder(item);
+    public OrderLine(Tool tool, int orderQty) {
+        setItemToOrder(tool);
         setOrderQty(orderQty);
     }
 
@@ -34,16 +34,16 @@ public class OrderLine {
      * Returns the Item object that is being ordered
      * @return Item being ordered
      */
-    public Item getItemToOrder() {
-        return itemToOrder;
+    public Tool getItemToOrder() {
+        return toolToOrder;
     }
 
     /**
      * Sets the Item to be ordered
-     * @param itemToOrder Item that is being ordered
+     * @param toolToOrder Item that is being ordered
      */
-    public void setItemToOrder(Item itemToOrder) {
-        this.itemToOrder = itemToOrder;
+    public void setItemToOrder(Tool toolToOrder) {
+        this.toolToOrder = toolToOrder;
     }
 
     /**
@@ -68,8 +68,8 @@ public class OrderLine {
      */
     @Override
     public String toString() {
-        return String.format("%-25s %-10s", "Item description:", itemToOrder.getName()) + "\n" +
+        return String.format("%-25s %-10s", "Item description:", toolToOrder.getName()) + "\n" +
                 String.format("%-25s %-10s", "Amount ordered:", getOrderQty()) + "\n" +
-                String.format("%-25s %-10s", "Supplier:", itemToOrder.getSupplier().getCompanyName()) + "\n\n";
+                String.format("%-25s %-10s", "Supplier:", toolToOrder.getSupplier().getCompanyName()) + "\n\n";
     }
 }

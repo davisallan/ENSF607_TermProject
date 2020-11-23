@@ -31,7 +31,7 @@ public class Supplier {
     /**
      * ArrayList of Item objects that the Supplier supplies to the Shop
      */
-    private final ArrayList<Item> suppliedItems;
+    private final ArrayList<Tool> suppliedTools;
 
     /**
      * Constructs a Supplier object with the specified values for supplierID, companyName,
@@ -46,7 +46,7 @@ public class Supplier {
         setCompanyName(companyName);
         setAddress(address);
         setContact(contact);
-        suppliedItems = new ArrayList<>(); //association between Item and Supplier
+        suppliedTools = new ArrayList<>(); //association between Item and Supplier
     }
 
     /**
@@ -115,18 +115,18 @@ public class Supplier {
 
     /**
      * Adds the Item passed to the method to the suppliedItems ArrayList
-     * @param item Item to be added
+     * @param tool Item to be added
      */
-    public void addItemSupplied(Item item) {
-        suppliedItems.add(item);
+    public void addItemSupplied(Tool tool) {
+        suppliedTools.add(tool);
     }
 
     /**
      * Returns the ArrayList containing all supplied Items from the supplier
      * @return ArrayList with all Items that the supplier supplies
      */
-    public ArrayList<Item> getSuppliedItems() {
-        return suppliedItems;
+    public ArrayList<Tool> getSuppliedItems() {
+        return suppliedTools;
     }
 
     /**
