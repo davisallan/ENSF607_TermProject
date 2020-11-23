@@ -23,7 +23,21 @@ public class ClientController {
         }
     }
 
-    public static void main(String[] args) {
+    public void communicate() {
+        String response = "";
+        while (true) {
+            messageOut.println("meow");
+            try {
+                response = messageIn.readLine();
+                System.out.println(response);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public static void main(String[] args) {
+        ClientController client = new ClientController("localhost", 8099);
+        client.communicate();
     }
 }
