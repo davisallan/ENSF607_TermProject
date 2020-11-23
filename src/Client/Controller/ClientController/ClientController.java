@@ -11,13 +11,15 @@ public class ClientController {
     private BufferedReader stdIn;
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
+    private ClientModelController clientModelController;
 
-    public ClientController(String serverName, int portNumber) {
+    public ClientController(String serverName, int portNumber, ClientModelController clientModelController) {
         try {
             socket = new Socket(serverName, portNumber);
             messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             stdIn = new BufferedReader(new InputStreamReader(System.in));
+            this.clientModelController = clientModelController;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,11 +27,13 @@ public class ClientController {
 
     public void communicate() {
         String response = "";
+        String query = "";
         while (true) {
-            messageOut.println("meow");
             try {
-                response = messageIn.readLine();
-                System.out.println(response);
+                System.out.println("Enter a query in the form: {id tableName idType}");
+                System.out.println("Where 'tableName' is tool, supplier, or customer:");
+                query = stdIn.readLine();
+                messageOut.println(query);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -37,7 +41,8 @@ public class ClientController {
     }
 
     public static void main(String[] args) {
-        ClientController client = new ClientController("localhost", 8099);
+        ClientModelController clientModelController = new ClientModelController();
+        ClientController client = new ClientController("localhost", 8099, clientModelController);
         client.communicate();
     }
 }

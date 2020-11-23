@@ -20,14 +20,13 @@ public class ServerController {
         }
     }
 
-    public void communicate() {
-        String line = "";
+    public String[] listenForQuery() {
+        String [] query = {};
         try {
-            line = messageIn.readLine();
-            System.out.println(line);
-            messageOut.println("fucking fuck");
+            query = messageIn.readLine().split(" ");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return query;
     }
 }

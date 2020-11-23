@@ -13,6 +13,10 @@ public class DBController implements DBCredentials{
     private PreparedStatement stmt;
     private ResultSet rs;
 
+    public DBController() {
+        initializeConnection();
+    }
+
     public void initializeConnection() {
         try {
             //Register JDBC driver
