@@ -26,6 +26,41 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public ResultSet searchByID(int id, String tableName, String idType) {
+        try {
+            String query = "SELECT * FROM " + tableName +" WHERE " + idType + "= ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet selectAll(String tableName) {
+        try {
+            String query = "SELECT * FROM " + tableName;
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet searchByName (String name, String tableName, String colName) {
+        try {
+            String query = "SELECT * FROM " + tableName +" WHERE " + colName + "= ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, name);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public void close() {
         try {
             stmt.close();
@@ -36,29 +71,25 @@ public class DBController implements DBCredentials{
         }
     }
 
-    public ResultSet searchByID(int id, String tableName, String idType) {
-        try {
-            String query = "SELECT * FROM ? WHERE ? = ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, tableName);
-            stmt.setString(2, idType);
-            stmt.setInt(3, id);
-            rs = stmt.executeQuery();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
-
     public static void main(String[] args) {
         //testing functions
         DBController controller = new DBController();
         controller.initializeConnection();
-        ResultSet test = controller.searchByID(1000, "tool", "toolId");
+        ResultSet resultSet = controller.searchByName("Pong Works", "supplier", "name");
+        try {
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("supplierId") + " " +
+                        resultSet.getString("name") + " " +
+                        resultSet.getString("type") + " " +
+                        resultSet.getString("address") + " " +
+                        resultSet.getString("cName") + " " +
+                        resultSet.getString("phone"));
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         controller.close();
-
     }
-
 }
+
