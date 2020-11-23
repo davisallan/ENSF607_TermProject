@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.*;
 
-public class DBController implements DBCredentials{
+public class DBController implements DBCredentials {
 
     private Connection conn;
     private PreparedStatement stmt;
@@ -32,7 +32,7 @@ public class DBController implements DBCredentials{
 
     public ResultSet searchByID(int id, String tableName, String idType) {
         try {
-            String query = "SELECT * FROM " + tableName +" WHERE " + idType + "= ?";
+            String query = "SELECT * FROM " + tableName + " WHERE " + idType + "= ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -53,9 +53,9 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
-    public ResultSet searchByName (String name, String tableName, String colName) {
+    public ResultSet searchByName(String name, String tableName, String colName) {
         try {
-            String query = "SELECT * FROM " + tableName +" WHERE " + colName + "= ?";
+            String query = "SELECT * FROM " + tableName + " WHERE " + colName + "= ?";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, name);
             rs = stmt.executeQuery();

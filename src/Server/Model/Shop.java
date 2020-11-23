@@ -18,6 +18,18 @@ public class Shop {
         customerList = new CustomerList();
     }
 
+    public void setToolList(ToolList toolList) {
+        this.toolList = toolList;
+    }
+
+    public void setSupplierList(SupplierList supplierList) {
+        this.supplierList = supplierList;
+    }
+
+    public void setCustomerList(CustomerList customerList) {
+        this.customerList = customerList;
+    }
+
     public SupplierList getSupplierList() {
         return supplierList;
     }
@@ -34,7 +46,7 @@ public class Shop {
         //Will need at some point
     }
 
-    public void addTool(ResultSet rs) {
+    public void addTools(ResultSet rs) {
         try {
             while (rs.next()) {
                 toolList.addItem(new Tool(rs.getInt("toolId"),

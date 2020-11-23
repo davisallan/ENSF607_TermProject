@@ -5,8 +5,6 @@ import Server.Controller.ServerController.ServerController;
 import Server.Model.Shop;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
 
 public class ModelController implements Runnable {
 
@@ -15,7 +13,7 @@ public class ModelController implements Runnable {
     Shop theShop;
     private ResultSet rs;
 
-    public ModelController(ServerController serverController,DBController dbController, Shop theShop) {
+    public ModelController(ServerController serverController, DBController dbController, Shop theShop) {
         setTheShop(theShop);
         setDbController(dbController);
         setServerController(serverController);
@@ -37,22 +35,13 @@ public class ModelController implements Runnable {
     public void run() {
 
         while (true) {
-            String [] query = serverController.listenForQuery();
-            if (query[1].equals("tool")){
+            String[] query = serverController.listenForQuery();
+            if (query[1].equals("tool")) {
                 rs = dbController.searchByID(Integer.parseInt(query[0]), query[1], query[2]); //query in the form of "id tableName idType"
-                try {
-                    if (rs.next()) {
-                        System.out.println(rs.getInt("toolId") + " " +
-                                rs.getString("name") + " " +
-                                rs.getString("type") + " " +
-                                rs.getInt("quantity") + " " +
-                                rs.getFloat("price") + " " +
-                                rs.getString("supplierId"));
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                theShop.addTools(rs);
+
             }
         }
     }
 }
+

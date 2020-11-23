@@ -1,11 +1,13 @@
 package Client.Controller.ClientController;
 
+import Server.Model.ToolList;
+
 import java.io.*;
 import java.net.Socket;
 
 public class ClientController {
 
-    private Socket socket;
+    private Socket Socket;
     private PrintWriter messageOut;
     private BufferedReader messageIn;
     private BufferedReader stdIn;
@@ -15,14 +17,20 @@ public class ClientController {
 
     public ClientController(String serverName, int portNumber, ClientModelController clientModelController) {
         try {
-            socket = new Socket(serverName, portNumber);
-            messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            Socket = new Socket(serverName, portNumber);
+            messageIn = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
+            messageOut = new PrintWriter(new OutputStreamWriter(Socket.getOutputStream()), true);
+            objectIn = new ObjectInputStream(Socket.getInputStream());
+            objectOut = new ObjectOutputStream(Socket.getOutputStream());
             stdIn = new BufferedReader(new InputStreamReader(System.in));
-            this.clientModelController = clientModelController;
+            setClientModelController(clientModelController);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setClientModelController(ClientModelController clientModelController) {
+        this.clientModelController = clientModelController;
     }
 
     public void communicate() {
@@ -34,6 +42,17 @@ public class ClientController {
                 System.out.println("Where 'tableName' is tool, supplier, or customer:");
                 query = stdIn.readLine();
                 messageOut.println(query);
+                response = messageIn.readLine();
+
+                switch (response){
+                    case "toolList":
+                        try {
+                            clientModelController.setToolList((ToolList) objectIn.readObject());
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
