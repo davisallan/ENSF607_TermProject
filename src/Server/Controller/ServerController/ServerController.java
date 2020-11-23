@@ -14,7 +14,6 @@ public class ServerController {
 
     public ServerController(Socket socket) {
         try {
-
             messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             objectOut = new ObjectOutputStream(socket.getOutputStream());

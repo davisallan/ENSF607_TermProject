@@ -39,7 +39,8 @@ public class ModelController implements Runnable {
             if (query[1].equals("tool")) {
                 rs = dbController.searchByID(Integer.parseInt(query[0]), query[1], query[2]); //query in the form of "id tableName idType"
                 theShop.addTools(rs);
-
+                System.out.println("Added tools to toolList");
+                serverController.sendObject("toolList", theShop.getToolList());
             }
         }
     }
