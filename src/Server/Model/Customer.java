@@ -1,6 +1,8 @@
 package Server.Model;
 
-public abstract class Customer {
+import java.io.Serializable;
+
+public abstract class Customer implements Serializable {
 
     private int customerId;
     private String lastName;

@@ -1,5 +1,7 @@
 package Server.Model;
 
+import com.mysql.cj.protocol.Resultset;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -47,7 +49,8 @@ public class Shop {
         try {
             while (rs.next()) {
                 if (rs.getString("type").equals("electrical")) {
-                    toolList.addTool(new Electrical(rs.getInt("toolId"),
+                    toolList.addTool(new Electrical(
+                            rs.getInt("toolId"),
                             rs.getString("name"),
                             rs.getString("type"),
                             rs.getInt("quantity"),
@@ -55,12 +58,42 @@ public class Shop {
                             rs.getInt("supplierId"),
                             rs.getString("powerType")));
                 } else {
-                    toolList.addTool(new NonElectrical(rs.getInt("toolId"),
+                    toolList.addTool(new NonElectrical(
+                            rs.getInt("toolId"),
                             rs.getString("name"),
                             rs.getString("type"),
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
                             rs.getInt("supplierId")));
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addCustomers(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                if (rs.getString("ctype").equals("R")) {
+                    customerList.addCustomer(new Residential(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
+                } else {
+                    customerList.addCustomer(new Commercial(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
                 }
             }
             rs.close();

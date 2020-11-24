@@ -78,7 +78,7 @@ public class ModelController implements Runnable {
                 }
                 case "customerLName": {
                     rs = dbController.searchCustomerLName(condition);
-                    theShop.addTools(rs);
+                    theShop.addCustomers(rs);
                     serverController.sendMessage(new Message("customer"));
                     serverController.sendObjects(theShop.getCustomerList());
                     theShop.clearAllLists();
