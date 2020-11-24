@@ -53,15 +53,23 @@ public class ClientMgmtGUI extends JFrame{
     private JRadioButton lastNameRadioButton;
     private JRadioButton clientTypeRadioButton;
 
+    public JButton getButton() {
+        return goToCustomersButton;
+    }
+
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
+
     public ClientMgmtGUI() {
 
-        goToCustomersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                CardLayout card = (CardLayout) rootPanel.getLayout();
-                card.show(rootPanel, "ClientCard");
-            }
-        });
+//        goToCustomersButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                CardLayout card = (CardLayout) rootPanel.getLayout();
+//                card.show(rootPanel, "ClientCard");
+//            }
+//        });
         goToToolsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -97,10 +105,12 @@ public class ClientMgmtGUI extends JFrame{
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("CardLayoutGUI");
-        frame.setContentPane(new ClientMgmtGUI().rootPanel);
+        ClientMgmtGUI gui = new ClientMgmtGUI();
+        frame.setContentPane(gui.rootPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        new InventoryViewController(gui);
     }
 
     {

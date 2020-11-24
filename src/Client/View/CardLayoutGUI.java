@@ -101,7 +101,6 @@ public class CardLayoutGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        InventoryViewController toolController = new InventoryViewController(frame);
     }
 
     {
