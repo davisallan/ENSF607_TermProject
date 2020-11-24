@@ -68,6 +68,24 @@ public class CardLayoutGUI {
                 card.show(rootPanel, "ToolCard");
             }
         });
+        clearButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                textField8.setText("");
+            }
+        });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                textField1.setText("");
+                textField2.setText("");
+                textField3.setText("");
+                textField4.setText("");
+                textField5.setText("");
+                textField6.setText("");
+                textField7.setText("");
+            }
+        });
     }
 
     public static void main(String[] args) {
