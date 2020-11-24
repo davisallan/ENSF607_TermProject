@@ -1,6 +1,5 @@
 package Server.Model;
 
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -48,7 +47,9 @@ public class Shop {
 
     public void addTools(ResultSet rs) {
         try {
+            System.out.println("\tAdding tools");
             while (rs.next()) {
+                System.out.println(rs.getString("toolId"));
                 if (rs.getString("type").equals("electrical")) {
                     toolList.addItem(new Electrical(rs.getInt("toolId"),
                             rs.getString("name"),
@@ -71,6 +72,10 @@ public class Shop {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void clearToolList() {
+        toolList.getToolList().clear();
     }
 
 //    public void addCustomers(ResultSet rs) {

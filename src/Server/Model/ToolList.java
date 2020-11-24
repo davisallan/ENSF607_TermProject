@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 public class ToolList implements Serializable {
 
-    private ArrayList<Tool> ToolList;
+    private ArrayList<Tool> toolList;
 
     private Order order;
 
     public ToolList(Order order) {
-        ToolList = new ArrayList<>();
+        toolList = new ArrayList<>();
         setOrder(order);
     }
 
     public ArrayList<Tool> getToolList() {
-        return ToolList;
+        return toolList;
     }
 
     public Order getOrder() {
@@ -28,7 +28,7 @@ public class ToolList implements Serializable {
     }
 
     public void addItem(Tool i) {
-        ToolList.add(i);
+        toolList.add(i);
     }
 
     public void decreaseQty(Tool tool, int amount) {

@@ -6,7 +6,6 @@ import java.net.Socket;
 
 public class ServerController {
 
-    private Socket objectSocket;
     private PrintWriter messageOut;
     private BufferedReader messageIn;
     private ObjectInputStream objectIn;
@@ -16,8 +15,8 @@ public class ServerController {
         try {
             messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-            objectOut = new ObjectOutputStream(socket.getOutputStream());
             objectIn = new ObjectInputStream(socket.getInputStream());
+            objectOut = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,17 +25,25 @@ public class ServerController {
     public String[] listenForQuery() {
         String[] query = {};
         try {
-            query = messageIn.readLine().split(" ");
+            System.out.println("inside listenForQuery()");
+            query = messageIn.readLine().split(" ");;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return query;
     }
 
-    public void sendObject(String objectType, ToolList list) {
-        messageOut.println(objectType);
+    public void sendMessage(String message) {
+        System.out.println("inside sendMessage()");
+        messageOut.println(message);
+        System.out.println("\tsent message");
+    }
+
+    public void sendObject(ToolList list) {
+        System.out.println("inside sendObject()");
         try {
             objectOut.writeObject(list);
+            System.out.println("\tsent object");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -20,7 +20,7 @@ public class ClientModelController {
 
     public void setToolList(Object toolList) {
         setToolList((ToolList) toolList);
-        System.out.println("holy fuck it worked!");
+        System.out.println("\t\tSet the received ToolList");
         printAllTools();
     }
 

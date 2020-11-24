@@ -40,6 +40,7 @@ public class DBController implements DBCredentials{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("\t\t\tReturning the results of query");
         return rs;
     }
 
