@@ -71,6 +71,18 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
+    public ResultSet searchCustomerLName(String lName) {
+        try {
+            String query = "SELECT * FROM customer WHERE lName = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1,lName);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public ResultSet selectAll(String tableName) {
         try {
             String query = "SELECT * FROM " + tableName;

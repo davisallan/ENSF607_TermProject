@@ -59,6 +59,18 @@ public class ClientController {
                         }
                         break;
 
+                    case "customer":
+                        try {
+                            Customer obj = (Customer) objectIn.readObject();
+                            while (obj != null) {
+                                clientModelController.getClientShop().getCustomerList().addCustomer(obj);
+                                obj = (Customer) objectIn.readObject();
+                            }
+                            clientModelController.getClientShop().getCustomerList().display();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

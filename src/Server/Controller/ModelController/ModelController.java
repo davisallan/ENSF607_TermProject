@@ -6,7 +6,6 @@ import Server.Model.Message;
 import Server.Model.Shop;
 
 import java.sql.ResultSet;
-import java.util.Arrays;
 
 public class ModelController implements Runnable {
 
@@ -49,7 +48,7 @@ public class ModelController implements Runnable {
                     rs = dbController.searchToolById(Integer.parseInt(condition));
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
-                    serverController.sendObject(theShop.getToolList());
+                    serverController.sendObjects(theShop.getToolList());
                     theShop.clearAllLists();
                     break;
                 }
@@ -57,7 +56,7 @@ public class ModelController implements Runnable {
                     rs = dbController.searchToolByName(condition);
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
-                    serverController.sendObject(theShop.getToolList());
+                    serverController.sendObjects(theShop.getToolList());
                     theShop.clearAllLists();
                     break;
                 }
@@ -65,7 +64,7 @@ public class ModelController implements Runnable {
                     rs = dbController.selectAllTools();
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
-                    serverController.sendObject(theShop.getToolList());
+                    serverController.sendObjects(theShop.getToolList());
                     theShop.clearAllLists();
                 }
                 case "checkQty": {
@@ -78,7 +77,11 @@ public class ModelController implements Runnable {
 
                 }
                 case "customerLName": {
-
+                    rs = dbController.searchCustomerLName(condition);
+                    theShop.addTools(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
+                    theShop.clearAllLists();
                 }
                 case "customerType": {
 

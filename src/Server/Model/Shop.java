@@ -6,9 +6,7 @@ import java.sql.SQLException;
 public class Shop {
 
     private ToolList toolList;
-
     private SupplierList supplierList;
-
     private CustomerList customerList;
 
     public Shop() {
@@ -47,9 +45,7 @@ public class Shop {
 
     public void addTools(ResultSet rs) {
         try {
-//            System.out.println("\tAdding tools");
             while (rs.next()) {
-//                    System.out.println(rs.getString("toolId"));
                 if (rs.getString("type").equals("electrical")) {
                     toolList.addTool(new Electrical(rs.getInt("toolId"),
                             rs.getString("name"),
@@ -65,7 +61,6 @@ public class Shop {
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
                             rs.getInt("supplierId")));
-
                 }
             }
             rs.close();

@@ -37,11 +37,23 @@ public class ServerController {
         }
     }
 
-    public void sendObject(ToolList toolList) {
+    public void sendObjects(ToolList toolList) {
         System.out.println(toolList.getToolList().get(0));
         try {
             for (Tool tool: toolList.getToolList()) {
                 objectOut.writeObject(tool);
+            }
+            objectOut.writeObject(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendObjects(CustomerList customerList) {
+        System.out.println(customerList.getCustomerList().get(0));
+        try {
+            for (Customer customer: customerList.getCustomerList()) {
+                objectOut.writeObject(customer);
             }
             objectOut.writeObject(null);
         } catch (IOException e) {

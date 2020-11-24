@@ -15,6 +15,12 @@ public class CustomerList implements Serializable {
         customerList.add(c);
     }
 
+    public void display() {
+        for (Customer c: customerList) {
+            System.out.println(c);
+        }
+    }
+
     public ArrayList<Customer> getCustomerList() {
         return customerList;
     }
