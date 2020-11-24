@@ -34,20 +34,27 @@ public class ServerController {
     }
 
     public void sendMessage(String message) {
-        System.out.println("\tinside sendMessage()");
+//        System.out.println("\tinside sendMessage()");
+
         messageOut.println(message);
-        System.out.println("\t\tsent message");
+        messageOut.flush();
+//        System.out.println("\t\tsent message");
     }
 
     public void sendObject(ToolList toolList) {
             System.out.println("\tinside sendObject()");
         try {
             for (Tool tool: toolList.getToolList()) {
-                System.out.print(tool);
+//                System.out.print(tool);
+
                 objectOut.writeObject(tool);
-                System.out.println("\t\tsent object");
+                objectOut.flush();
+//                System.out.println("\t\tsent object");
             }
+
             objectOut.writeObject(null);
+            objectOut.flush();
+//            System.out.println("sent null");
         } catch (IOException e) {
             e.printStackTrace();
         }

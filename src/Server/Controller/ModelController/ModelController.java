@@ -35,15 +35,14 @@ public class ModelController implements Runnable {
     @Override
     public void run() {
         while (true) {
-            System.out.println("going to listen for query...");
+//            System.out.println("going to listen for query...");
             String[] query = serverController.listenForQuery(); // 1
-            System.out.println("received query");
+//            System.out.println("received query");
             switch (query[0]) {
                 case "toolId": {
-                    System.out.println("in switch statement...");
-                    query = serverController.listenForQuery();
+//                    System.out.println("in switch statement...");
                     rs = dbController.searchToolById(Integer.parseInt(query[1]));
-                    System.out.println("got result set");
+//                    System.out.println("got result set");
                     theShop.addTools(rs);
                     serverController.sendMessage("toolList");
                     serverController.sendObject(theShop.getToolList());

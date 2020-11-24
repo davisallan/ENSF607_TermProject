@@ -43,16 +43,16 @@ public class ClientController {
                 System.out.println("Enter a query in the form: {searchParameter id/name}");
                 System.out.println("Where 'searchParameter' is toolId or toolName:");
                 query = stdIn.readLine();
-                messageOut.println("toolId");
                 messageOut.println(query); // 1
-
+                messageOut.flush();
 //                System.out.println("\tSent query to server");
                 response = messageIn.readLine(); // 2
-
+//                System.out.println("Response is " + response);
                 switch (response){
                     case "toolList":
                         try {
 //                            System.out.println("waiting to get new object...");
+
                             Tool obj = (Tool) objectIn.readObject();
 //                            System.out.println("got first object");
                             while (obj != null) {
@@ -69,12 +69,12 @@ public class ClientController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
     public static void main(String[] args) {
         Shop theShop = new Shop();
-        CustomerList customerList = new CustomerList();
         ClientModelController clientModelController = new ClientModelController(theShop);
         ClientController client = new ClientController("localhost", 8099, clientModelController);
         client.communicate();
