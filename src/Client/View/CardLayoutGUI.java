@@ -86,6 +86,12 @@ public class CardLayoutGUI {
                 textField7.setText("");
             }
         });
+        clearButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                textField9.setText("");
+            }
+        });
     }
 
     public static void main(String[] args) {
