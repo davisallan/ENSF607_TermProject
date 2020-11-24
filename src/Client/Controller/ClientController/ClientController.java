@@ -57,7 +57,7 @@ public class ClientController {
 //                            System.out.println("got first object");
                             while (obj != null) {
 //                                System.out.println("\tin client while loop");
-                                clientModelController.getClientShop().getToolList().addItem(obj);
+                                clientModelController.getClientShop().getToolList().addTool(obj);
                                 obj = (Tool) objectIn.readObject();
                             }
 //                            System.out.println("\texited client while loop");
