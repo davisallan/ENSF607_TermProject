@@ -22,7 +22,7 @@ public class ServerController {
         String[] query = {};
         try {
             Message msg = (Message) objectIn.readObject();
-            query = msg.getMessage().split(" ");
+            query = msg.getMessage().split("-");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

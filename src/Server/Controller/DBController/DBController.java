@@ -1,5 +1,8 @@
 package Server.Controller.DBController;
 
+import Server.Model.Residential;
+import com.mysql.cj.protocol.Resultset;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -40,7 +43,6 @@ public class DBController implements DBCredentials{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        System.out.println("\t\t\tReturning the results of query");
         return rs;
     }
 
@@ -54,7 +56,18 @@ public class DBController implements DBCredentials{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        System.out.println("\t\t\tReturning the results of query");
+        return rs;
+    }
+
+    public ResultSet selectAllTools() {
+        try {
+            String query = "SELECT T.toolId, T.name, T.type, T.quantity, T.price, T.supplierId, E.powerType " +
+                    "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId)";
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return rs;
     }
 

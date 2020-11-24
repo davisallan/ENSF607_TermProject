@@ -37,10 +37,16 @@ public class ModelController implements Runnable {
     public void run() {
         while (true) {
             String[] query = serverController.listenForQuery();
-            System.out.println(Arrays.toString(query));
-            switch (query[0]) {
+            String queryType = query[0];
+            String condition = "";
+
+            if (query.length > 1) {
+                condition = query[1];
+            }
+
+            switch (queryType) {
                 case "toolId": {
-                    rs = dbController.searchToolById(Integer.parseInt(query[1]));
+                    rs = dbController.searchToolById(Integer.parseInt(condition));
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObject(theShop.getToolList());
@@ -48,7 +54,7 @@ public class ModelController implements Runnable {
                     break;
                 }
                 case "toolName": {
-                    rs = dbController.searchToolByName(query[1]);
+                    rs = dbController.searchToolByName(condition);
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObject(theShop.getToolList());
@@ -56,7 +62,11 @@ public class ModelController implements Runnable {
                     break;
                 }
                 case "allTools": {
-
+                    rs = dbController.selectAllTools();
+                    theShop.addTools(rs);
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObject(theShop.getToolList());
+                    theShop.clearAllLists();
                 }
                 case "checkQty": {
 
