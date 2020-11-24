@@ -53,7 +53,11 @@ public class ClientMgmtGUI extends JFrame{
     private JRadioButton lastNameRadioButton;
     private JRadioButton clientTypeRadioButton;
 
-    public JButton getButton() {
+    public JButton getGoToToolsButton() {
+        return goToToolsButton;
+    }
+
+    public JButton getGoToCustomersButton() {
         return goToCustomersButton;
     }
 
@@ -63,20 +67,6 @@ public class ClientMgmtGUI extends JFrame{
 
     public ClientMgmtGUI() {
 
-//        goToCustomersButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//                CardLayout card = (CardLayout) rootPanel.getLayout();
-//                card.show(rootPanel, "ClientCard");
-//            }
-//        });
-        goToToolsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                CardLayout card = (CardLayout) rootPanel.getLayout();
-                card.show(rootPanel, "ToolCard");
-            }
-        });
         clearButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

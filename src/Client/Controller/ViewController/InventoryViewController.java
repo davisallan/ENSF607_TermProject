@@ -1,6 +1,5 @@
 package Client.Controller.ViewController;
 
-import Client.View.CardLayoutGUI;
 import Client.View.ClientMgmtGUI;
 
 import javax.swing.*;
@@ -11,8 +10,11 @@ import java.awt.event.ActionListener;
 public class InventoryViewController implements ActionListener {
 
     private ClientMgmtGUI gui;
+    private CardLayout cardLayout;
+
     public InventoryViewController(ClientMgmtGUI gui) {
         setGui(gui);
+        cardLayout = (CardLayout) gui.getRootPanel().getLayout();
         addEventListener();
     }
 
@@ -21,15 +23,19 @@ public class InventoryViewController implements ActionListener {
     }
 
     public void addEventListener() {
-        JButton button = gui.getButton();
+        JButton button = gui.getGoToCustomersButton();
+        button.addActionListener(this);
+        button = gui.getGoToToolsButton();
         button.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == gui.getButton()) {
-            CardLayout card = (CardLayout) gui.getRootPanel().getLayout();
-            card.show(gui.getRootPanel(), "ClientCard");
+        if (actionEvent.getSource() == gui.getGoToCustomersButton()) {
+            cardLayout.show(gui.getRootPanel(), "ClientCard");
+        }
+        if (actionEvent.getSource() == gui.getGoToToolsButton()) {
+            cardLayout.show(gui.getRootPanel(), "ToolCard");
         }
     }
 }
