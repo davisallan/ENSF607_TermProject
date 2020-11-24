@@ -54,6 +54,20 @@ public class CardLayoutGUI {
 
     public CardLayoutGUI() {
 
+        goToCustomersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                CardLayout card = (CardLayout) rootPanel.getLayout();
+                card.show(rootPanel, "ClientCard");
+            }
+        });
+        goToToolsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                CardLayout card = (CardLayout) rootPanel.getLayout();
+                card.show(rootPanel, "ToolCard");
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -85,7 +99,7 @@ public class CardLayoutGUI {
         clientPanel = new JPanel();
         clientPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         clientPanel.setPreferredSize(new Dimension(700, 500));
-        rootPanel.add(clientPanel, "Card1");
+        rootPanel.add(clientPanel, "ClientCard");
         leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayoutManager(12, 3, new Insets(0, 0, 0, 0), -1, -1));
         clientPanel.add(leftPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -196,7 +210,7 @@ public class CardLayoutGUI {
         toolPanel = new JPanel();
         toolPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         toolPanel.setPreferredSize(new Dimension(252, 338));
-        rootPanel.add(toolPanel, "Card2");
+        rootPanel.add(toolPanel, "ToolCard");
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(11, 3, new Insets(0, 0, 0, 0), -1, -1));
         toolPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(359, 61), null, 0, false));

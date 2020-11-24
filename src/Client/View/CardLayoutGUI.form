@@ -12,7 +12,7 @@
       <grid id="ef332" binding="clientPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <card name="Card1"/>
+          <card name="ClientCard"/>
         </constraints>
         <properties>
           <preferredSize width="700" height="500"/>
@@ -310,7 +310,7 @@
       <grid id="37e5c" binding="toolPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <card name="Card2"/>
+          <card name="ToolCard"/>
         </constraints>
         <properties>
           <preferredSize width="252" height="338"/>
