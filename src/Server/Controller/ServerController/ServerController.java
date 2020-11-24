@@ -13,10 +13,10 @@ public class ServerController {
 
     public ServerController(Socket socket) {
         try {
-            messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             objectIn = new ObjectInputStream(socket.getInputStream());
             objectOut = new ObjectOutputStream(socket.getOutputStream());
+            messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,8 +25,8 @@ public class ServerController {
     public String[] listenForQuery() {
         String[] query = {};
         try {
-            System.out.println("inside listenForQuery()");
-            query = messageIn.readLine().split(" ");;
+            System.out.println("\tinside listenForQuery()");
+            query = messageIn.readLine().split(" ");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,16 +34,20 @@ public class ServerController {
     }
 
     public void sendMessage(String message) {
-        System.out.println("inside sendMessage()");
+        System.out.println("\tinside sendMessage()");
         messageOut.println(message);
-        System.out.println("\tsent message");
+        System.out.println("\t\tsent message");
     }
 
-    public void sendObject(ToolList list) {
-        System.out.println("inside sendObject()");
+    public void sendObject(ToolList toolList) {
+            System.out.println("\tinside sendObject()");
         try {
-            objectOut.writeObject(list);
-            System.out.println("\tsent object");
+            for (Tool tool: toolList.getToolList()) {
+                System.out.print(tool);
+                objectOut.writeObject(tool);
+                System.out.println("\t\tsent object");
+            }
+            objectOut.writeObject(null);
         } catch (IOException e) {
             e.printStackTrace();
         }

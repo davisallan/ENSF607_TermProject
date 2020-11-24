@@ -93,7 +93,7 @@ public abstract class Tool implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s %18s %14s %10s %15s\n", getId(), getName(), getPrice(), getQuantity(), getSupplierID());
+        return String.format("%s %s %s %s %s\n", getId(), getName(), getPrice(), getQuantity(), getSupplierID());
     }
 
     public String getType() {

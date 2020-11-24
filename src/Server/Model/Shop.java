@@ -47,27 +47,32 @@ public class Shop {
 
     public void addTools(ResultSet rs) {
         try {
-            System.out.println("\tAdding tools");
-            while (rs.next()) {
-                System.out.println(rs.getString("toolId"));
-                if (rs.getString("type").equals("electrical")) {
-                    toolList.addItem(new Electrical(rs.getInt("toolId"),
-                            rs.getString("name"),
-                            rs.getString("type"),
-                            rs.getInt("quantity"),
-                            rs.getFloat("price"),
-                            rs.getInt("supplierId"),
-                            rs.getString("powerType")));
+//            System.out.println("\tAdding tools");
+            do {
+                if (!rs.next()) {
+                    System.out.println("SET IS EMPTY!!!");
+                } else{
+//                    System.out.println(rs.getString("toolId"));
+                    if (rs.getString("type").equals("electrical")) {
+                        toolList.addItem(new Electrical(rs.getInt("toolId"),
+                                rs.getString("name"),
+                                rs.getString("type"),
+                                rs.getInt("quantity"),
+                                rs.getFloat("price"),
+                                rs.getInt("supplierId"),
+                                rs.getString("powerType")));
+                    } else {
+                        toolList.addItem(new NonElectrical(rs.getInt("toolId"),
+                                rs.getString("name"),
+                                rs.getString("type"),
+                                rs.getInt("quantity"),
+                                rs.getFloat("price"),
+                                rs.getInt("supplierId")));
+
+                    }
                 }
-                else {
-                    toolList.addItem(new NonElectrical(rs.getInt("toolId"),
-                            rs.getString("name"),
-                            rs.getString("type"),
-                            rs.getInt("quantity"),
-                            rs.getFloat("price"),
-                            rs.getInt("supplierId")));
-                }
-            }
+            } while (rs.next());
+
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();

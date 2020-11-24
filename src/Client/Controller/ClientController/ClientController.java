@@ -1,6 +1,8 @@
 package Client.Controller.ClientController;
 
 
+import Server.Model.*;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -17,10 +19,10 @@ public class ClientController {
     public ClientController(String serverName, int portNumber, ClientModelController clientModelController) {
         try {
             Socket = new Socket(serverName, portNumber);
-            messageOut = new PrintWriter(new OutputStreamWriter(Socket.getOutputStream()), true);
-            messageIn = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
             objectOut = new ObjectOutputStream(Socket.getOutputStream());
             objectIn = new ObjectInputStream(Socket.getInputStream());
+            messageOut = new PrintWriter(new OutputStreamWriter(Socket.getOutputStream()), true);
+            messageIn = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
             stdIn = new BufferedReader(new InputStreamReader(System.in));
             setClientModelController(clientModelController);
         } catch (IOException e) {
@@ -37,25 +39,33 @@ public class ClientController {
         String query = "";
         while (true) {
             try {
+                clientModelController.getClientShop().clearToolList();
                 System.out.println("Enter a query in the form: {searchParameter id/name}");
                 System.out.println("Where 'searchParameter' is toolId or toolName:");
                 query = stdIn.readLine();
+                messageOut.println("toolId");
                 messageOut.println(query); // 1
 
-                System.out.println("\tSent query to server");
+//                System.out.println("\tSent query to server");
                 response = messageIn.readLine(); // 2
 
                 switch (response){
                     case "toolList":
                         try {
-                            System.out.println("waiting to get new object...");
-                            clientModelController.setToolList(objectIn.readObject());
-                            System.out.println("received new object");
+//                            System.out.println("waiting to get new object...");
+                            Tool obj = (Tool) objectIn.readObject();
+//                            System.out.println("got first object");
+                            while (obj != null) {
+//                                System.out.println("\tin client while loop");
+                                clientModelController.getClientShop().getToolList().addItem(obj);
+                                obj = (Tool) objectIn.readObject();
+                            }
+//                            System.out.println("\texited client while loop");
+                            clientModelController.getClientShop().getToolList().display();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -63,7 +73,9 @@ public class ClientController {
     }
 
     public static void main(String[] args) {
-        ClientModelController clientModelController = new ClientModelController();
+        Shop theShop = new Shop();
+        CustomerList customerList = new CustomerList();
+        ClientModelController clientModelController = new ClientModelController(theShop);
         ClientController client = new ClientController("localhost", 8099, clientModelController);
         client.communicate();
     }

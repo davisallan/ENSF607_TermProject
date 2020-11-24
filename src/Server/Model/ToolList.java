@@ -15,6 +15,16 @@ public class ToolList implements Serializable {
         setOrder(order);
     }
 
+
+    public void display() {
+        for (Tool t: toolList) {
+            System.out.println(t);
+        }
+    }
+
+    public void clearList() {
+        toolList.clear();
+    }
     public ArrayList<Tool> getToolList() {
         return toolList;
     }
