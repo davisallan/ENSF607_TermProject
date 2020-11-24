@@ -44,6 +44,20 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
+    public ResultSet searchToolByName(String name) {
+        try {
+            String query = "SELECT T.toolId, T.name, T.type, T.quantity, T.price, T.supplierId, E.powerType " +
+                    "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId) WHERE T.name= ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, name);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        System.out.println("\t\t\tReturning the results of query");
+        return rs;
+    }
+
     public ResultSet selectAll(String tableName) {
         try {
             String query = "SELECT * FROM " + tableName;
@@ -55,17 +69,6 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
-    public ResultSet searchByName (String name, String tableName, String colName) {
-        try {
-            String query = "SELECT * FROM " + tableName +" WHERE " + colName + "= ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, name);
-            rs = stmt.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
 
     public void close() {
         try {

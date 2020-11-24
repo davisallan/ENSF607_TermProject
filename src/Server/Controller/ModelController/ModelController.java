@@ -49,7 +49,11 @@ public class ModelController implements Runnable {
                     theShop.clearToolList();
                 }
                 case "toolName": {
-
+                    rs = dbController.searchToolByName(query[1]);
+                    theShop.addTools(rs);
+                    serverController.sendMessage("toolList");
+                    serverController.sendObject(theShop.getToolList());
+                    theShop.clearToolList();
                 }
                 case "allTools": {
 
