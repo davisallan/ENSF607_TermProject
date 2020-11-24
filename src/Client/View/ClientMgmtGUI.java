@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ClientMgmtGUI extends JFrame{
     private JPanel rootPanel;
@@ -52,6 +53,17 @@ public class ClientMgmtGUI extends JFrame{
     private JRadioButton customerIDRadioButton;
     private JRadioButton lastNameRadioButton;
     private JRadioButton clientTypeRadioButton;
+    private ArrayList<JButton> allButtons;
+
+    private void addButtons() {
+        allButtons = new ArrayList<>();
+        allButtons.add(goToCustomersButton);
+        allButtons.add(goToToolsButton);
+    }
+
+    public ArrayList<JButton> getAllButtons() {
+        return allButtons;
+    }
 
     public JButton getGoToToolsButton() {
         return goToToolsButton;
@@ -100,6 +112,7 @@ public class ClientMgmtGUI extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        gui.addButtons();
         new InventoryViewController(gui);
     }
 

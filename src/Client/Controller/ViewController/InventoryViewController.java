@@ -23,19 +23,20 @@ public class InventoryViewController implements ActionListener {
     }
 
     public void addEventListener() {
-        JButton button = gui.getGoToCustomersButton();
-        button.addActionListener(this);
-        button = gui.getGoToToolsButton();
-        button.addActionListener(this);
+        for (JButton button : gui.getAllButtons()) {
+            button.addActionListener(this);
+        }
+//        JButton button = gui.getGoToCustomersButton();
+//        button.addActionListener(this);
+//        button = gui.getGoToToolsButton();
+//        button.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == gui.getGoToCustomersButton()) {
+        if (actionEvent.getSource() == gui.getGoToCustomersButton())
             cardLayout.show(gui.getRootPanel(), "ClientCard");
-        }
-        if (actionEvent.getSource() == gui.getGoToToolsButton()) {
+        if (actionEvent.getSource() == gui.getGoToToolsButton())
             cardLayout.show(gui.getRootPanel(), "ToolCard");
-        }
     }
 }
