@@ -22,31 +22,64 @@ public abstract class Customer implements Serializable {
         setPostalCode(postalCode);
     }
 
-    public void setType(char type) {
-        this.type = type;
+    public int getCustomerId() {
+        return customerId;
     }
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public char getType() {
+        return type;
+    }
+
+    public void setType(char type) {
+        this.type = type;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public String getPostalCode() {
+        return postalCode;
+    }
+
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s %s %s %s", getCustomerId(), getLastName(), getFirstName(), getType(), getPhoneNum(), getPostalCode());
     }
 }
