@@ -37,7 +37,7 @@ public class ToolList implements Serializable {
         this.order = order;
     }
 
-    public void addItem(Tool i) {
+    public void addTool(Tool i) {
         toolList.add(i);
     }
 
