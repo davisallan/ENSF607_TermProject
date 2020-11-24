@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Controller.ViewController.InventoryViewController;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -100,6 +101,7 @@ public class CardLayoutGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        InventoryViewController toolController = new InventoryViewController(frame);
     }
 
     {
