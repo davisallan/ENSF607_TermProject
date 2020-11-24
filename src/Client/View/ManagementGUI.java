@@ -69,42 +69,42 @@ public class ManagementGUI {
         mainPanel.setPreferredSize(new Dimension(700, 500));
         mainPanel.setRequestFocusEnabled(false);
         leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayoutManager(11, 4, new Insets(0, 0, 0, 0), -1, -1));
+        leftPanel.setLayout(new GridLayoutManager(11, 3, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(leftPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         searchLabel = new JLabel();
         Font searchLabelFont = this.$$$getFont$$$(null, -1, 22, searchLabel.getFont());
         if (searchLabelFont != null) searchLabel.setFont(searchLabelFont);
         searchLabel.setText("Search Clients");
-        leftPanel.add(searchLabel, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(searchLabel, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$(null, -1, 16, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Select type of search to be performed:");
-        leftPanel.add(label1, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(label1, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clientIDCheckBox = new JCheckBox();
         Font clientIDCheckBoxFont = this.$$$getFont$$$(null, -1, 14, clientIDCheckBox.getFont());
         if (clientIDCheckBoxFont != null) clientIDCheckBox.setFont(clientIDCheckBoxFont);
         clientIDCheckBox.setText("Client ID");
-        leftPanel.add(clientIDCheckBox, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(clientIDCheckBox, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lastNameCheckBox = new JCheckBox();
         Font lastNameCheckBoxFont = this.$$$getFont$$$(null, -1, 14, lastNameCheckBox.getFont());
         if (lastNameCheckBoxFont != null) lastNameCheckBox.setFont(lastNameCheckBoxFont);
         lastNameCheckBox.setText("Last Name");
-        leftPanel.add(lastNameCheckBox, new GridConstraints(4, 0, 1, 4, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(lastNameCheckBox, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clientTypeCheckBox = new JCheckBox();
         Font clientTypeCheckBoxFont = this.$$$getFont$$$(null, -1, 14, clientTypeCheckBox.getFont());
         if (clientTypeCheckBoxFont != null) clientTypeCheckBox.setFont(clientTypeCheckBoxFont);
         clientTypeCheckBox.setText("Client Type");
-        leftPanel.add(clientTypeCheckBox, new GridConstraints(5, 0, 1, 4, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(clientTypeCheckBox, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        leftPanel.add(spacer1, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(-1, 40), null, 0, false));
+        leftPanel.add(spacer1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(-1, 40), null, 0, false));
         final Spacer spacer2 = new Spacer();
-        leftPanel.add(spacer2, new GridConstraints(6, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 20), null, 0, false));
+        leftPanel.add(spacer2, new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 20), null, 0, false));
         parameterLabel = new JLabel();
         Font parameterLabelFont = this.$$$getFont$$$(null, -1, 16, parameterLabel.getFont());
         if (parameterLabelFont != null) parameterLabel.setFont(parameterLabelFont);
         parameterLabel.setText("Enter the search parameter below:");
-        leftPanel.add(parameterLabel, new GridConstraints(7, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        leftPanel.add(parameterLabel, new GridConstraints(7, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         textField8 = new JTextField();
         leftPanel.add(textField8, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         searchButton = new JButton();
@@ -199,4 +199,5 @@ public class ManagementGUI {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
