@@ -5,7 +5,6 @@ import Server.Controller.ServerController.ServerController;
 import Server.Model.Shop;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ModelController implements Runnable {
 
@@ -46,14 +45,14 @@ public class ModelController implements Runnable {
                     theShop.addTools(rs);
                     serverController.sendMessage("toolList");
                     serverController.sendObject(theShop.getToolList());
-                    theShop.clearToolList();
+                    theShop.clearAllLists();
                 }
                 case "toolName": {
                     rs = dbController.searchToolByName(query[1]);
                     theShop.addTools(rs);
                     serverController.sendMessage("toolList");
                     serverController.sendObject(theShop.getToolList());
-                    theShop.clearToolList();
+                    theShop.clearAllLists();
                 }
                 case "allTools": {
 

@@ -72,24 +72,15 @@ public class Shop {
                     }
                 }
             } while (rs.next());
-
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void clearToolList() {
+    public void clearAllLists() {
         toolList.getToolList().clear();
+        supplierList.getSupplierList().clear();
+        customerList.getCustomerList().clear();
     }
-
-//    public void addCustomers(ResultSet rs) {
-//        try {
-//            while (rs.next()) {
-//                customerList.addCustomer(new C);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

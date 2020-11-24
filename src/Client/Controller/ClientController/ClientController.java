@@ -39,7 +39,7 @@ public class ClientController {
         String query = "";
         while (true) {
             try {
-                clientModelController.getClientShop().clearToolList();
+                clientModelController.getClientShop().clearAllLists();
                 System.out.println("Enter a query in the form: {searchParameter id/name}");
                 System.out.println("Where 'searchParameter' is toolId or toolName:");
                 query = stdIn.readLine();

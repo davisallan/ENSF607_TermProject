@@ -14,4 +14,8 @@ public class CustomerList implements Serializable {
     public void addCustomer(Customer c) {
         customerList.add(c);
     }
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
 }

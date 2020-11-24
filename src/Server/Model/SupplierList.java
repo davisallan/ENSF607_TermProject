@@ -15,4 +15,7 @@ public class SupplierList implements Serializable {
         supplierList.add(supplier);
     }
 
+    public ArrayList<Supplier> getSupplierList() {
+        return supplierList;
+    }
 }
