@@ -21,7 +21,6 @@ public class ServerController {
     public String[] listenForQuery() {
         String[] query = {};
         try {
-            System.out.println("\tinside listenForQuery()");
             Message msg = (Message) objectIn.readObject();
             query = msg.getMessage().split(" ");
         } catch (IOException | ClassNotFoundException e) {
@@ -39,7 +38,6 @@ public class ServerController {
     }
 
     public void sendObject(ToolList toolList) {
-            System.out.println("\tinside sendObject()");
         System.out.println(toolList.getToolList().get(0));
         try {
             for (Tool tool: toolList.getToolList()) {

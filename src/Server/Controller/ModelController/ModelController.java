@@ -40,19 +40,17 @@ public class ModelController implements Runnable {
             System.out.println(Arrays.toString(query));
             switch (query[0]) {
                 case "toolId": {
-                    System.out.println("toolid");
                     rs = dbController.searchToolById(Integer.parseInt(query[1]));
                     theShop.addTools(rs);
-                    serverController.sendMessage(new Message("toolList"));
+                    serverController.sendMessage(new Message("tool"));
                     serverController.sendObject(theShop.getToolList());
                     theShop.clearAllLists();
                     break;
                 }
                 case "toolName": {
-                    System.out.println("case toolna");
                     rs = dbController.searchToolByName(query[1]);
                     theShop.addTools(rs);
-                    serverController.sendMessage(new Message("toolList"));
+                    serverController.sendMessage(new Message("tool"));
                     serverController.sendObject(theShop.getToolList());
                     theShop.clearAllLists();
                     break;

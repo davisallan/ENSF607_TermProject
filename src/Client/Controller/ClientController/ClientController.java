@@ -38,13 +38,15 @@ public class ClientController {
                 clientModelController.getClientShop().clearAllLists();
                 System.out.println("Enter a query in the form: {searchParameter id/name}");
                 System.out.println("Where 'searchParameter' is toolId or toolName:");
+
                 query = stdIn.readLine();
                 Message msg = new Message(query);
                 objectOut.writeObject(msg);
+
                 response = (Message) objectIn.readObject();
-                System.out.println("Response is " + response.getMessage());
+
                 switch (response.getMessage()){
-                    case "toolList":
+                    case "tool":
                         try {
                             Tool obj = (Tool) objectIn.readObject();
                             while (obj != null) {
@@ -55,6 +57,8 @@ public class ClientController {
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
+                        break;
+
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
