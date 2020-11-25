@@ -1,6 +1,7 @@
 package Client.Controller.ViewController;
 
-import Client.View.ClientMgmtGUI;
+import Client.Controller.ClientController.ClientController;
+import Client.View.ToolShopGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,19 +9,29 @@ import java.awt.event.ActionListener;
 
 public class InventoryViewController {
 
-    private ClientMgmtGUI gui;
+    private ToolShopGUI gui;
     private CardLayout cardLayout;
+    private ClientController clientController;
 
-    public InventoryViewController(ClientMgmtGUI gui) {
+    public InventoryViewController(ToolShopGUI gui, ClientController clientController) {
         setGui(gui);
+        setClientController(clientController);
         cardLayout = (CardLayout) gui.getRootPanel().getLayout();
         gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
         gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton1());
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
     }
 
-    public void setGui(ClientMgmtGUI gui) {
+    public void setGui(ToolShopGUI gui) {
         this.gui = gui;
+    }
+
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
+    }
+
+    public ClientController getClientController() {
+        return clientController;
     }
 
     class ClientCardListener implements ActionListener {

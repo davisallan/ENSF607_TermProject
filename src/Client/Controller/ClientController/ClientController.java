@@ -1,6 +1,9 @@
 package Client.Controller.ClientController;
 
 
+import Client.Controller.ViewController.ClientMgmtController;
+import Client.Controller.ViewController.InventoryViewController;
+import Client.View.ToolShopGUI;
 import Server.Model.*;
 
 import java.io.*;
@@ -13,8 +16,11 @@ public class ClientController {
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
     private ClientModelController clientModelController;
+    private InventoryViewController inventoryViewController;
+    private ClientMgmtController clientMgmtController;
 
-    public ClientController(String serverName, int portNumber, ClientModelController clientModelController) {
+    public ClientController(String serverName, int portNumber,
+                            ClientModelController clientModelController) {
         try {
             Socket = new Socket(serverName, portNumber);
             objectOut = new ObjectOutputStream(Socket.getOutputStream());
@@ -97,8 +103,27 @@ public class ClientController {
 
     public static void main(String[] args) {
         Shop theShop = new Shop();
+        ToolShopGUI gui = new ToolShopGUI();
         ClientModelController clientModelController = new ClientModelController(theShop);
         ClientController client = new ClientController("localhost", 8099, clientModelController);
+        client.setInventoryViewController(new InventoryViewController(gui, client));
+        client.setClientMgmtController(new ClientMgmtController(gui, client));
         client.communicate();
+    }
+
+    public InventoryViewController getInventoryViewController() {
+        return inventoryViewController;
+    }
+
+    public void setInventoryViewController(InventoryViewController inventoryViewController) {
+        this.inventoryViewController = inventoryViewController;
+    }
+
+    public ClientMgmtController getClientMgmtController() {
+        return clientMgmtController;
+    }
+
+    public void setClientMgmtController(ClientMgmtController clientMgmtController) {
+        this.clientMgmtController = clientMgmtController;
     }
 }
