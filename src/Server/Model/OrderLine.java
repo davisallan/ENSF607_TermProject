@@ -34,6 +34,6 @@ public class OrderLine {
     public String toString() {
         return String.format("%-25s %-10s", "Item description:", toolToOrder.getName()) + "\n" +
                 String.format("%-25s %-10s", "Amount ordered:", getOrderQty()) + "\n" +
-                String.format("%-25s %-10s", "Supplier:", toolToOrder.getSupplierID()) + "\n\n";
+                String.format("%-25s %-10s", "Supplier:", toolToOrder.getSupplierID()) + "\n";
     }
 }

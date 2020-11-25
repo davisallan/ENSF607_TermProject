@@ -46,7 +46,7 @@ public class ServerController {
     }
 
     public void sendObjects(ToolList toolList) {
-        System.out.println(toolList.getToolList().get(0));
+//        System.out.println(toolList.getToolList().get(0));
         try {
             for (Tool tool: toolList.getToolList()) {
                 objectOut.writeObject(tool);
@@ -58,7 +58,7 @@ public class ServerController {
     }
 
     public void sendObjects(CustomerList customerList) {
-        System.out.println(customerList.getCustomerList().get(0));
+//        System.out.println(customerList.getCustomerList().get(0));
         try {
             for (Customer customer: customerList.getCustomerList()) {
                 objectOut.writeObject(customer);
