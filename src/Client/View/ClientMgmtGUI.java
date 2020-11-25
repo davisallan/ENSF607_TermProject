@@ -53,16 +53,9 @@ public class ClientMgmtGUI extends JFrame{
     private JRadioButton customerIDRadioButton;
     private JRadioButton lastNameRadioButton;
     private JRadioButton clientTypeRadioButton;
-    private ArrayList<JButton> allButtons;
 
-    private void addButtons() {
-        allButtons = new ArrayList<>();
-        allButtons.add(goToCustomersButton);
-        allButtons.add(goToToolsButton);
-    }
-
-    public ArrayList<JButton> getAllButtons() {
-        return allButtons;
+    public void addButtonActionListener(JButton button, ActionListener actionListener) {
+        button.addActionListener(actionListener);
     }
 
     public JButton getGoToToolsButton() {
@@ -71,6 +64,14 @@ public class ClientMgmtGUI extends JFrame{
 
     public JButton getGoToCustomersButton() {
         return goToCustomersButton;
+    }
+
+    public JButton getClearButton1() {
+        return clearButton1;
+    }
+
+    public JTextField getTextField8() {
+        return textField8;
     }
 
     public JPanel getRootPanel() {
@@ -112,7 +113,6 @@ public class ClientMgmtGUI extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        gui.addButtons();
         new InventoryViewController(gui);
     }
 

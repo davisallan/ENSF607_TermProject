@@ -2,12 +2,11 @@ package Client.Controller.ViewController;
 
 import Client.View.ClientMgmtGUI;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InventoryViewController implements ActionListener {
+public class InventoryViewController {
 
     private ClientMgmtGUI gui;
     private CardLayout cardLayout;
@@ -15,28 +14,27 @@ public class InventoryViewController implements ActionListener {
     public InventoryViewController(ClientMgmtGUI gui) {
         setGui(gui);
         cardLayout = (CardLayout) gui.getRootPanel().getLayout();
-        addEventListener();
+        gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
+        gui.addButtonActionListener(gui.getGoToToolsButton(), new ToolCardListener());
     }
 
     public void setGui(ClientMgmtGUI gui) {
         this.gui = gui;
     }
 
-    public void addEventListener() {
-        for (JButton button : gui.getAllButtons()) {
-            button.addActionListener(this);
+    class ClientCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            cardLayout.show(gui.getRootPanel(), "ClientCard");
         }
-//        JButton button = gui.getGoToCustomersButton();
-//        button.addActionListener(this);
-//        button = gui.getGoToToolsButton();
-//        button.addActionListener(this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == gui.getGoToCustomersButton())
-            cardLayout.show(gui.getRootPanel(), "ClientCard");
-        if (actionEvent.getSource() == gui.getGoToToolsButton())
+    class ToolCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
             cardLayout.show(gui.getRootPanel(), "ToolCard");
+        }
     }
+
+
 }
