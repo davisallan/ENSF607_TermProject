@@ -75,7 +75,6 @@ public class ClientController {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

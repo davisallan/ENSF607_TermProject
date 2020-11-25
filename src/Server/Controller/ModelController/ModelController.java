@@ -49,7 +49,6 @@ public class ModelController implements Runnable {
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
-                    theShop.clearAllLists();
                     break;
                 }
                 case "toolName": {
@@ -57,7 +56,6 @@ public class ModelController implements Runnable {
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
-                    theShop.clearAllLists();
                     break;
                 }
                 case "allTools": {
@@ -65,29 +63,36 @@ public class ModelController implements Runnable {
                     theShop.addTools(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
-                    theShop.clearAllLists();
+                    break;
                 }
                 case "checkQty": {
 
+                    break;
                 }
                 case "decreaseQty": {
 
+                    break;
                 }
                 case "customerId": {
-
-                }
-                case "customerLName": {
-                    rs = dbController.searchCustomerLName(condition);
+                    rs = dbController.searchCustomerByID(Integer.parseInt(condition));
                     theShop.addCustomers(rs);
                     serverController.sendMessage(new Message("customer"));
                     serverController.sendObjects(theShop.getCustomerList());
-                    theShop.clearAllLists();
+                    break;
+                }
+                case "customerLName": {
+                    rs = dbController.searchCustomerByLName(condition);
+                    theShop.addCustomers(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
+                    break;
                 }
                 case "customerType": {
 
+                    break;
                 }
             }
+            theShop.clearAllLists();
         }
     }
-
 }
