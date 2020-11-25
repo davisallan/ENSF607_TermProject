@@ -27,6 +27,8 @@ public class ClientMgmtController {
         gui.addButtonActionListener(gui.getClearButton1(), new ClearButton1());
         gui.addButtonActionListener(gui.getClearButton(), new ClearButton());
         gui.addButtonActionListener(gui.getSearchButton(), new SearchButton());
+        gui.addButtonActionListener(gui.getSaveButton(), new SaveButton());
+        gui.addButtonActionListener(gui.getDeleteButton(), new DeleteButton());
         gui.addMouseListener(gui.getList2(), new List2());
     }
 
@@ -96,6 +98,20 @@ public class ClientMgmtController {
                 String message = "customerType-" + gui.getTextField8().getText();
                 clientController.sendMessage(new Message(message));
             }
+        }
+    }
+
+    class SaveButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+        }
+    }
+
+    class DeleteButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
         }
     }
 

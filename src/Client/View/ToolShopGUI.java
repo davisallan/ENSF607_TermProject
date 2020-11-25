@@ -77,6 +77,14 @@ public class ToolShopGUI extends JFrame{
         return searchButton;
     }
 
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
     public JButton getSearchButton1() {
         return searchButton1;
     }
@@ -91,6 +99,10 @@ public class ToolShopGUI extends JFrame{
 
     public JButton getClearButton2() {
         return clearButton2;
+    }
+
+    public JButton getSellButton() {
+        return sellButton;
     }
 
     public JRadioButton getToolNameRadioButton() {
