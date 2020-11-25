@@ -14,8 +14,6 @@ public class ToolList implements Serializable {
         setOrder(order);
     }
 
-
-
     public void display() {
         for (Tool t: toolList) {
             System.out.println(t);
@@ -31,6 +29,8 @@ public class ToolList implements Serializable {
     }
 
     public Order getOrder() {
+        if (order == null)
+            order = new Order();
         return order;
     }
 
@@ -42,8 +42,8 @@ public class ToolList implements Serializable {
         toolList.add(i);
     }
 
-//    public void decreaseQty(Tool tool, int amount) {
-//        tool.decreaseQty(tool, amount, order);
-//    }
+    public void decreaseQty(Tool tool) {
+        tool.decreaseQty(order);
+    }
 
 }

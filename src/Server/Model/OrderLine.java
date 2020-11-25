@@ -3,7 +3,7 @@ package Server.Model;
 import java.io.Serializable;
 
 
-public class OrderLine implements Serializable {
+public class OrderLine {
 
     private Tool toolToOrder;
     private int orderQty;

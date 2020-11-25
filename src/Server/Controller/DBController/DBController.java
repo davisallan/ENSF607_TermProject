@@ -144,6 +144,17 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public void sellItem(String toolName) {
+        try {
+            String query = "UPDATE tool SET quantity = quantity - 1 WHERE name=?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, toolName);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void close() {
         try {
             conn.close();

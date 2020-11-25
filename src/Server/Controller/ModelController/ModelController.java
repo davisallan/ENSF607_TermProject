@@ -107,11 +107,29 @@ public class ModelController implements Runnable {
 
                     break;
                 }
-                case "sell": {
+                case "sellAllTools": {
                     rs = dbController.selectAllTools();
                     theShop.addTools(rs);
                     theShop.sellItem(Integer.parseInt(condition));
                     dbController.sellItem(Integer.parseInt(condition));
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
+                }
+                case "sellToolId": {
+                    rs = dbController.searchToolById(Integer.parseInt(condition));
+                    theShop.addTools(rs);
+                    theShop.sellItem(Integer.parseInt(condition));
+                    dbController.sellItem(Integer.parseInt(condition));
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
+                }
+                case "sellToolName": {
+                    rs = dbController.searchToolByName(condition);
+                    theShop.addTools(rs);
+                    theShop.sellItem(condition);
+                    dbController.sellItem(condition);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
