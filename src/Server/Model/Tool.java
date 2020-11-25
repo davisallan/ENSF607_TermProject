@@ -87,8 +87,13 @@ public abstract class Tool implements Serializable {
 //        }
 //    }
 
-    public void decreaseQty() {
-        quantity = quantity - 1;
+    public void decreaseQty(Order order) {
+        setQuantity(getQuantity() - 1);
+
+        if (getQuantity() < 40) {
+            OrderLine orderLine = new OrderLine(this, 50 - getQuantity());
+            order.addOrderLine(orderLine);
+        }
     }
 
     /**

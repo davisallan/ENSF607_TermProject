@@ -1,6 +1,6 @@
 package Server.Model;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,14 +12,32 @@ import java.util.Random;
  * @version 1.0
  * @since 2020-10-10
  */
-public class Order implements Serializable {
+public class Order {
 
     private final ArrayList<OrderLine> orderLines;
     private final int orderNum;
+    private FileWriter fileWriter;
+    private BufferedWriter bufferedWriter;
 
     public Order() {
         orderLines = new ArrayList<>();
         orderNum = 10000 + new Random().nextInt(90000);
+        try {
+            fileWriter = new FileWriter("order.txt", true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        createOrderFile();
+    }
+
+    private void createOrderFile() {
+//        try {
+////            bufferedWriter.write("Order created\n");
+////            bufferedWriter.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public int getOrderNum() {
@@ -28,6 +46,12 @@ public class Order implements Serializable {
 
     public void addOrderLine(OrderLine line) {
         orderLines.add(line);
+        System.out.println("Adding order line");
+        try {
+            bufferedWriter.write("OrderLine added");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("\033[0;32m" + "\t*OrderLine created for Order " + getOrderNum() + "\033[0m");
     }
 
