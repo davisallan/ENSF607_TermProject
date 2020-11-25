@@ -46,53 +46,15 @@ public class CardLayoutGUI {
     private JButton clearButton2;
     private JButton goToCustomersButton;
     private JButton sellButton;
-    private JButton listAllToolsButton;
     private JRadioButton toolNameRadioButton;
     private JRadioButton toolIDRadioButton;
     private JRadioButton customerIDRadioButton;
     private JRadioButton lastNameRadioButton;
     private JRadioButton clientTypeRadioButton;
+    private JRadioButton listAllToolsRadioButton;
 
     public CardLayoutGUI() {
 
-        goToCustomersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                CardLayout card = (CardLayout) rootPanel.getLayout();
-                card.show(rootPanel, "ClientCard");
-            }
-        });
-        goToToolsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                CardLayout card = (CardLayout) rootPanel.getLayout();
-                card.show(rootPanel, "ToolCard");
-            }
-        });
-        clearButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField8.setText("");
-            }
-        });
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField1.setText("");
-                textField2.setText("");
-                textField3.setText("");
-                textField4.setText("");
-                textField5.setText("");
-                textField6.setText("");
-                textField7.setText("");
-            }
-        });
-        clearButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField9.setText("");
-            }
-        });
     }
 
     public static void main(String[] args) {
@@ -238,76 +200,91 @@ public class CardLayoutGUI {
         deleteButton.setText("Delete");
         rightPanel.add(deleteButton, new GridConstraints(8, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         toolPanel = new JPanel();
-        toolPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        toolPanel.setLayout(new BorderLayout(0, 0));
         toolPanel.setMaximumSize(new Dimension(500, 500));
         toolPanel.setPreferredSize(new Dimension(252, 338));
         rootPanel.add(toolPanel, "ToolCard");
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(11, 3, new Insets(0, 0, 0, 0), -1, -1));
-        toolPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(359, 61), null, 0, false));
+        panel1.setLayout(new GridLayoutManager(12, 7, new Insets(0, 0, 0, 0), -1, -1));
+        toolPanel.add(panel1, BorderLayout.CENTER);
         final JLabel label3 = new JLabel();
         label3.setAlignmentY(0.0f);
         Font label3Font = this.$$$getFont$$$(null, -1, 22, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
-        label3.setText("Search Tools");
+        label3.setText("Inventory Manager");
         label3.setVerifyInputWhenFocusTarget(true);
-        panel1.add(label3, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 30), null, 0, false));
+        panel1.add(label3, new GridConstraints(0, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 30), null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panel1.add(spacer3, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(250, 40), null, 0, false));
+        panel1.add(spacer3, new GridConstraints(1, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(250, 40), null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel1.add(spacer4, new GridConstraints(5, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(250, 20), null, 0, false));
+        panel1.add(spacer4, new GridConstraints(6, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(250, 20), null, 0, false));
         final JLabel label4 = new JLabel();
         Font label4Font = this.$$$getFont$$$(null, -1, 16, label4.getFont());
         if (label4Font != null) label4.setFont(label4Font);
         label4.setText("Enter the search parameter below:");
-        panel1.add(label4, new GridConstraints(6, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 22), null, 0, false));
+        panel1.add(label4, new GridConstraints(7, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 22), null, 0, false));
         textField9 = new JTextField();
-        panel1.add(textField9, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 26), null, 0, false));
-        final JLabel label5 = new JLabel();
-        Font label5Font = this.$$$getFont$$$(null, -1, 16, label5.getFont());
-        if (label5Font != null) label5.setFont(label5Font);
-        label5.setText("Search Results:");
-        panel1.add(label5, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(textField9, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 26), null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
-        panel1.add(scrollPane2, new GridConstraints(9, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(100, 250), null, 0, false));
+        panel1.add(scrollPane2, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(100, 250), null, 0, false));
         goToCustomersButton = new JButton();
         goToCustomersButton.setText("Go To Customers");
-        panel1.add(goToCustomersButton, new GridConstraints(10, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        typeSearchLabel = new JLabel();
-        Font typeSearchLabelFont = this.$$$getFont$$$(null, -1, 16, typeSearchLabel.getFont());
-        if (typeSearchLabelFont != null) typeSearchLabel.setFont(typeSearchLabelFont);
-        typeSearchLabel.setText("Select type of search:");
-        panel1.add(typeSearchLabel, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 22), null, 0, false));
-        sellButton = new JButton();
-        sellButton.setText("Sell");
-        panel1.add(sellButton, new GridConstraints(10, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        clearButton2 = new JButton();
-        clearButton2.setText("Clear");
-        panel1.add(clearButton2, new GridConstraints(8, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        searchButton1 = new JButton();
-        searchButton1.setText("Search");
-        panel1.add(searchButton1, new GridConstraints(7, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        listAllToolsButton = new JButton();
-        listAllToolsButton.setText("List All Tools");
-        panel1.add(listAllToolsButton, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        toolNameRadioButton = new JRadioButton();
-        Font toolNameRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolNameRadioButton.getFont());
-        if (toolNameRadioButtonFont != null) toolNameRadioButton.setFont(toolNameRadioButtonFont);
-        toolNameRadioButton.setText("Tool Name");
-        panel1.add(toolNameRadioButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(goToCustomersButton, new GridConstraints(11, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         toolIDRadioButton = new JRadioButton();
         Font toolIDRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolIDRadioButton.getFont());
         if (toolIDRadioButtonFont != null) toolIDRadioButton.setFont(toolIDRadioButtonFont);
         toolIDRadioButton.setText("Tool ID");
-        panel1.add(toolIDRadioButton, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(toolIDRadioButton, new GridConstraints(4, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label5 = new JLabel();
+        Font label5Font = this.$$$getFont$$$(null, -1, 16, label5.getFont());
+        if (label5Font != null) label5.setFont(label5Font);
+        label5.setText("Status");
+        panel1.add(label5, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        typeSearchLabel = new JLabel();
+        Font typeSearchLabelFont = this.$$$getFont$$$(null, -1, 16, typeSearchLabel.getFont());
+        if (typeSearchLabelFont != null) typeSearchLabel.setFont(typeSearchLabelFont);
+        typeSearchLabel.setText("Select type of search:");
+        panel1.add(typeSearchLabel, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 22), null, 0, false));
+        final JLabel label6 = new JLabel();
+        Font label6Font = this.$$$getFont$$$(null, -1, 12, label6.getFont());
+        if (label6Font != null) label6.setFont(label6Font);
+        label6.setText("  ");
+        panel1.add(label6, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        toolNameRadioButton = new JRadioButton();
+        Font toolNameRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolNameRadioButton.getFont());
+        if (toolNameRadioButtonFont != null) toolNameRadioButton.setFont(toolNameRadioButtonFont);
+        toolNameRadioButton.setText("Tool Name");
+        panel1.add(toolNameRadioButton, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        searchButton1 = new JButton();
+        searchButton1.setText("Search");
+        panel1.add(searchButton1, new GridConstraints(8, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        clearButton2 = new JButton();
+        clearButton2.setText("Clear");
+        panel1.add(clearButton2, new GridConstraints(8, 3, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        sellButton = new JButton();
+        sellButton.setText("Sell");
+        panel1.add(sellButton, new GridConstraints(9, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label7 = new JLabel();
+        Font label7Font = this.$$$getFont$$$(null, -1, 16, label7.getFont());
+        if (label7Font != null) label7.setFont(label7Font);
+        label7.setText("Search Results:");
+        panel1.add(label7, new GridConstraints(9, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer5 = new Spacer();
+        panel1.add(spacer5, new GridConstraints(8, 5, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        listAllToolsRadioButton = new JRadioButton();
+        Font listAllToolsRadioButtonFont = this.$$$getFont$$$(null, -1, 14, listAllToolsRadioButton.getFont());
+        if (listAllToolsRadioButtonFont != null) listAllToolsRadioButton.setFont(listAllToolsRadioButtonFont);
+        listAllToolsRadioButton.setText("List All Tools");
+        panel1.add(listAllToolsRadioButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(toolNameRadioButton);
-        buttonGroup.add(toolIDRadioButton);
         buttonGroup = new ButtonGroup();
         buttonGroup.add(customerIDRadioButton);
         buttonGroup.add(lastNameRadioButton);
         buttonGroup.add(clientTypeRadioButton);
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(toolIDRadioButton);
+        buttonGroup.add(toolNameRadioButton);
+        buttonGroup.add(listAllToolsRadioButton);
     }
 
     /**

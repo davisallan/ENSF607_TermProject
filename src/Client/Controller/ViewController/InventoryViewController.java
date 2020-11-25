@@ -16,6 +16,7 @@ public class InventoryViewController {
         cardLayout = (CardLayout) gui.getRootPanel().getLayout();
         gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
         gui.addButtonActionListener(gui.getGoToToolsButton(), new ToolCardListener());
+        gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton1());
         gui.addButtonActionListener(gui.getClearButton(), new ClearButton());
         gui.addButtonActionListener(gui.getClearButton1(), new ClearButton1());
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
@@ -36,6 +37,18 @@ public class InventoryViewController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             cardLayout.show(gui.getRootPanel(), "ToolCard");
+        }
+    }
+
+    class SearchButton1 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (gui.getToolIDRadioButton().isSelected()) {
+                gui.getTextField9().getText();
+            }
+            else if (gui.getToolNameRadioButton().isSelected()) {
+                System.out.println("Name");
+            }
         }
     }
 
