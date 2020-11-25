@@ -1,8 +1,5 @@
 package Server.Controller.DBController;
 
-import Server.Model.Residential;
-import com.mysql.cj.protocol.Resultset;
-
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -107,22 +104,26 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
-    public ResultSet selectAll(String tableName) {
+    public void updateUser(int customerId, String lName, String fName, String cType,
+                           String phoneNum, String address, String postalCode) {
         try {
-            String query = "SELECT * FROM " + tableName;
+            String query = "UPDATE customer SET lName = ?, fName = ?, cType = ?, phoneNum = ?, address = ?, postalCode = ? WHERE customerId = ?";
             stmt = conn.prepareStatement(query);
-            rs = stmt.executeQuery();
+            stmt.setString(1, lName);
+            stmt.setString(2, fName);
+            stmt.setString(3, cType);
+            stmt.setString(4, phoneNum);
+            stmt.setString(5, address);
+            stmt.setString(6, postalCode);
+            stmt.setInt(7, customerId);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rs;
     }
-
 
     public void close() {
         try {
-//            stmt.close();
-//            rs.close();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,21 +134,7 @@ public class DBController implements DBCredentials{
         //testing functions
         DBController controller = new DBController();
         controller.initializeConnection();
-        ResultSet resultSet = controller.searchToolById(1001);
-        try {
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("toolId") + " " +
-                        resultSet.getString("name") + " " +
-                        resultSet.getString("type") + " " +
-                        resultSet.getInt("quantity") + " " +
-                        resultSet.getFloat("price") + " " +
-                        resultSet.getInt("supplierId") + " " +
-                        resultSet.getString("powerType"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        controller.updateUser(100,"POWERS","AUSTIN", "R","403-123-1343","yeah baby", "t23-123");
         controller.close();
     }
 }
-

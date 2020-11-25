@@ -82,14 +82,6 @@ public class ModelController implements Runnable {
                     serverController.sendObjects(theShop.getToolList());
                     break;
                 }
-                case "checkQty": {
-
-                    break;
-                }
-                case "decreaseQty": {
-
-                    break;
-                }
                 case "customerId": {
                     rs = dbController.searchCustomerByID(Integer.parseInt(condition));
                     theShop.addCustomers(rs);
@@ -111,6 +103,23 @@ public class ModelController implements Runnable {
                     serverController.sendObjects(theShop.getCustomerList());
                     break;
                 }
+                case "updateCustomer": {
+
+                    break;
+                }
+//                case "deleteCustomer": {
+//
+//                    break;
+//                }
+//
+//                case "checkQty": {
+//
+//                    break;
+//                }
+//                case "decreaseQty": {
+//
+//                    break;
+//                }
             }
             theShop.clearAllLists();
         }
