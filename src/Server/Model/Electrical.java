@@ -16,4 +16,9 @@ public class Electrical extends Tool {
     public void setPowerType(String powerType) {
         this.powerType = powerType;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %18s %14.2f %10s %15s %10s", getId(), getName(), getPrice(), getQuantity(), getSupplierID(), getPowerType());
+    }
 }

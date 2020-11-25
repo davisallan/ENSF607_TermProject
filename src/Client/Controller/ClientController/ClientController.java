@@ -54,7 +54,6 @@ public class ClientController {
         String query = "";
         while (true) {
             try {
-                clientModelController.getClientShop().clearAllLists();
 //                System.out.println("Enter a query in the form: {searchParameter id/name}");
 //                System.out.println("Where 'searchParameter' is toolId or toolName:");
 
@@ -95,6 +94,7 @@ public class ClientController {
                         }
                         break;
                 }
+                clientModelController.getClientShop().clearAllLists();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

@@ -25,11 +25,12 @@ public class InventoryViewController {
     }
 
     public void updateGUIResults(ToolList toolList) {
-        DefaultListModel model = (DefaultListModel) gui.getList1().getModel();
-        model.removeAllElements();
+        DefaultListModel<String> model = new DefaultListModel<>();
+
         for (Tool tool : toolList.getToolList()) {
-            model.addElement(tool);
+            model.addElement(tool.toString());
         }
+        gui.getList1().setModel(model);
     }
 
     public void setGui(ToolShopGUI gui) {
