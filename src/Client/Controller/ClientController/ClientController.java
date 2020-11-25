@@ -55,12 +55,12 @@ public class ClientController {
         while (true) {
             try {
                 clientModelController.getClientShop().clearAllLists();
-                System.out.println("Enter a query in the form: {searchParameter id/name}");
-                System.out.println("Where 'searchParameter' is toolId or toolName:");
+//                System.out.println("Enter a query in the form: {searchParameter id/name}");
+//                System.out.println("Where 'searchParameter' is toolId or toolName:");
 
-                query = stdIn.readLine();
-                Message msg = new Message(query);
-                objectOut.writeObject(msg);
+//                query = stdIn.readLine();
+//                Message msg = new Message(query);
+//                objectOut.writeObject(msg);
 
                 response = (Message) objectIn.readObject();
 
@@ -98,6 +98,14 @@ public class ClientController {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void sendMessage(Message message) {
+        try {
+            objectOut.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

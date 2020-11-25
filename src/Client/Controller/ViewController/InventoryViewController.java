@@ -2,6 +2,7 @@ package Client.Controller.ViewController;
 
 import Client.Controller.ClientController.ClientController;
 import Client.View.ToolShopGUI;
+import Server.Model.Message;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,13 +46,15 @@ public class InventoryViewController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if (gui.getToolIDRadioButton().isSelected()) {
-                System.out.println(gui.getTextField9().getText());
+                String message = "toolId-" + gui.getTextField9().getText();
+                clientController.sendMessage(new Message(message));
             }
             else if (gui.getToolNameRadioButton().isSelected()) {
-                System.out.println("Name");
+                String message = "toolName-" + gui.getTextField9().getText();
+                clientController.sendMessage(new Message(message));
             }
             else if (gui.getListAllToolsRadioButton().isSelected()) {
-                System.out.println("All tools");
+                clientController.sendMessage(new Message("allTools"));
             }
         }
     }
