@@ -76,7 +76,7 @@ public class ClientController {
                                 clientModelController.getClientShop().getToolList().addTool(obj);
                                 obj = (Tool) objectIn.readObject();
                             }
-                            clientModelController.getClientShop().getToolList().display();
+                            inventoryViewController.updateGUIResults(clientModelController.getClientShop().getToolList());
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }

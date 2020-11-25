@@ -125,6 +125,10 @@ public class ToolShopGUI extends JFrame{
         return rootPanel;
     }
 
+    public JList getList1() {
+        return list1;
+    }
+
     public ToolShopGUI() {
         JFrame frame = new JFrame("CardLayoutGUI");
         frame.setContentPane(this.rootPanel);
@@ -197,7 +201,7 @@ public class ToolShopGUI extends JFrame{
         leftPanel.add(label2, new GridConstraints(9, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         leftPanel.add(scrollPane1, new GridConstraints(10, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(-1, 250), null, 0, false));
-        list2 = new JList();
+        list2 = new JList(new DefaultListModel());
         scrollPane1.setViewportView(list2);
         goToToolsButton = new JButton();
         goToToolsButton.setText("Go To Tools");
@@ -297,7 +301,7 @@ public class ToolShopGUI extends JFrame{
         panel1.add(textField9, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 26), null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         panel1.add(scrollPane2, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(100, 250), null, 0, false));
-        list1 = new JList();
+        list1 = new JList(new DefaultListModel());
         scrollPane2.setViewportView(list1);
         goToCustomersButton = new JButton();
         goToCustomersButton.setText("Go To Customers");

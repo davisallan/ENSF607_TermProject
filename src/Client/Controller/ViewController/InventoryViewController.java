@@ -2,8 +2,9 @@ package Client.Controller.ViewController;
 
 import Client.Controller.ClientController.ClientController;
 import Client.View.ToolShopGUI;
-import Server.Model.Message;
+import Server.Model.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +24,12 @@ public class InventoryViewController {
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
     }
 
-    public void updateGUIResults() {
-
+    public void updateGUIResults(ToolList toolList) {
+        DefaultListModel model = (DefaultListModel) gui.getList1().getModel();
+        model.removeAllElements();
+        for (Tool tool : toolList.getToolList()) {
+            model.addElement(tool);
+        }
     }
 
     public void setGui(ToolShopGUI gui) {
