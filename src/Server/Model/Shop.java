@@ -25,11 +25,11 @@ public class Shop {
     public void addTools(ResultSet rs) {
         try {
             while (rs.next()) {
-                if (rs.getString("type").equals("electrical")) {
+                if (rs.getString("tType").equals("electrical")) {
                     toolList.addTool(new Electrical(
                             rs.getInt("toolId"),
-                            rs.getString("name"),
-                            rs.getString("type"),
+                            rs.getString("tName"),
+                            rs.getString("tType"),
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
                             rs.getInt("supplierId"),
@@ -37,8 +37,8 @@ public class Shop {
                 } else {
                     toolList.addTool(new NonElectrical(
                             rs.getInt("toolId"),
-                            rs.getString("name"),
-                            rs.getString("type"),
+                            rs.getString("tName"),
+                            rs.getString("tType"),
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
                             rs.getInt("supplierId")));
