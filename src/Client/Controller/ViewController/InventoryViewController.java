@@ -87,6 +87,7 @@ public class InventoryViewController {
             Tool tool = clientController.getClientModelController().getClientShop().getToolList().getToolList().get(index);
             String message = "sell-" + tool.getId();
             clientController.sendMessage(new Message(message));
+            gui.getStatusLabel().setText("Sell of tool " + tool.getName() + " made.");
         }
     }
 

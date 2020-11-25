@@ -419,15 +419,6 @@
                   <text value="Tool ID"/>
                 </properties>
               </component>
-              <component id="3a59b" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font size="16"/>
-                  <text value="Status"/>
-                </properties>
-              </component>
               <component id="a8658" class="javax.swing.JLabel" binding="typeSearchLabel">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
@@ -439,7 +430,7 @@
                   <text value="Select type of search:"/>
                 </properties>
               </component>
-              <component id="d3a4c" class="javax.swing.JLabel">
+              <component id="d3a4c" class="javax.swing.JLabel" binding="statusLabel">
                 <constraints>
                   <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -502,6 +493,15 @@
                 <properties>
                   <font size="14"/>
                   <text value="List All Tools"/>
+                </properties>
+              </component>
+              <component id="3a59b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <text value="Status"/>
                 </properties>
               </component>
             </children>
