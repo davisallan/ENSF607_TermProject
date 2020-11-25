@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.Controller.ViewController.ClientMgmtController;
 import Client.Controller.ViewController.InventoryViewController;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -7,9 +8,7 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ClientMgmtGUI extends JFrame{
     private JPanel rootPanel;
@@ -90,6 +89,10 @@ public class ClientMgmtGUI extends JFrame{
         return toolIDRadioButton;
     }
 
+    public JRadioButton getListAllToolsRadioButton() {
+        return listAllToolsRadioButton;
+    }
+
     public JTextField getTextField1() {
         return textField1;
     }
@@ -134,6 +137,7 @@ public class ClientMgmtGUI extends JFrame{
         frame.pack();
         frame.setVisible(true);
         new InventoryViewController(gui);
+        new ClientMgmtController(gui);
     }
 
     {
