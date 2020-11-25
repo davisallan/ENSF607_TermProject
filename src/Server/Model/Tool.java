@@ -10,6 +10,7 @@ public abstract class Tool implements Serializable {
     private int quantity;
     private double price;
     private int supplierId;
+    private String supplierName;
 
     public Tool(int id, String name, String type, int quantity, double price, int supplierID) {
         setId(id);
@@ -63,7 +64,15 @@ public abstract class Tool implements Serializable {
         this.supplierId = supplierId;
     }
 
-//    /**
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    //    /**
 //     * Simulates the sale of a Item by decreasing the current quantity by a specific amount. Ensures if
 //     * quantity is decreased below 40, it will trigger the creation of an OrderLine with a default order
 //     * size of 50 - current quantity. Values of data fields are supplied by the given parameters.
@@ -102,7 +111,7 @@ public abstract class Tool implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%-15d%-50s%-25s%-9.2f%-8d%-8s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID());
+        return String.format("%-12d %-16s %-20s %-10.2f %-8d %-12s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID());
     }
 
     public String getType() {
