@@ -103,14 +103,15 @@ public class ModelController implements Runnable {
                     serverController.sendObjects(theShop.getCustomerList());
                     break;
                 }
-                case "updateCustomer": {
-
-                    break;
-                }
-//                case "deleteCustomer": {
+//                case "updateCustomer": {
 //
 //                    break;
 //                }
+                case "deleteCustomer": {
+                    dbController.deleteUser(Integer.parseInt(condition));
+
+                    break;
+                }
 //
 //                case "checkQty": {
 //

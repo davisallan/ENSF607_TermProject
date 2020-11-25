@@ -41,6 +41,31 @@ public class ClientMgmtController {
         gui.getList2().setModel(model);
     }
 
+    public void sendSearchQuery() {
+        if (gui.getCustomerIDRadioButton().isSelected()) {
+            String message = "customerId-" + gui.getTextField8().getText();
+            clientController.sendMessage(new Message(message));
+        }
+        else if (gui.getLastNameRadioButton().isSelected()) {
+            String message = "customerLName-" + gui.getTextField8().getText();
+            clientController.sendMessage(new Message(message));
+        }
+        else if (gui.getClientTypeRadioButton().isSelected()) {
+            String message = "customerType-" + gui.getTextField8().getText();
+            clientController.sendMessage(new Message(message));
+        }
+    }
+
+    public void clearTextFields() {
+        gui.getTextField1().setText("");
+        gui.getTextField2().setText("");
+        gui.getTextField3().setText("");
+        gui.getTextField4().setText("");
+        gui.getTextField5().setText("");
+        gui.getTextField6().setText("");
+        gui.getTextField7().setText("");
+    }
+
     public void setGui(ToolShopGUI gui) {
         this.gui = gui;
     }
@@ -73,31 +98,14 @@ public class ClientMgmtController {
     class ClearButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            gui.getTextField1().setText("");
-            gui.getTextField2().setText("");
-            gui.getTextField3().setText("");
-            gui.getTextField4().setText("");
-            gui.getTextField5().setText("");
-            gui.getTextField6().setText("");
-            gui.getTextField7().setText("");
+            clearTextFields();
         }
     }
 
     class SearchButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (gui.getCustomerIDRadioButton().isSelected()) {
-                String message = "customerId-" + gui.getTextField8().getText();
-                clientController.sendMessage(new Message(message));
-            }
-            else if (gui.getLastNameRadioButton().isSelected()) {
-                String message = "customerLName-" + gui.getTextField8().getText();
-                clientController.sendMessage(new Message(message));
-            }
-            else if (gui.getClientTypeRadioButton().isSelected()) {
-                String message = "customerType-" + gui.getTextField8().getText();
-                clientController.sendMessage(new Message(message));
-            }
+            sendSearchQuery();
         }
     }
 
@@ -111,7 +119,10 @@ public class ClientMgmtController {
     class DeleteButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+            String message = "deleteCustomer-" + gui.getTextField1().getText();
+            clientController.sendMessage(new Message(message));
+            clearTextFields();
+            sendSearchQuery();
         }
     }
 
