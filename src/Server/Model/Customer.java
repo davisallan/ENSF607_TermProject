@@ -80,6 +80,6 @@ public abstract class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %s %s %s", getCustomerId(), getLastName(), getFirstName(), getType(), getPhoneNum(), getPostalCode());
+        return String.format("%s %s %s %s %s %s %s", getCustomerId(), getLastName(), getFirstName(), getAddress(), getPostalCode(), getPhoneNum(), getType());
     }
 }

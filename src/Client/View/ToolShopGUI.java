@@ -7,6 +7,8 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ToolShopGUI extends JFrame{
     private JPanel rootPanel;
@@ -57,6 +59,10 @@ public class ToolShopGUI extends JFrame{
 
     public void addButtonActionListener(JButton button, ActionListener actionListener) {
         button.addActionListener(actionListener);
+    }
+
+    public void addMouseListener(JList list, MouseListener me) {
+        list.addMouseListener(me);
     }
 
     public JButton getGoToToolsButton() {

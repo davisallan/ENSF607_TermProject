@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClientMgmtController {
 
@@ -25,6 +27,7 @@ public class ClientMgmtController {
         gui.addButtonActionListener(gui.getClearButton1(), new ClearButton1());
         gui.addButtonActionListener(gui.getClearButton(), new ClearButton());
         gui.addButtonActionListener(gui.getSearchButton(), new SearchButton());
+        gui.addMouseListener(gui.getList2(), new List2());
     }
 
     public void updateGUIResults(CustomerList customerList) {
@@ -93,6 +96,27 @@ public class ClientMgmtController {
                 String message = "customerType-" + gui.getTextField8().getText();
                 clientController.sendMessage(new Message(message));
             }
+        }
+    }
+
+    class List2 extends MouseAdapter {
+        public void mouseClicked(MouseEvent me) {
+            JList selection = (JList)me.getSource();
+            int index = selection.locationToIndex(me.getPoint());
+            Object customer = selection.getModel().getElementAt(index);
+            System.out.println(customer.toString());
+            String[] elements = customer.toString().split(" ");
+            gui.getTextField1().setText(elements[0]);
+            gui.getTextField2().setText(elements[1]);
+            gui.getTextField3().setText(elements[2]);
+//            String address = "";
+//            for (int i = 3; elements[i].length() != 3; i++) {
+//                address += " " + elements[i];
+//            }
+            gui.getTextField4().setText(elements[3]);
+            gui.getTextField5().setText(elements[4]);
+            gui.getTextField6().setText(elements[5]);
+            gui.getTextField7().setText((elements[6] + " " + elements[7]));
         }
     }
 }
