@@ -21,6 +21,7 @@ public class InventoryViewController {
         gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
         gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton1());
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
+        gui.addButtonActionListener(gui.getSellButton(), new SellButton());
         gui.addMouseListener(gui.getList1(), new List1());
     }
 
@@ -79,10 +80,20 @@ public class InventoryViewController {
         }
     }
 
+    class SellButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            int index = gui.getList1().getSelectedIndex();
+            Tool tool = clientController.getClientModelController().getClientShop().getToolList().getToolList().get(index);
+            String message = "sell-" + tool.getId();
+            clientController.sendMessage(new Message(message));
+        }
+    }
+
     class List1 extends MouseAdapter {
         public void mouseClicked(MouseEvent me) {
             if (me.getClickCount() == 1) {
-                
+
             }
         }
     }

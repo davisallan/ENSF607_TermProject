@@ -42,8 +42,8 @@ public class ToolList implements Serializable {
         toolList.add(i);
     }
 
-    public void decreaseQty(Tool tool, int amount) {
-        tool.decreaseQty(tool, amount, order);
-    }
+//    public void decreaseQty(Tool tool, int amount) {
+//        tool.decreaseQty(tool, amount, order);
+//    }
 
 }

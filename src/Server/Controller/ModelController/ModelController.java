@@ -107,6 +107,15 @@ public class ModelController implements Runnable {
 
                     break;
                 }
+                case "sell": {
+                    rs = dbController.selectAllTools();
+                    theShop.addTools(rs);
+                    theShop.sellItem(Integer.parseInt(condition));
+                    dbController.sellItem(Integer.parseInt(condition));
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
+                }
 //                case "deleteCustomer": {
 //
 //                    break;

@@ -39,8 +39,8 @@ public class Shop {
         return customerList;
     }
 
-    public void decreaseQty() {
-        //Will need at some point
+    public void decreaseQty(Tool tool) {
+        tool.decreaseQty();
     }
 
     //TODO move the addCustomers/addTools methods to their respective classes
@@ -71,6 +71,15 @@ public class Shop {
             e.printStackTrace();
         }
     }
+
+    public void sellItem(int id) {
+        for (Tool tool : toolList.getToolList()) {
+            if (tool.getId() == id)
+                decreaseQty(tool);
+        }
+    }
+
+
 
     public void addCustomers(ResultSet rs) {
         try {

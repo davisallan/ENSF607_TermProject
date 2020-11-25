@@ -133,6 +133,17 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public void sellItem(int toolId) {
+        try {
+            String query = "UPDATE tool SET quantity = quantity - 1 WHERE toolId=?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, toolId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void close() {
         try {
             conn.close();

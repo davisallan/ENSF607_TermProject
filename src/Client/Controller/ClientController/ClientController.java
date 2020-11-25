@@ -1,6 +1,5 @@
 package Client.Controller.ClientController;
 
-
 import Client.Controller.ViewController.ClientMgmtController;
 import Client.Controller.ViewController.InventoryViewController;
 import Client.View.ToolShopGUI;
@@ -50,7 +49,6 @@ public class ClientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void communicate() {
