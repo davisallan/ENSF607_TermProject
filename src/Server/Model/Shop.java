@@ -43,6 +43,7 @@ public class Shop {
         //Will need at some point
     }
 
+    //TODO move the addCustomers/addTools methods to their respective classes
     public void addTools(ResultSet rs) {
         try {
             while (rs.next()) {

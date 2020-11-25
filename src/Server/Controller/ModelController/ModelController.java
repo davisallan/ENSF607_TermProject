@@ -5,6 +5,7 @@ import Server.Controller.ServerController.ServerController;
 import Server.Model.Message;
 import Server.Model.Shop;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 
 public class ModelController implements Runnable {
@@ -32,15 +33,31 @@ public class ModelController implements Runnable {
         this.theShop = theShop;
     }
 
+    public void closeConnections() {
+        try {
+            dbController.close();
+            serverController.getObjectIn().close();
+            serverController.getObjectOut().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void run() {
         while (true) {
             String[] query = serverController.listenForQuery();
-            String queryType = query[0];
+            String queryType = query[0]; //the type of requested query
             String condition = "";
 
+            if (queryType.equals("quit")) {
+                serverController.sendMessage(new Message("quit"));
+                System.out.println("Client has disconnected...");
+                break;
+            }
+
             if (query.length > 1) {
-                condition = query[1];
+                condition = query[1]; //the condition of the requested query
             }
 
             switch (queryType) {
@@ -65,14 +82,6 @@ public class ModelController implements Runnable {
                     serverController.sendObjects(theShop.getToolList());
                     break;
                 }
-                case "checkQty": {
-
-                    break;
-                }
-                case "decreaseQty": {
-
-                    break;
-                }
                 case "customerId": {
                     rs = dbController.searchCustomerByID(Integer.parseInt(condition));
                     theShop.addCustomers(rs);
@@ -88,11 +97,34 @@ public class ModelController implements Runnable {
                     break;
                 }
                 case "customerType": {
+                    rs = dbController.searchByCustomerType(condition);
+                    theShop.addCustomers(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
+                    break;
+                }
+                case "updateCustomer": {
 
                     break;
                 }
+//                case "deleteCustomer": {
+//
+//                    break;
+//                }
+//
+//                case "checkQty": {
+//
+//                    break;
+//                }
+//                case "decreaseQty": {
+//
+//                    break;
+//                }
             }
             theShop.clearAllLists();
         }
+        closeConnections();
     }
 }
+
+

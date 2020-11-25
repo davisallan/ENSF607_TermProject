@@ -30,6 +30,19 @@ public class ClientController {
         this.clientModelController = clientModelController;
     }
 
+    public void shutDown() {
+        try {
+            Socket.close();
+            objectOut.close();
+            objectIn.close();
+            stdIn.close();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void communicate() {
         Message response;
         String query = "";
@@ -44,6 +57,10 @@ public class ClientController {
                 objectOut.writeObject(msg);
 
                 response = (Message) objectIn.readObject();
+
+                if (response.getMessage().equals("quit")) {
+                    shutDown();
+                }
 
                 switch (response.getMessage()){
                     case "tool":
