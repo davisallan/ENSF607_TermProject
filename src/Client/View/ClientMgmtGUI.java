@@ -102,7 +102,6 @@ public class ClientMgmtGUI extends JFrame{
     public JTextField getTextField8() {
         return textField8;
     }
-
     public JTextField getTextField9() {
         return textField9;
     }
