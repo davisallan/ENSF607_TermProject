@@ -5,8 +5,8 @@ USE toolshop;
 DROP TABLE IF EXISTS supplier;
 CREATE TABLE supplier (
 supplierId	integer not null,
-name		varchar(25),
-type		varchar(15),
+sName		varchar(25),
+sType		varchar(15),
 address		varchar(50),
 cName		varchar(25),
 phone		varchar(12),
@@ -16,11 +16,12 @@ primary key (supplierId)
 DROP TABLE IF EXISTS tool;
 CREATE TABLE tool (
 toolId		integer not null,
-name		varchar(25),
-type		varchar(15), 
+tName		varchar(25),
+tType		varchar(15), 
 quantity	integer, 
 price		float, 
 supplierId	integer,
+sName 		varchar(25),
 primary key (toolId),
 foreign key (supplierId) references supplier(supplierId)
 );
@@ -28,7 +29,7 @@ foreign key (supplierId) references supplier(supplierId)
 DROP TABLE IF EXISTS electrical;
 CREATE TABLE electrical (
 toolId		integer,
-powerType	varchar(5), 
+powerType	varchar(8), 
 primary key (toolId),
 foreign key (toolId) references tool(toolId)
 );
