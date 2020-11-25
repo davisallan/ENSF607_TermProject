@@ -59,6 +59,9 @@ public class ClientMgmtController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             gui.getTextField8().setText("");
+            DefaultListModel<String> model = new DefaultListModel<>();
+            gui.getList2().setModel(model);
+            gui.getButtonGroup().clearSelection();
         }
     }
 

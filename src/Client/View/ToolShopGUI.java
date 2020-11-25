@@ -52,6 +52,8 @@ public class ToolShopGUI extends JFrame{
     private JRadioButton listAllToolsRadioButton;
     private JList list1;
     private JList list2;
+    private ButtonGroup buttonGroup;
+    private ButtonGroup buttonGroup2;
 
     public void addButtonActionListener(JButton button, ActionListener actionListener) {
         button.addActionListener(actionListener);
@@ -147,6 +149,14 @@ public class ToolShopGUI extends JFrame{
 
     public JList getList2() {
         return list2;
+    }
+
+    public ButtonGroup getButtonGroup() {
+        return buttonGroup;
+    }
+
+    public ButtonGroup getButtonGroup2() {
+        return buttonGroup2;
     }
 
     public ToolShopGUI() {
@@ -372,15 +382,14 @@ public class ToolShopGUI extends JFrame{
         if (listAllToolsRadioButtonFont != null) listAllToolsRadioButton.setFont(listAllToolsRadioButtonFont);
         listAllToolsRadioButton.setText("List All Tools");
         panel1.add(listAllToolsRadioButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(customerIDRadioButton);
         buttonGroup.add(lastNameRadioButton);
         buttonGroup.add(clientTypeRadioButton);
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(toolIDRadioButton);
-        buttonGroup.add(toolNameRadioButton);
-        buttonGroup.add(listAllToolsRadioButton);
+        buttonGroup2 = new ButtonGroup();
+        buttonGroup2.add(toolIDRadioButton);
+        buttonGroup2.add(toolNameRadioButton);
+        buttonGroup2.add(listAllToolsRadioButton);
     }
 
     /**

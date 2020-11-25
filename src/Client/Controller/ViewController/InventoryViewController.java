@@ -73,6 +73,9 @@ public class InventoryViewController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             gui.getTextField9().setText("");
+            DefaultListModel<String> model = new DefaultListModel<>();
+            gui.getList1().setModel(model);
+            gui.getButtonGroup2().clearSelection();
         }
     }
 }
