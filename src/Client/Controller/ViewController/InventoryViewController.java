@@ -6,8 +6,7 @@ import Server.Model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class InventoryViewController {
 
@@ -22,14 +21,15 @@ public class InventoryViewController {
         gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
         gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton1());
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
+        gui.addMouseListener(gui.getList1(), new List1());
     }
 
     public void updateGUIResults(ToolList toolList) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        for (Tool tool : toolList.getToolList()) {
+        for (Tool tool : toolList.getToolList())
             model.addElement(tool.toString());
-        }
+
         gui.getList1().setModel(model);
     }
 
@@ -73,6 +73,17 @@ public class InventoryViewController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             gui.getTextField9().setText("");
+            DefaultListModel<String> model = new DefaultListModel<>();
+            gui.getList1().setModel(model);
+            gui.getButtonGroup2().clearSelection();
+        }
+    }
+
+    class List1 extends MouseAdapter {
+        public void mouseClicked(MouseEvent me) {
+            if (me.getClickCount() == 1) {
+                
+            }
         }
     }
 }
