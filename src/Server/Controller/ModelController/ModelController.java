@@ -5,6 +5,7 @@ import Server.Controller.ServerController.ServerController;
 import Server.Model.Message;
 import Server.Model.Shop;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 
 public class ModelController implements Runnable {
@@ -32,15 +33,29 @@ public class ModelController implements Runnable {
         this.theShop = theShop;
     }
 
+    public void closeConnections() {
+        try {
+            dbController.close();
+            serverController.getObjectIn().close();
+            serverController.getObjectOut().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void run() {
         while (true) {
             String[] query = serverController.listenForQuery();
-            String queryType = query[0];
+            String queryType = query[0]; //the type of requested query
             String condition = "";
 
+            if (queryType.equals("quit")) {
+                break;
+            }
+
             if (query.length > 1) {
-                condition = query[1];
+                condition = query[1]; //the condition of the requested query
             }
 
             switch (queryType) {
@@ -94,5 +109,8 @@ public class ModelController implements Runnable {
             }
             theShop.clearAllLists();
         }
+        closeConnections();
     }
 }
+
+
