@@ -120,6 +120,11 @@ public class ModelController implements Runnable {
 //
 //                    break;
 //                }
+                case "deleteCustomer": {
+                    dbController.deleteUser(Integer.parseInt(condition));
+
+                    break;
+                }
 //
 //                case "checkQty": {
 //
