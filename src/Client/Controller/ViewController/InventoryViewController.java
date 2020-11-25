@@ -27,9 +27,9 @@ public class InventoryViewController {
     public void updateGUIResults(ToolList toolList) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        for (Tool tool : toolList.getToolList()) {
+        for (Tool tool : toolList.getToolList())
             model.addElement(tool.toString());
-        }
+
         gui.getList1().setModel(model);
     }
 

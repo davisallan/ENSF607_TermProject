@@ -88,7 +88,7 @@ public class ClientController {
                                 clientModelController.getClientShop().getCustomerList().addCustomer(obj);
                                 obj = (Customer) objectIn.readObject();
                             }
-                            clientModelController.getClientShop().getCustomerList().display();
+                            clientMgmtController.updateGUIResults(clientModelController.getClientShop().getCustomerList());
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }

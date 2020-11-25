@@ -2,7 +2,11 @@ package Client.Controller.ViewController;
 
 import Client.Controller.ClientController.ClientController;
 import Client.View.ToolShopGUI;
+import Server.Model.Customer;
+import Server.Model.CustomerList;
+import Server.Model.Message;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +21,19 @@ public class ClientMgmtController {
         setGui(gui);
         setClientController(clientController);
         cardLayout = (CardLayout) gui.getRootPanel().getLayout();
-        gui.addButtonActionListener(gui.getGoToToolsButton(), new ClientMgmtController.ToolCardListener());
-        gui.addButtonActionListener(gui.getClearButton1(), new ClientMgmtController.ClearButton1());
-        gui.addButtonActionListener(gui.getClearButton(), new ClientMgmtController.ClearButton());
+        gui.addButtonActionListener(gui.getGoToToolsButton(), new ToolCardListener());
+        gui.addButtonActionListener(gui.getClearButton1(), new ClearButton1());
+        gui.addButtonActionListener(gui.getClearButton(), new ClearButton());
+        gui.addButtonActionListener(gui.getSearchButton(), new SearchButton());
+    }
+
+    public void updateGUIResults(CustomerList customerList) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (Customer customer : customerList.getCustomerList())
+            model.addElement(customer.toString());
+
+        gui.getList2().setModel(model);
     }
 
     public void setGui(ToolShopGUI gui) {
@@ -58,6 +72,24 @@ public class ClientMgmtController {
             gui.getTextField5().setText("");
             gui.getTextField6().setText("");
             gui.getTextField7().setText("");
+        }
+    }
+
+    class SearchButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (gui.getCustomerIDRadioButton().isSelected()) {
+                String message = "customerId-" + gui.getTextField8().getText();
+                clientController.sendMessage(new Message(message));
+            }
+            else if (gui.getLastNameRadioButton().isSelected()) {
+                String message = "customerLName-" + gui.getTextField8().getText();
+                clientController.sendMessage(new Message(message));
+            }
+            else if (gui.getClientTypeRadioButton().isSelected()) {
+                String message = "customerType-" + gui.getTextField8().getText();
+                clientController.sendMessage(new Message(message));
+            }
         }
     }
 }

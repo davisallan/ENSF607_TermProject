@@ -65,6 +65,10 @@ public class ToolShopGUI extends JFrame{
         return goToCustomersButton;
     }
 
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
     public JButton getSearchButton1() {
         return searchButton1;
     }
@@ -91,6 +95,18 @@ public class ToolShopGUI extends JFrame{
 
     public JRadioButton getListAllToolsRadioButton() {
         return listAllToolsRadioButton;
+    }
+
+    public JRadioButton getCustomerIDRadioButton() {
+        return customerIDRadioButton;
+    }
+
+    public JRadioButton getLastNameRadioButton() {
+        return lastNameRadioButton;
+    }
+
+    public JRadioButton getClientTypeRadioButton() {
+        return clientTypeRadioButton;
     }
 
     public JTextField getTextField1() {
@@ -127,6 +143,10 @@ public class ToolShopGUI extends JFrame{
 
     public JList getList1() {
         return list1;
+    }
+
+    public JList getList2() {
+        return list2;
     }
 
     public ToolShopGUI() {
