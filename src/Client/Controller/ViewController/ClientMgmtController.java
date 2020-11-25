@@ -103,20 +103,14 @@ public class ClientMgmtController {
         public void mouseClicked(MouseEvent me) {
             JList selection = (JList)me.getSource();
             int index = selection.locationToIndex(me.getPoint());
-            Object customer = selection.getModel().getElementAt(index);
-            System.out.println(customer.toString());
-            String[] elements = customer.toString().split(" ");
-            gui.getTextField1().setText(elements[0]);
-            gui.getTextField2().setText(elements[1]);
-            gui.getTextField3().setText(elements[2]);
-//            String address = "";
-//            for (int i = 3; elements[i].length() != 3; i++) {
-//                address += " " + elements[i];
-//            }
-            gui.getTextField4().setText(elements[3]);
-            gui.getTextField5().setText(elements[4]);
-            gui.getTextField6().setText(elements[5]);
-            gui.getTextField7().setText((elements[6] + " " + elements[7]));
+            Customer customer = clientController.getClientModelController().getClientShop().getCustomerList().getCustomerList().get(index);
+            gui.getTextField1().setText(Integer.toString(customer.getCustomerId()));
+            gui.getTextField2().setText(customer.getFirstName());
+            gui.getTextField3().setText(customer.getLastName());
+            gui.getTextField4().setText(customer.getAddress());
+            gui.getTextField5().setText(customer.getPostalCode());
+            gui.getTextField6().setText(customer.getPhoneNum());
+            gui.getTextField7().setText(String.valueOf(customer.getType()));
         }
     }
 }

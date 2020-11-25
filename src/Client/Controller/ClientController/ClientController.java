@@ -36,6 +36,10 @@ public class ClientController {
         this.clientModelController = clientModelController;
     }
 
+    public ClientModelController getClientModelController() {
+        return clientModelController;
+    }
+
     public void shutDown() {
         try {
             Socket.close();
@@ -54,15 +58,8 @@ public class ClientController {
         String query = "";
         while (true) {
             try {
-//                System.out.println("Enter a query in the form: {searchParameter id/name}");
-//                System.out.println("Where 'searchParameter' is toolId or toolName:");
-
-//                query = stdIn.readLine();
-//                Message msg = new Message(query);
-//                objectOut.writeObject(msg);
-
                 response = (Message) objectIn.readObject();
-
+                clientModelController.getClientShop().clearAllLists();
                 if (response.getMessage().equals("quit")) {
                     shutDown();
                 }
@@ -94,7 +91,7 @@ public class ClientController {
                         }
                         break;
                 }
-                clientModelController.getClientShop().clearAllLists();
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
