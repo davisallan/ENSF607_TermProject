@@ -79,7 +79,13 @@ public class Shop {
         }
     }
 
-
+    public void sellItem(String name) {
+        for (Tool tool : toolList.getToolList())
+            if (tool.getName().equals(name)) {
+                decreaseQty(tool);
+                System.out.println("Tool found");
+            }
+    }
 
     public void addCustomers(ResultSet rs) {
         try {

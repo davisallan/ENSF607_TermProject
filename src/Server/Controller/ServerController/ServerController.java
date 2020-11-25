@@ -46,7 +46,6 @@ public class ServerController {
     }
 
     public void sendObjects(ToolList toolList) {
-        System.out.println("Hola");
         System.out.println(toolList.getToolList().get(0));
         try {
             for (Tool tool: toolList.getToolList()) {

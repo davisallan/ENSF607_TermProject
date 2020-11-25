@@ -83,19 +83,21 @@ public class InventoryViewController {
     class SellButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+            String message = "";
             int index = gui.getList1().getSelectedIndex();
             Tool tool = clientController.getClientModelController().getClientShop().getToolList().getToolList().get(index);
-            String message = "sell-" + tool.getId();
+            if (gui.getListAllToolsRadioButton().isSelected())
+                message = "sellAllTools-" + tool.getId();
+            else if (gui.getToolIDRadioButton().isSelected())
+                message = "sellToolId-" + tool.getId();
+            else if (gui.getToolNameRadioButton().isSelected())
+                message = "sellToolName-" + tool.getName();
             clientController.sendMessage(new Message(message));
             gui.getStatusLabel().setText("Sell of tool " + tool.getName() + " made.");
         }
     }
 
     class List1 extends MouseAdapter {
-        public void mouseClicked(MouseEvent me) {
-            if (me.getClickCount() == 1) {
-
-            }
-        }
+        public void mouseClicked(MouseEvent me) {}
     }
 }
