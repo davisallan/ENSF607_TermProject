@@ -2,10 +2,10 @@ package Server.Controller.ModelController;
 
 import Server.Controller.DBController.DBController;
 import Server.Controller.ServerController.ServerController;
+import Server.Model.Message;
 import Server.Model.Shop;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ModelController implements Runnable {
 
@@ -35,42 +35,64 @@ public class ModelController implements Runnable {
     @Override
     public void run() {
         while (true) {
-//            System.out.println("going to listen for query...");
-            String[] query = serverController.listenForQuery(); // 1
-//            System.out.println("received query");
-            switch (query[0]) {
+            String[] query = serverController.listenForQuery();
+            String queryType = query[0];
+            String condition = "";
+
+            if (query.length > 1) {
+                condition = query[1];
+            }
+
+            switch (queryType) {
                 case "toolId": {
-//                    System.out.println("in switch statement...");
-                    rs = dbController.searchToolById(Integer.parseInt(query[1]));
-//                    System.out.println("got result set");
+                    rs = dbController.searchToolById(Integer.parseInt(condition));
                     theShop.addTools(rs);
-                    serverController.sendMessage("toolList");
-                    serverController.sendObject(theShop.getToolList());
-                    theShop.clearToolList();
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
                 }
                 case "toolName": {
-
+                    rs = dbController.searchToolByName(condition);
+                    theShop.addTools(rs);
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
                 }
                 case "allTools": {
-
+                    rs = dbController.selectAllTools();
+                    theShop.addTools(rs);
+                    serverController.sendMessage(new Message("tool"));
+                    serverController.sendObjects(theShop.getToolList());
+                    break;
                 }
                 case "checkQty": {
 
+                    break;
                 }
                 case "decreaseQty": {
 
+                    break;
                 }
                 case "customerId": {
-
+                    rs = dbController.searchCustomerByID(Integer.parseInt(condition));
+                    theShop.addCustomers(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
+                    break;
                 }
                 case "customerLName": {
-
+                    rs = dbController.searchCustomerByLName(condition);
+                    theShop.addCustomers(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
+                    break;
                 }
                 case "customerType": {
 
+                    break;
                 }
             }
+            theShop.clearAllLists();
         }
     }
-
 }

@@ -9,8 +9,6 @@ import java.net.Socket;
 public class ClientController {
 
     private Socket Socket;
-    private PrintWriter messageOut;
-    private BufferedReader messageIn;
     private BufferedReader stdIn;
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
@@ -21,8 +19,6 @@ public class ClientController {
             Socket = new Socket(serverName, portNumber);
             objectOut = new ObjectOutputStream(Socket.getOutputStream());
             objectIn = new ObjectInputStream(Socket.getInputStream());
-            messageOut = new PrintWriter(new OutputStreamWriter(Socket.getOutputStream()), true);
-            messageIn = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
             stdIn = new BufferedReader(new InputStreamReader(System.in));
             setClientModelController(clientModelController);
         } catch (IOException e) {
@@ -35,41 +31,50 @@ public class ClientController {
     }
 
     public void communicate() {
-        String response = "";
+        Message response;
         String query = "";
         while (true) {
             try {
-                clientModelController.getClientShop().clearToolList();
+                clientModelController.getClientShop().clearAllLists();
                 System.out.println("Enter a query in the form: {searchParameter id/name}");
                 System.out.println("Where 'searchParameter' is toolId or toolName:");
-                query = stdIn.readLine();
-                messageOut.println(query); // 1
-                messageOut.flush();
-//                System.out.println("\tSent query to server");
-                response = messageIn.readLine(); // 2
-//                System.out.println("Response is " + response);
-                switch (response){
-                    case "toolList":
-                        try {
-//                            System.out.println("waiting to get new object...");
 
+                query = stdIn.readLine();
+                Message msg = new Message(query);
+                objectOut.writeObject(msg);
+
+                response = (Message) objectIn.readObject();
+
+                switch (response.getMessage()){
+                    case "tool":
+                        try {
                             Tool obj = (Tool) objectIn.readObject();
-//                            System.out.println("got first object");
                             while (obj != null) {
-//                                System.out.println("\tin client while loop");
-                                clientModelController.getClientShop().getToolList().addItem(obj);
+                                clientModelController.getClientShop().getToolList().addTool(obj);
                                 obj = (Tool) objectIn.readObject();
                             }
-//                            System.out.println("\texited client while loop");
                             clientModelController.getClientShop().getToolList().display();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
+                        break;
+
+                    case "customer":
+                        try {
+                            Customer obj = (Customer) objectIn.readObject();
+                            while (obj != null) {
+                                clientModelController.getClientShop().getCustomerList().addCustomer(obj);
+                                obj = (Customer) objectIn.readObject();
+                            }
+                            clientModelController.getClientShop().getCustomerList().display();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

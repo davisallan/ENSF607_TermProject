@@ -6,9 +6,7 @@ import java.sql.SQLException;
 public class Shop {
 
     private ToolList toolList;
-
     private SupplierList supplierList;
-
     private CustomerList customerList;
 
     public Shop() {
@@ -47,49 +45,64 @@ public class Shop {
 
     public void addTools(ResultSet rs) {
         try {
-//            System.out.println("\tAdding tools");
-            do {
-                if (!rs.next()) {
-                    System.out.println("SET IS EMPTY!!!");
-                } else{
-//                    System.out.println(rs.getString("toolId"));
-                    if (rs.getString("type").equals("electrical")) {
-                        toolList.addItem(new Electrical(rs.getInt("toolId"),
-                                rs.getString("name"),
-                                rs.getString("type"),
-                                rs.getInt("quantity"),
-                                rs.getFloat("price"),
-                                rs.getInt("supplierId"),
-                                rs.getString("powerType")));
-                    } else {
-                        toolList.addItem(new NonElectrical(rs.getInt("toolId"),
-                                rs.getString("name"),
-                                rs.getString("type"),
-                                rs.getInt("quantity"),
-                                rs.getFloat("price"),
-                                rs.getInt("supplierId")));
-
-                    }
+            while (rs.next()) {
+                if (rs.getString("type").equals("electrical")) {
+                    toolList.addTool(new Electrical(
+                            rs.getInt("toolId"),
+                            rs.getString("name"),
+                            rs.getString("type"),
+                            rs.getInt("quantity"),
+                            rs.getFloat("price"),
+                            rs.getInt("supplierId"),
+                            rs.getString("powerType")));
+                } else {
+                    toolList.addTool(new NonElectrical(
+                            rs.getInt("toolId"),
+                            rs.getString("name"),
+                            rs.getString("type"),
+                            rs.getInt("quantity"),
+                            rs.getFloat("price"),
+                            rs.getInt("supplierId")));
                 }
-            } while (rs.next());
-
+            }
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void clearToolList() {
-        toolList.getToolList().clear();
+    public void addCustomers(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                if (rs.getString("ctype").equals("R")) {
+                    customerList.addCustomer(new Residential(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
+                } else {
+                    customerList.addCustomer(new Commercial(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-//    public void addCustomers(ResultSet rs) {
-//        try {
-//            while (rs.next()) {
-//                customerList.addCustomer(new C);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void clearAllLists() {
+        toolList.getToolList().clear();
+        supplierList.getSupplierList().clear();
+        customerList.getCustomerList().clear();
+    }
 }

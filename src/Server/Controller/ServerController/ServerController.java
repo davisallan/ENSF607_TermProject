@@ -6,8 +6,6 @@ import java.net.Socket;
 
 public class ServerController {
 
-    private PrintWriter messageOut;
-    private BufferedReader messageIn;
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
 
@@ -15,8 +13,6 @@ public class ServerController {
         try {
             objectIn = new ObjectInputStream(socket.getInputStream());
             objectOut = new ObjectOutputStream(socket.getOutputStream());
-            messageIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            messageOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,36 +21,41 @@ public class ServerController {
     public String[] listenForQuery() {
         String[] query = {};
         try {
-            System.out.println("\tinside listenForQuery()");
-            query = messageIn.readLine().split(" ");
-        } catch (IOException e) {
+            Message msg = (Message) objectIn.readObject();
+            query = msg.getMessage().split("-");
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return query;
     }
 
-    public void sendMessage(String message) {
-//        System.out.println("\tinside sendMessage()");
-
-        messageOut.println(message);
-        messageOut.flush();
-//        System.out.println("\t\tsent message");
+    public void sendMessage(Message message) {
+        try {
+            objectOut.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void sendObject(ToolList toolList) {
-            System.out.println("\tinside sendObject()");
+    public void sendObjects(ToolList toolList) {
+        System.out.println(toolList.getToolList().get(0));
         try {
             for (Tool tool: toolList.getToolList()) {
-//                System.out.print(tool);
-
                 objectOut.writeObject(tool);
-                objectOut.flush();
-//                System.out.println("\t\tsent object");
             }
-
             objectOut.writeObject(null);
-            objectOut.flush();
-//            System.out.println("sent null");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendObjects(CustomerList customerList) {
+        System.out.println(customerList.getCustomerList().get(0));
+        try {
+            for (Customer customer: customerList.getCustomerList()) {
+                objectOut.writeObject(customer);
+            }
+            objectOut.writeObject(null);
         } catch (IOException e) {
             e.printStackTrace();
         }

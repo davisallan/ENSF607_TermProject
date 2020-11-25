@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class ToolList implements Serializable {
 
     private ArrayList<Tool> toolList;
-
     private Order order;
 
     public ToolList(Order order) {
         toolList = new ArrayList<>();
         setOrder(order);
     }
+
 
 
     public void display() {
@@ -25,6 +25,7 @@ public class ToolList implements Serializable {
     public void clearList() {
         toolList.clear();
     }
+
     public ArrayList<Tool> getToolList() {
         return toolList;
     }
@@ -37,7 +38,7 @@ public class ToolList implements Serializable {
         this.order = order;
     }
 
-    public void addItem(Tool i) {
+    public void addTool(Tool i) {
         toolList.add(i);
     }
 
