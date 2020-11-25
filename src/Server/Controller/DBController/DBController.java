@@ -122,6 +122,17 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public void deleteUser(int customerId) {
+        try {
+            String query = "DELETE FROM customer WHERE customerId = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, customerId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void close() {
         try {
             conn.close();
@@ -134,7 +145,9 @@ public class DBController implements DBCredentials{
         //testing functions
         DBController controller = new DBController();
         controller.initializeConnection();
-        controller.updateUser(100,"POWERS","AUSTIN", "R","403-123-1343","yeah baby", "t23-123");
+        controller.updateUser(100,"POWERS","AUSTIN", "R",
+                                "403-123-1343","yeah baby", "t23-123");
+        controller.deleteUser(100);
         controller.close();
     }
 }
