@@ -66,12 +66,45 @@ public class ClientMgmtGUI extends JFrame{
         return goToCustomersButton;
     }
 
+    public JButton getClearButton() {
+        return clearButton;
+    }
+
     public JButton getClearButton1() {
         return clearButton1;
     }
 
+    public JButton getClearButton2() {
+        return clearButton2;
+    }
+
+    public JTextField getTextField1() {
+        return textField1;
+    }
+    public JTextField getTextField2() {
+        return textField2;
+    }
+    public JTextField getTextField3() {
+        return textField3;
+    }
+    public JTextField getTextField4() {
+        return textField4;
+    }
+    public JTextField getTextField5() {
+        return textField5;
+    }
+    public JTextField getTextField6() {
+        return textField6;
+    }
+    public JTextField getTextField7() {
+        return textField7;
+    }
     public JTextField getTextField8() {
         return textField8;
+    }
+
+    public JTextField getTextField9() {
+        return textField9;
     }
 
     public JPanel getRootPanel() {
@@ -80,30 +113,6 @@ public class ClientMgmtGUI extends JFrame{
 
     public ClientMgmtGUI() {
 
-        clearButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField8.setText("");
-            }
-        });
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField1.setText("");
-                textField2.setText("");
-                textField3.setText("");
-                textField4.setText("");
-                textField5.setText("");
-                textField6.setText("");
-                textField7.setText("");
-            }
-        });
-        clearButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textField9.setText("");
-            }
-        });
     }
 
     public static void main(String[] args) {
