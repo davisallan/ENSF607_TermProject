@@ -23,6 +23,10 @@ public class InventoryViewController {
         gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
     }
 
+    public void updateGUIResults() {
+
+    }
+
     public void setGui(ToolShopGUI gui) {
         this.gui = gui;
     }

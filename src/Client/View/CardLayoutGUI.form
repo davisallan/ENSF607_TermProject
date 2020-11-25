@@ -120,7 +120,12 @@
                 </constraints>
                 <properties/>
                 <border type="none"/>
-                <children/>
+                <children>
+                  <component id="4a093" class="javax.swing.JList" binding="list2" default-binding="true">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
               </scrollpane>
               <component id="358a4" class="javax.swing.JButton" binding="goToToolsButton" default-binding="true">
                 <constraints>
@@ -390,7 +395,12 @@
                 </constraints>
                 <properties/>
                 <border type="none"/>
-                <children/>
+                <children>
+                  <component id="e7222" class="javax.swing.JList" binding="list1" default-binding="true">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
               </scrollpane>
               <component id="5d969" class="javax.swing.JButton" binding="goToCustomersButton" default-binding="true">
                 <constraints>
