@@ -95,6 +95,18 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
+    public ResultSet searchByCustomerType(String type) {
+        try {
+            String query = "SELECT * FROM customer WHERE cType = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1,type);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public ResultSet selectAll(String tableName) {
         try {
             String query = "SELECT * FROM " + tableName;
@@ -109,8 +121,8 @@ public class DBController implements DBCredentials{
 
     public void close() {
         try {
-            stmt.close();
-            rs.close();
+//            stmt.close();
+//            rs.close();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();

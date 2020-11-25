@@ -51,6 +51,8 @@ public class ModelController implements Runnable {
             String condition = "";
 
             if (queryType.equals("quit")) {
+                serverController.sendMessage(new Message("quit"));
+                System.out.println("Client has disconnected...");
                 break;
             }
 
@@ -103,7 +105,10 @@ public class ModelController implements Runnable {
                     break;
                 }
                 case "customerType": {
-
+                    rs = dbController.searchByCustomerType(condition);
+                    theShop.addCustomers(rs);
+                    serverController.sendMessage(new Message("customer"));
+                    serverController.sendObjects(theShop.getCustomerList());
                     break;
                 }
             }
