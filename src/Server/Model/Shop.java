@@ -27,6 +27,7 @@ public class Shop {
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
                             rs.getInt("supplierId"),
+                            rs.getString("sName"),
                             rs.getString("powerType")));
                 } else {
                     toolList.addTool(new NonElectrical(
@@ -35,7 +36,8 @@ public class Shop {
                             rs.getString("tType"),
                             rs.getInt("quantity"),
                             rs.getFloat("price"),
-                            rs.getInt("supplierId")));
+                            rs.getInt("supplierId"),
+                            rs.getString("sName")));
                 }
             }
             rs.close();

@@ -4,8 +4,8 @@ public class Electrical extends Tool {
 
     private String powerType;
 
-    public Electrical(int id, String name, String type, int quantity, double price, int supplierID, String powerType) {
-        super(id, name, type, quantity, price, supplierID);
+    public Electrical(int id, String name, String type, int quantity, double price, int supplierID, String supplierName, String powerType) {
+        super(id, name, type, quantity, price, supplierID, supplierName);
         setPowerType(powerType);
     }
 

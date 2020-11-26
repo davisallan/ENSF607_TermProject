@@ -12,13 +12,14 @@ public abstract class Tool implements Serializable {
     private int supplierId;
     private String supplierName;
 
-    public Tool(int id, String name, String type, int quantity, double price, int supplierID) {
+    public Tool(int id, String name, String type, int quantity, double price, int supplierID, String supplierName) {
         setId(id);
         setName(name);
         setType(type);
         setQuantity(quantity);
         setPrice(price);
         setSupplierID(supplierID);
+        setSupplierName(supplierName);
     }
 
     public int getId() {

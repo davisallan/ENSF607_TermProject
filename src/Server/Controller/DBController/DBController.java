@@ -35,7 +35,7 @@ public class DBController implements DBCredentials{
 
     public ResultSet searchToolById(int id) {
         try {
-            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, E.powerType " +
+            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, T.sName, E.powerType " +
                            "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId) WHERE T.toolId= ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, id);
@@ -48,7 +48,7 @@ public class DBController implements DBCredentials{
 
     public ResultSet searchToolByName(String name) {
         try {
-            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, E.powerType " +
+            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, T.sName, E.powerType " +
                     "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId) WHERE T.tName= ?";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, name);
@@ -61,7 +61,7 @@ public class DBController implements DBCredentials{
 
     public ResultSet selectAllTools() {
         try {
-            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, E.powerType " +
+            String query = "SELECT T.toolId, T.tName, T.tType, T.quantity, T.price, T.supplierId, T.sName, E.powerType " +
                     "FROM (tool AS T LEFT OUTER JOIN electrical AS E ON T.toolId = E.toolId)";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
