@@ -1,6 +1,7 @@
 package Server.Controller.ServerController;
 
 import Server.Model.*;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -37,6 +38,16 @@ public class ServerController {
         return query;
     }
 
+    public Object listenForObject() {
+        Object obj = null;
+        try {
+            obj = objectIn.readObject();
+        } catch (ClassNotFoundException | IOException e){
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
     public void sendMessage(Message message) {
         try {
             objectOut.writeObject(message);
@@ -48,7 +59,7 @@ public class ServerController {
     public void sendObjects(ToolList toolList) {
 //        System.out.println(toolList.getToolList().get(0));
         try {
-            for (Tool tool: toolList.getToolList()) {
+            for (Tool tool : toolList.getToolList()) {
                 objectOut.writeObject(tool);
             }
             objectOut.writeObject(null);
@@ -60,7 +71,7 @@ public class ServerController {
     public void sendObjects(CustomerList customerList) {
 //        System.out.println(customerList.getCustomerList().get(0));
         try {
-            for (Customer customer: customerList.getCustomerList()) {
+            for (Customer customer : customerList.getCustomerList()) {
                 objectOut.writeObject(customer);
             }
             objectOut.writeObject(null);

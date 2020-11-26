@@ -10,6 +10,7 @@ public abstract class Tool implements Serializable {
     private int quantity;
     private double price;
     private int supplierId;
+    private String supplierName;
 
     public Tool(int id, String name, String type, int quantity, double price, int supplierID) {
         setId(id);
@@ -63,6 +64,38 @@ public abstract class Tool implements Serializable {
         this.supplierId = supplierId;
     }
 
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    //    /**
+//     * Simulates the sale of a Item by decreasing the current quantity by a specific amount. Ensures if
+//     * quantity is decreased below 40, it will trigger the creation of an OrderLine with a default order
+//     * size of 50 - current quantity. Values of data fields are supplied by the given parameters.
+//     * @param tool the Item that is being sold
+//     * @param amount the number of Items being sold
+//     * @param order the current day's Order
+//     */
+//    public void decreaseQty(Tool tool, int amount, Order order) {
+//        int qty = getQuantity() - amount;
+//        //ensures qty is always > 0
+//        if (qty < 0) {
+//            qty = 0;
+//        }
+//        setQuantity(qty); //update current stock with amount sold reduced
+//        System.out.println("\033[0;32m" + "Quantity reduced to " + tool.getQuantity() + "\033[0m");
+//        //create an OrderLine if current stock is < 40
+//        if (getQuantity() < 40) {
+//            OrderLine OL = new OrderLine(tool, 50 - getQuantity());
+//            order.addOrderLine(OL);
+//            setQuantity(50 - getQuantity());
+//        }
+//    }
+
     public boolean decreaseQty(Order order) {
         setQuantity(getQuantity() - 1);
 
@@ -80,7 +113,7 @@ public abstract class Tool implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%-15d%-50s%-25s%-9.2f%-8d%-8s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID());
+        return String.format("%-12d %-16s %-20s %-10.2f %-8d %-12s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID());
     }
 
     public String getType() {

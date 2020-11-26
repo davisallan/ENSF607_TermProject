@@ -62,7 +62,7 @@ public class ClientController {
                     shutDown();
                 }
 
-                switch (response.getMessage()){
+                switch (response.getMessage()) {
                     case "tool":
                         try {
                             Tool obj = (Tool) objectIn.readObject();
@@ -99,6 +99,14 @@ public class ClientController {
     public void sendMessage(Message message) {
         try {
             objectOut.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendCustomer(Customer customer) {
+        try {
+            objectOut.writeObject(customer);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,6 +11,18 @@ public class CustomerList implements Serializable {
         customerList = new ArrayList<>();
     }
 
+    public Residential buildResidential(String [] customerInfo) {
+        return new Residential(Integer.parseInt(customerInfo[0]),
+                customerInfo[2], customerInfo[1], customerInfo[6].charAt(0), customerInfo[5],
+                customerInfo[3], customerInfo[4]);
+    }
+
+    public Commercial buildCommercial(String [] customerInfo) {
+        return new Commercial(Integer.parseInt(customerInfo[0]),
+                customerInfo[2], customerInfo[1], customerInfo[6].charAt(0), customerInfo[5],
+                customerInfo[3], customerInfo[4]);
+    }
+
     public void addCustomer(Customer c) {
         customerList.add(c);
     }

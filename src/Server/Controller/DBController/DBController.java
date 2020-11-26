@@ -1,5 +1,7 @@
 package Server.Controller.DBController;
 
+import Server.Model.CustomerList;
+
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -105,18 +107,17 @@ public class DBController implements DBCredentials{
         return rs;
     }
 
-    public void updateUser(int customerId, String lName, String fName, String cType,
-                           String phoneNum, String address, String postalCode) {
+    public void updateUser(CustomerList customerList) {
         try {
             String query = "UPDATE customer SET lName = ?, fName = ?, cType = ?, phoneNum = ?, address = ?, postalCode = ? WHERE customerId = ?";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, lName);
-            stmt.setString(2, fName);
-            stmt.setString(3, cType);
-            stmt.setString(4, phoneNum);
-            stmt.setString(5, address);
-            stmt.setString(6, postalCode);
-            stmt.setInt(7, customerId);
+            stmt.setString(1, customerList.getCustomerList().get(0).getLastName());
+            stmt.setString(2, customerList.getCustomerList().get(0).getFirstName());
+            stmt.setString(3, String.valueOf(customerList.getCustomerList().get(0).getType()));
+            stmt.setString(4, customerList.getCustomerList().get(0).getPhoneNum());
+            stmt.setString(5, customerList.getCustomerList().get(0).getAddress());
+            stmt.setString(6, customerList.getCustomerList().get(0).getPostalCode());
+            stmt.setInt(7, customerList.getCustomerList().get(0).getCustomerId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -198,8 +199,6 @@ public class DBController implements DBCredentials{
         //testing functions
         DBController controller = new DBController();
         controller.initializeConnection();
-        controller.updateUser(100,"POWERS","AUSTIN", "R",
-                                "403-123-1343","yeah baby", "t23-123");
         controller.deleteUser(100);
         controller.close();
     }

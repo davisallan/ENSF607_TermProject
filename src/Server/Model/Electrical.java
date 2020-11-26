@@ -19,6 +19,6 @@ public class Electrical extends Tool {
 
     @Override
     public String toString() {
-        return String.format("%-15d%-50s%-25s%-9.2f%-8d%-8s%-8s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID(), getPowerType());
+        return String.format("%-12d %-16s %-20s %-10.2f %-8d %-12s %10s", getId(), getName(), getType(), getPrice(), getQuantity(), getSupplierID(), getPowerType());
     }
 }

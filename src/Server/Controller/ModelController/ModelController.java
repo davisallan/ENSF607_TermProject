@@ -2,6 +2,7 @@ package Server.Controller.ModelController;
 
 import Server.Controller.DBController.DBController;
 import Server.Controller.ServerController.ServerController;
+import Server.Model.Customer;
 import Server.Model.Message;
 import Server.Model.Order;
 import Server.Model.OrderLine;
@@ -108,7 +109,8 @@ public class ModelController implements Runnable {
                     break;
                 }
                 case "updateCustomer": {
-
+                    theShop.getCustomerList().addCustomer((Customer) serverController.listenForObject());
+                    dbController.updateUser(theShop.getCustomerList());
                     break;
                 }
                 case "sellAllTools": {
