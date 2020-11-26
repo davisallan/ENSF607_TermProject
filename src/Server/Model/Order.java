@@ -34,6 +34,10 @@ public class Order {
         }
     }
 
+    public ArrayList<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
     public int getOrderNum() {
         return orderNum;
     }
@@ -46,14 +50,13 @@ public class Order {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-            sb.append("\n***************************************************************\n");
-            sb.append(String.format("%-25s %-20s", "ORDER ID:", getOrderNum())).append("\n");
-            sb.append(String.format("%-25s %-20s", "Date Ordered:",java.time.LocalDate.now())).append("\n");
-            for (OrderLine ol: orderLines) {
-                sb.append("\n").append(ol);
-            }
-            sb.append("\n***************************************************************\n");
-            return sb.toString();
-//        }
+        sb.append("\n***************************************************************\n");
+        sb.append(String.format("%-25s %-20s", "ORDER ID:", getOrderNum())).append("\n");
+        sb.append(String.format("%-25s %-20s", "Date Ordered:",java.time.LocalDate.now())).append("\n");
+        for (OrderLine ol: orderLines) {
+            sb.append("\n").append(ol);
+        }
+        sb.append("\n***************************************************************\n");
+        return sb.toString();
     }
 }

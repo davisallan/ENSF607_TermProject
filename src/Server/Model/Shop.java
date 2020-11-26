@@ -11,14 +11,8 @@ public class Shop {
 
     public Shop() {
         toolList = new ToolList(new Order());
-//        toolList = new ToolList();
         supplierList = new SupplierList();
         customerList = new CustomerList();
-    }
-
-    public void decreaseQty(Tool tool) {
-        toolList.decreaseQty(tool);
-//        tool.decreaseQty();
     }
 
     //TODO move the addCustomers/addTools methods to their respective classes
@@ -50,19 +44,22 @@ public class Shop {
         }
     }
 
-    public void sellItem(int id) {
-        for (Tool tool : toolList.getToolList()) {
-            if (tool.getId() == id)
-                decreaseQty(tool);
-        }
+    public boolean decreaseQty(Tool tool) {
+        return toolList.decreaseQty(tool);
     }
 
-    public void sellItem(String name) {
+    public boolean sellItem(int id) {
         for (Tool tool : toolList.getToolList())
-            if (tool.getName().equals(name)) {
-                decreaseQty(tool);
-                System.out.println("Tool found");
-            }
+            if (tool.getId() == id)
+                return decreaseQty(tool);
+        return false;
+    }
+
+    public boolean sellItem(String name) {
+        for (Tool tool : toolList.getToolList())
+            if (tool.getName().equals(name))
+                return decreaseQty(tool);
+        return false;
     }
 
     public void addCustomers(ResultSet rs) {

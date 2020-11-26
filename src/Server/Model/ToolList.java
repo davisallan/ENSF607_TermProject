@@ -3,7 +3,6 @@ package Server.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class ToolList implements Serializable {
 
     private ArrayList<Tool> toolList;
@@ -42,8 +41,8 @@ public class ToolList implements Serializable {
         toolList.add(i);
     }
 
-    public void decreaseQty(Tool tool) {
-        tool.decreaseQty(order);
+    public boolean decreaseQty(Tool tool) {
+        return tool.decreaseQty(order);
     }
 
 }

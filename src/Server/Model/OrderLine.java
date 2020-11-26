@@ -1,16 +1,25 @@
 package Server.Model;
 
-import java.io.Serializable;
-
-
 public class OrderLine {
 
     private Tool toolToOrder;
     private int orderQty;
+    private int supplierId;
+    private int orderId;
 
-    public OrderLine(Tool tool, int orderQty) {
+    public OrderLine(Tool tool, int orderQty, Order order) {
         setItemToOrder(tool);
         setOrderQty(orderQty);
+        setOrderId(order.getOrderNum());
+        setSupplierId(tool.getSupplierID());
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public Tool getItemToOrder() {

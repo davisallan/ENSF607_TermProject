@@ -155,6 +155,10 @@ public class DBController implements DBCredentials{
         }
     }
 
+    public void addOrder() {
+
+    }
+
     public void close() {
         try {
             conn.close();

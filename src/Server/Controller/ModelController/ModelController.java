@@ -3,10 +3,13 @@ package Server.Controller.ModelController;
 import Server.Controller.DBController.DBController;
 import Server.Controller.ServerController.ServerController;
 import Server.Model.Message;
+import Server.Model.Order;
+import Server.Model.OrderLine;
 import Server.Model.Shop;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ModelController implements Runnable {
 
@@ -110,7 +113,8 @@ public class ModelController implements Runnable {
                 case "sellAllTools": {
                     rs = dbController.selectAllTools();
                     theShop.addTools(rs);
-                    theShop.sellItem(Integer.parseInt(condition));
+                    boolean orderLine = theShop.sellItem(Integer.parseInt(condition));
+                    System.out.println(orderLine);
                     dbController.sellItem(Integer.parseInt(condition));
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
@@ -134,28 +138,21 @@ public class ModelController implements Runnable {
                     serverController.sendObjects(theShop.getToolList());
                     break;
                 }
-//                case "deleteCustomer": {
-//
-//                    break;
-//                }
                 case "deleteCustomer": {
                     dbController.deleteUser(Integer.parseInt(condition));
 
                     break;
                 }
-//
-//                case "checkQty": {
-//
-//                    break;
-//                }
-//                case "decreaseQty": {
-//
-//                    break;
-//                }
             }
             theShop.clearAllLists();
         }
         closeConnections();
+    }
+
+    private void uploadOrder() {
+//        Order order = theShop.getToolList().getOrder();
+//        ArrayList<OrderLine> orderLines = order.getOrderLines();
+//        dbController.
     }
 }
 
