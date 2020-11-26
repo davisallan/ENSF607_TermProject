@@ -2,9 +2,7 @@ package Client.Controller.ViewController;
 
 import Client.Controller.ClientController.ClientController;
 import Client.View.ToolShopGUI;
-import Server.Model.Customer;
-import Server.Model.CustomerList;
-import Server.Model.Message;
+import Server.Model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -112,7 +110,26 @@ public class ClientMgmtController {
     class SaveButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+            String[] customerInfo = new String[7];
+            customerInfo[0] = gui.getTextField1().getText();
+            customerInfo[1] = gui.getTextField2().getText();
+            customerInfo[2] = gui.getTextField3().getText();
+            customerInfo[3] = gui.getTextField4().getText();
+            customerInfo[4] = gui.getTextField5().getText();
+            customerInfo[5] = gui.getTextField6().getText();
+            customerInfo[6] = gui.getTextField7().getText();
 
+            if (customerInfo[6].equals("R")) {
+                clientController.sendMessage(new Message("updateCustomer"));
+                clientController.sendCustomer(clientController.getClientModelController()
+                                .getClientShop().getCustomerList()
+                                .buildResidential(customerInfo));
+            } else {
+                clientController.sendMessage(new Message("updateCustomer"));
+                clientController.sendCustomer(clientController.getClientModelController()
+                                .getClientShop().getCustomerList()
+                                .buildCommercial(customerInfo));
+            }
         }
     }
 
