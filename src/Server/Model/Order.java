@@ -1,6 +1,7 @@
 package Server.Model;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,11 +17,14 @@ public class Order {
 
     private final ArrayList<OrderLine> orderLines;
     private final int orderNum;
+    private LocalDate date;
     FileWriter fileWriter;
 
     public Order() {
         orderLines = new ArrayList<>();
-        orderNum = 10000 + new Random().nextInt(90000);
+//        orderNum = 10000 + new Random().nextInt(90000);
+        orderNum = 10000;
+        date = java.time.LocalDate.now();
         writeToFile();
     }
 
@@ -38,6 +42,10 @@ public class Order {
         return orderLines;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public int getOrderNum() {
         return orderNum;
     }
@@ -52,7 +60,7 @@ public class Order {
         StringBuilder sb = new StringBuilder();
         sb.append("\n***************************************************************\n");
         sb.append(String.format("%-25s %-20s", "ORDER ID:", getOrderNum())).append("\n");
-        sb.append(String.format("%-25s %-20s", "Date Ordered:",java.time.LocalDate.now())).append("\n");
+        sb.append(String.format("%-25s %-20s", "Date Ordered:", getDate())).append("\n");
         for (OrderLine ol: orderLines) {
             sb.append("\n").append(ol);
         }

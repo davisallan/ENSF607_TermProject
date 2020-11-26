@@ -9,6 +9,7 @@ import Server.Model.Shop;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ModelController implements Runnable {
@@ -113,9 +114,20 @@ public class ModelController implements Runnable {
                 case "sellAllTools": {
                     rs = dbController.selectAllTools();
                     theShop.addTools(rs);
-                    boolean orderLine = theShop.sellItem(Integer.parseInt(condition));
-                    System.out.println(orderLine);
+                    boolean orderLineCreated = theShop.sellItem(Integer.parseInt(condition));
                     dbController.sellItem(Integer.parseInt(condition));
+                    if (orderLineCreated) {
+                        //Add order
+                        Order order = theShop.getToolList().getOrder();
+                        dbController.addOrder(order.getOrderNum(), order.getDate());
+                        //Add order line
+                        int size = order.getOrderLines().size();
+                        OrderLine orderLine = order.getOrderLines().get(size - 1);
+                        dbController.addOrderLine(orderLine.getOrderId(),
+                                                  orderLine.getItemToOrder().getId(),
+                                                  orderLine.getSupplierId(),
+                                                  orderLine.getOrderQty());
+                    }
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
@@ -147,12 +159,6 @@ public class ModelController implements Runnable {
             theShop.clearAllLists();
         }
         closeConnections();
-    }
-
-    private void uploadOrder() {
-//        Order order = theShop.getToolList().getOrder();
-//        ArrayList<OrderLine> orderLines = order.getOrderLines();
-//        dbController.
     }
 }
 

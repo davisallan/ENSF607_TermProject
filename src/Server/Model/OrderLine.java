@@ -3,12 +3,14 @@ package Server.Model;
 public class OrderLine {
 
     private Tool toolToOrder;
+    private int toolId;
     private int orderQty;
     private int supplierId;
     private int orderId;
 
     public OrderLine(Tool tool, int orderQty, Order order) {
         setItemToOrder(tool);
+
         setOrderQty(orderQty);
         setOrderId(order.getOrderNum());
         setSupplierId(tool.getSupplierID());
@@ -16,6 +18,14 @@ public class OrderLine {
 
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public int getOrderId() {
+        return orderId;
     }
 
     public void setOrderId(int orderId) {
