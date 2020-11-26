@@ -28,6 +28,10 @@ public class InventoryViewController {
     public void updateGUIResults(ToolList toolList) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
+        if (toolList.getToolList().size() == 0) {
+            gui.getTextArea1().setText("That information doesn't match any tool");
+        }
+
         for (Tool tool : toolList.getToolList())
             model.addElement(tool.toString());
 
@@ -57,8 +61,13 @@ public class InventoryViewController {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if (gui.getToolIDRadioButton().isSelected()) {
-                String message = "toolId-" + gui.getTextField9().getText();
-                clientController.sendMessage(new Message(message));
+                try {
+                    int toolId = Integer.parseInt(gui.getTextField9().getText());
+                    String message = "toolId-" + toolId;
+                    clientController.sendMessage(new Message(message));
+                } catch (NumberFormatException e) {
+                    gui.getTextArea1().setText("Enter an integer number with the tool Id");
+                }
             }
             else if (gui.getToolNameRadioButton().isSelected()) {
                 String message = "toolName-" + gui.getTextField9().getText();
