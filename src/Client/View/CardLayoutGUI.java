@@ -54,7 +54,8 @@ public class CardLayoutGUI {
     private JRadioButton listAllToolsRadioButton;
     private JList list1;
     private JList list2;
-    private JLabel statusLabel;
+    private JLabel headerLabel;
+    private JTextArea textArea1;
 
     public CardLayoutGUI() {
 
@@ -85,6 +86,7 @@ public class CardLayoutGUI {
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
         rootPanel.setLayout(new CardLayout(0, 0));
+        rootPanel.setBackground(new Color(-16578777));
         rootPanel.setMaximumSize(new Dimension(700, 500));
         rootPanel.setMinimumSize(new Dimension(500, 500));
         rootPanel.setOpaque(true);
@@ -206,11 +208,13 @@ public class CardLayoutGUI {
         rightPanel.add(deleteButton, new GridConstraints(8, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         toolPanel = new JPanel();
         toolPanel.setLayout(new BorderLayout(0, 0));
+        toolPanel.setForeground(new Color(-7753237));
         toolPanel.setMaximumSize(new Dimension(500, 500));
         toolPanel.setPreferredSize(new Dimension(252, 338));
         rootPanel.add(toolPanel, "ToolCard");
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(12, 7, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(13, 7, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setForeground(new Color(-1368015));
         toolPanel.add(panel1, BorderLayout.CENTER);
         final JLabel label3 = new JLabel();
         label3.setAlignmentY(0.0f);
@@ -231,12 +235,12 @@ public class CardLayoutGUI {
         textField9 = new JTextField();
         panel1.add(textField9, new GridConstraints(8, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 26), null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
-        panel1.add(scrollPane2, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(100, 250), null, 0, false));
+        panel1.add(scrollPane2, new GridConstraints(11, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(100, 250), null, 0, false));
         list1 = new JList();
         scrollPane2.setViewportView(list1);
         goToCustomersButton = new JButton();
         goToCustomersButton.setText("Go To Customers");
-        panel1.add(goToCustomersButton, new GridConstraints(11, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(goToCustomersButton, new GridConstraints(12, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         toolIDRadioButton = new JRadioButton();
         Font toolIDRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolIDRadioButton.getFont());
         if (toolIDRadioButtonFont != null) toolIDRadioButton.setFont(toolIDRadioButtonFont);
@@ -247,16 +251,6 @@ public class CardLayoutGUI {
         if (typeSearchLabelFont != null) typeSearchLabel.setFont(typeSearchLabelFont);
         typeSearchLabel.setText("Select type of search:");
         panel1.add(typeSearchLabel, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, 22), null, 0, false));
-        statusLabel = new JLabel();
-        Font statusLabelFont = this.$$$getFont$$$(null, -1, 12, statusLabel.getFont());
-        if (statusLabelFont != null) statusLabel.setFont(statusLabelFont);
-        statusLabel.setText("  ");
-        panel1.add(statusLabel, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        toolNameRadioButton = new JRadioButton();
-        Font toolNameRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolNameRadioButton.getFont());
-        if (toolNameRadioButtonFont != null) toolNameRadioButton.setFont(toolNameRadioButtonFont);
-        toolNameRadioButton.setText("Tool Name");
-        panel1.add(toolNameRadioButton, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         searchButton1 = new JButton();
         searchButton1.setText("Search");
         panel1.add(searchButton1, new GridConstraints(8, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -278,11 +272,21 @@ public class CardLayoutGUI {
         if (listAllToolsRadioButtonFont != null) listAllToolsRadioButton.setFont(listAllToolsRadioButtonFont);
         listAllToolsRadioButton.setText("List All Tools");
         panel1.add(listAllToolsRadioButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        headerLabel = new JLabel();
+        headerLabel.setText("Headers");
+        panel1.add(headerLabel, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        textArea1 = new JTextArea();
+        panel1.add(textArea1, new GridConstraints(3, 1, 1, 5, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(300, 25), null, 0, false));
+        toolNameRadioButton = new JRadioButton();
+        Font toolNameRadioButtonFont = this.$$$getFont$$$(null, -1, 14, toolNameRadioButton.getFont());
+        if (toolNameRadioButtonFont != null) toolNameRadioButton.setFont(toolNameRadioButtonFont);
+        toolNameRadioButton.setText("Tool Name");
+        panel1.add(toolNameRadioButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();
         Font label6Font = this.$$$getFont$$$(null, -1, 16, label6.getFont());
         if (label6Font != null) label6.setFont(label6Font);
         label6.setText("Status");
-        panel1.add(label6, new GridConstraints(2, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(label6, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(customerIDRadioButton);

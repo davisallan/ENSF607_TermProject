@@ -93,7 +93,7 @@ public class InventoryViewController {
             else if (gui.getToolNameRadioButton().isSelected())
                 message = "sellToolName-" + tool.getName();
             clientController.sendMessage(new Message(message));
-            gui.getStatusLabel().setText("Sell of tool " + tool.getName() + " made.");
+            gui.getTextArea1().setText("Sale of tool " + tool.getName() + " completed.");
         }
     }
 
