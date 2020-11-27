@@ -13,6 +13,15 @@ phone		VARCHAR(12),
 PRIMARY KEY (supplierId)
 );
 
+DROP TABLE IF EXISTS international;
+CREATE TABLE international (
+supplierId		INTEGER,
+importTax		FLOAT,
+PRIMARY KEY (supplierId),
+FOREIGN KEY (supplierId) REFERENCES supplier(supplierId)
+	ON DELETE CASCADE		ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS tool;
 CREATE TABLE tool (
 toolId		INTEGER NOT NULL,
@@ -21,6 +30,7 @@ tType		VARCHAR(15),
 quantity	INTEGER CHECK (quantity > 0), 
 price		FLOAT, 
 supplierId	INTEGER,
+sName		VARCHAR(25),
 PRIMARY KEY (toolId),
 FOREIGN KEY (supplierId) REFERENCES supplier(supplierId)
 	ON DELETE SET NULL 		ON UPDATE CASCADE
@@ -35,14 +45,6 @@ FOREIGN KEY (toolId) REFERENCES tool(toolId)
 	ON DELETE CASCADE		ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS international;
-CREATE TABLE international (
-supplierId		INTEGER,
-importTax		FLOAT,
-PRIMARY KEY (supplierId),
-FOREIGN KEY (supplierId) REFERENCES supplier(supplierId)
-	ON DELETE CASCADE		ON UPDATE CASCADE
-);
 
 DROP TABLE IF EXISTS toolOrder;
 CREATE TABLE toolOrder (
@@ -57,7 +59,7 @@ orderId		INTEGER,
 toolId		INTEGER, 
 supplierId	INTEGER,
 quantity	INTEGER CHECK (quantity > 0), 
-PRIMARY KEY (orderId,toolId) ,
+PRIMARY KEY (orderId, toolId),
 FOREIGN KEY (toolId) REFERENCES tool(toolId) 
 	ON DELETE CASCADE 		ON UPDATE CASCADE, 
 FOREIGN KEY (supplierId) REFERENCES supplier(supplierId) 
@@ -83,7 +85,7 @@ CREATE TABLE purchases (
 customerId	INTEGER, 
 toolId		INTEGER,
 pDate		DATE,
-PRIMARY KEY (customerId,toolId,pDate),
+PRIMARY KEY (customerId, toolId, pDate),
 FOREIGN KEY (customerId) REFERENCES customer(customerId) 
 	ON DELETE CASCADE		ON UPDATE CASCADE,
 FOREIGN KEY (toolId) REFERENCES tool(toolId) 
