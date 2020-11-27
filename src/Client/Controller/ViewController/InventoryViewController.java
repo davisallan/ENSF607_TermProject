@@ -29,7 +29,7 @@ public class InventoryViewController {
         DefaultListModel<String> model = new DefaultListModel<>();
 
         if (toolList.getToolList().size() == 0) {
-            gui.getTextArea1().setText("That information doesn't match any tool");
+            gui.getTextField11().setText("Tool does not exist");
         }
 
         for (Tool tool : toolList.getToolList())
@@ -66,7 +66,7 @@ public class InventoryViewController {
                     String message = "toolId-" + toolId;
                     clientController.sendMessage(new Message(message));
                 } catch (NumberFormatException e) {
-                    gui.getTextArea1().setText("Enter an integer number with the tool Id");
+                    gui.getTextField11().setText("Please enter an integer");
                 }
             }
             else if (gui.getToolNameRadioButton().isSelected()) {
@@ -102,7 +102,7 @@ public class InventoryViewController {
             else if (gui.getToolNameRadioButton().isSelected())
                 message = "sellToolName-" + tool.getName();
             clientController.sendMessage(new Message(message));
-            gui.getTextArea1().setText("Sale of tool " + tool.getName() + " completed.");
+            gui.getTextField11().setText("Sale completed");
         }
     }
 
