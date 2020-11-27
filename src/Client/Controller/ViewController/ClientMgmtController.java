@@ -41,16 +41,23 @@ public class ClientMgmtController {
 
     public void sendSearchQuery() {
         if (gui.getCustomerIDRadioButton().isSelected()) {
-            String message = "customerId-" + gui.getTextField8().getText();
-            clientController.sendMessage(new Message(message));
+            try {
+                int customerId = Integer.parseInt(gui.getTextField8().getText());
+                String message = "customerId-" + customerId;
+                clientController.sendMessage(new Message(message));
+            } catch (NumberFormatException ignored) {
+            }
         }
         else if (gui.getLastNameRadioButton().isSelected()) {
             String message = "customerLName-" + gui.getTextField8().getText();
             clientController.sendMessage(new Message(message));
         }
         else if (gui.getClientTypeRadioButton().isSelected()) {
-            String message = "customerType-" + gui.getTextField8().getText();
-            clientController.sendMessage(new Message(message));
+            String clientType = gui.getTextField8().getText();
+            if (clientType.equalsIgnoreCase("C") || clientType.equalsIgnoreCase("R")) {
+                String message = "customerType-" + clientType;
+                clientController.sendMessage(new Message(message));
+            }
         }
     }
 
@@ -124,7 +131,7 @@ public class ClientMgmtController {
                 clientController.sendCustomer(clientController.getClientModelController()
                                 .getClientShop().getCustomerList()
                                 .buildResidential(customerInfo));
-            } else {
+            } else if (customerInfo[6].equalsIgnoreCase("C")) {
                 clientController.sendMessage(new Message("updateCustomer"));
                 clientController.sendCustomer(clientController.getClientModelController()
                                 .getClientShop().getCustomerList()
