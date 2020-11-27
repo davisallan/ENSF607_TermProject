@@ -1,4 +1,4 @@
-package Server.Model;
+package CommonModel.Model;
 
 public class NonElectrical extends Tool {
     public NonElectrical(int id, String name, String type, int quantity, double price, int supplierID, String supplierName) {

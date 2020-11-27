@@ -1,6 +1,6 @@
 package Server.Controller.DBController;
 
-import Server.Model.CustomerList;
+import CommonModel.Model.CustomerList;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -148,7 +148,7 @@ public class DBController implements DBCredentials{
 
     public void sellItem(String toolName) {
         try {
-            String query = "UPDATE tool SET quantity = quantity - 1 WHERE name=?";
+            String query = "UPDATE tool SET quantity = quantity - 1 WHERE tName=?";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, toolName);
             stmt.executeUpdate();

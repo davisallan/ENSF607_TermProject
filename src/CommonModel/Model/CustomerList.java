@@ -1,4 +1,4 @@
-package Server.Model;
+package CommonModel.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

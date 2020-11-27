@@ -3,7 +3,7 @@ package Client.Controller.ClientController;
 import Client.Controller.ViewController.ClientMgmtController;
 import Client.Controller.ViewController.InventoryViewController;
 import Client.View.ToolShopGUI;
-import Server.Model.*;
+import CommonModel.Model.*;
 
 import java.io.*;
 import java.net.Socket;

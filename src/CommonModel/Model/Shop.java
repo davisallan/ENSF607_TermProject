@@ -1,4 +1,4 @@
-package Server.Model;
+package CommonModel.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -2,7 +2,7 @@ package Client.Controller.ViewController;
 
 import Client.Controller.ClientController.ClientController;
 import Client.View.ToolShopGUI;
-import Server.Model.*;
+import CommonModel.Model.*;
 
 import javax.swing.*;
 import java.awt.*;

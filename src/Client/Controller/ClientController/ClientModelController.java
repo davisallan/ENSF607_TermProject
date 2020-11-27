@@ -1,6 +1,6 @@
 package Client.Controller.ClientController;
 
-import Server.Model.*;
+import CommonModel.Model.*;
 
 public class ClientModelController {
 

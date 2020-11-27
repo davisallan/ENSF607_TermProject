@@ -1,6 +1,6 @@
 package Server.Controller.ServerController;
 
-import Server.Model.*;
+import CommonModel.Model.*;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package Server.Model;
+package CommonModel.Model;
 
 public class International extends Supplier {
 

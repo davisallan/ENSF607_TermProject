@@ -1,9 +1,8 @@
-package Server.Model;
+package CommonModel.Model;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Provides the data fields and methods to create a data type representing a daily order of tools for a tool shop.

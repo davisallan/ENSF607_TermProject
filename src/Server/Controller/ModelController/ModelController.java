@@ -2,16 +2,14 @@ package Server.Controller.ModelController;
 
 import Server.Controller.DBController.DBController;
 import Server.Controller.ServerController.ServerController;
-import Server.Model.Customer;
-import Server.Model.Message;
-import Server.Model.Order;
-import Server.Model.OrderLine;
-import Server.Model.Shop;
+import CommonModel.Model.Customer;
+import CommonModel.Model.Message;
+import CommonModel.Model.Order;
+import CommonModel.Model.OrderLine;
+import CommonModel.Model.Shop;
 
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class ModelController implements Runnable {
 

@@ -2,7 +2,7 @@ package Server.Controller.ServerController;
 
 import Server.Controller.DBController.DBController;
 import Server.Controller.ModelController.ModelController;
-import Server.Model.Shop;
+import CommonModel.Model.Shop;
 
 import java.io.*;
 import java.net.ServerSocket;
