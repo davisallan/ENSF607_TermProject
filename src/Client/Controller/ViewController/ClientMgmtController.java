@@ -6,10 +6,7 @@ import CommonModel.Model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class ClientMgmtController {
 
@@ -84,6 +81,12 @@ public class ClientMgmtController {
             gui.getTextField5().setText(customer.getPostalCode());
             gui.getTextField6().setText(customer.getPhoneNum());
             gui.getTextField7().setText(String.valueOf(customer.getType()));
+        }
+    }
+
+    class ShutDown extends WindowAdapter {
+        public void WindowClosing(WindowEvent e) {
+            clientController.shutDown();
         }
     }
 

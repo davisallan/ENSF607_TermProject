@@ -57,6 +57,12 @@ public class InventoryViewController {
         public void mouseClicked(MouseEvent me) {}
     }
 
+    class ShutDown extends WindowAdapter {
+        public void WindowClosing(WindowEvent e) {
+            clientController.shutDown();
+        }
+    }
+
     public void updateGUIResults(ToolInventory toolInventory) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
