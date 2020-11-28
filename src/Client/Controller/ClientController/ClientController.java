@@ -18,8 +18,7 @@ public class ClientController {
     private InventoryViewController inventoryViewController;
     private ClientMgmtController clientMgmtController;
 
-    public ClientController(String serverName, int portNumber,
-                            ClientModelController clientModelController) {
+    public ClientController(String serverName, int portNumber, ClientModelController clientModelController) {
         try {
             Socket = new Socket(serverName, portNumber);
             objectOut = new ObjectOutputStream(Socket.getOutputStream());
@@ -31,64 +30,50 @@ public class ClientController {
         }
     }
 
-    public void setClientModelController(ClientModelController clientModelController) {
-        this.clientModelController = clientModelController;
-    }
-
-    public ClientModelController getClientModelController() {
-        return clientModelController;
-    }
-
-    public void shutDown() {
-        try {
-            Socket.close();
-            objectOut.close();
-            objectIn.close();
-            stdIn.close();
-            System.exit(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void communicate() {
         Message response;
         while (true) {
             try {
                 response = (Message) objectIn.readObject();
                 clientModelController.getClientShop().clearAllLists();
-
                 switch (response.getMessage()) {
                     case "tool":
-                        try {
-                            Tool obj = (Tool) objectIn.readObject();
-                            while (obj != null) {
-                                clientModelController.getClientShop().getToolList().addTool(obj);
-                                obj = (Tool) objectIn.readObject();
-                            }
-                            inventoryViewController.updateGUIResults(clientModelController.getClientShop().getToolList());
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        readTools();
                         break;
 
                     case "customer":
-                        try {
-                            Customer obj = (Customer) objectIn.readObject();
-                            while (obj != null) {
-                                clientModelController.getClientShop().getCustomerList().addCustomer(obj);
-                                obj = (Customer) objectIn.readObject();
-                            }
-                            clientMgmtController.updateGUIResults(clientModelController.getClientShop().getCustomerList());
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        readCustomers();
                         break;
                 }
-
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void readTools() {
+        try {
+            Tool obj = (Tool) objectIn.readObject();
+            while (obj != null) {
+                clientModelController.getClientShop().getToolList().addTool(obj);
+                obj = (Tool) objectIn.readObject();
+            }
+            inventoryViewController.updateGUIResults(clientModelController.getClientShop().getToolList());
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readCustomers() {
+        try {
+            Customer obj = (Customer) objectIn.readObject();
+            while (obj != null) {
+                clientModelController.getClientShop().getCustomerList().addCustomer(obj);
+                obj = (Customer) objectIn.readObject();
+            }
+            clientMgmtController.updateGUIResults(clientModelController.getClientShop().getCustomerList());
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -108,6 +93,42 @@ public class ClientController {
         }
     }
 
+    public void shutDown() {
+        try {
+            Socket.close();
+            objectOut.close();
+            objectIn.close();
+            stdIn.close();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setClientModelController(ClientModelController clientModelController) {
+        this.clientModelController = clientModelController;
+    }
+
+    public ClientModelController getClientModelController() {
+        return clientModelController;
+    }
+
+    public void setInventoryViewController(InventoryViewController inventoryViewController) {
+        this.inventoryViewController = inventoryViewController;
+    }
+
+    public InventoryViewController getInventoryViewController() {
+        return inventoryViewController;
+    }
+
+    public void setClientMgmtController(ClientMgmtController clientMgmtController) {
+        this.clientMgmtController = clientMgmtController;
+    }
+
+    public ClientMgmtController getClientMgmtController() {
+        return clientMgmtController;
+    }
+
     public static void main(String[] args) {
         Shop theShop = new Shop(new ToolInventory(new Order()), new SupplierList(), new CustomerList());
         ToolShopGUI gui = new ToolShopGUI();
@@ -116,21 +137,5 @@ public class ClientController {
         client.setInventoryViewController(new InventoryViewController(gui, client));
         client.setClientMgmtController(new ClientMgmtController(gui, client));
         client.communicate();
-    }
-
-    public InventoryViewController getInventoryViewController() {
-        return inventoryViewController;
-    }
-
-    public void setInventoryViewController(InventoryViewController inventoryViewController) {
-        this.inventoryViewController = inventoryViewController;
-    }
-
-    public ClientMgmtController getClientMgmtController() {
-        return clientMgmtController;
-    }
-
-    public void setClientMgmtController(ClientMgmtController clientMgmtController) {
-        this.clientMgmtController = clientMgmtController;
     }
 }
