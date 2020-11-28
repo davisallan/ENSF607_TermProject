@@ -1,21 +1,16 @@
 package CommonModel.Model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SupplierList implements Serializable {
+public class SupplierList {
 
-    private final ArrayList<Supplier> supplierList;
+    private ArrayList<Supplier> suppliers;
 
     public SupplierList() {
-        supplierList = new ArrayList<>();
+        suppliers = new ArrayList<>();
     }
 
-    public void addSupplier(Supplier supplier) {
-        supplierList.add(supplier);
-    }
-
-    public ArrayList<Supplier> getSupplierList() {
-        return supplierList;
+    public void clearList() {
+        suppliers.clear();
     }
 }

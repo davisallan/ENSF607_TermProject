@@ -22,10 +22,6 @@ public class Shop {
         customerList.buildCustomer(rs);
     }
 
-    public boolean decreaseQty(Tool tool) {
-        return toolInventory.decreaseQty(tool);
-    }
-
     public boolean sellItem(int id) {
         return toolInventory.sellItem(id);
     }
@@ -36,8 +32,8 @@ public class Shop {
 
     public void clearAllLists() {
         toolInventory.clearList();
-        supplierList.getSupplierList().clear();
-        customerList.getCustomers().clear();
+        supplierList.clearList();
+        customerList.clearList();
     }
 
     public void setToolList(ToolInventory toolInventory) {

@@ -57,6 +57,10 @@ public class CustomerList {
         customers.add(c);
     }
 
+    public void clearList() {
+        customers.clear();
+    }
+
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
