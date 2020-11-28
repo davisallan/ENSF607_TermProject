@@ -58,12 +58,12 @@ public class ToolInventory {
         return false;
     }
 
-    public boolean decreaseQty(Tool tool) {
-        return tool.decreaseQty(order);
-    }
-
     public void clearList() {
         toolList.clear();
+    }
+
+    private boolean decreaseQty(Tool tool) {
+        return tool.decreaseQty(order);
     }
 
     public ArrayList<Tool> getToolList() {

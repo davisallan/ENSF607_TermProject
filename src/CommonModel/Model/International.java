@@ -10,10 +10,6 @@ public class International extends Supplier {
         setImportTax(importTax);
     }
 
-    public double getImportTax() {
-        return importTax;
-    }
-
     public void setImportTax(double importTax) {
         this.importTax = importTax;
     }

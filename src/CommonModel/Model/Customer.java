@@ -12,7 +12,8 @@ public abstract class Customer implements Serializable {
     private String address;
     private String postalCode;
 
-    public Customer(int customerId, String lastName, String firstName, char type, String phoneNum, String address, String postalCode) {
+    public Customer(int customerId, String lastName, String firstName, char type,
+                    String phoneNum, String address, String postalCode) {
         setCustomerId(customerId);
         setLastName(lastName);
         setFirstName(firstName);
