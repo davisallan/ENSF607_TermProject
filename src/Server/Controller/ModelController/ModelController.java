@@ -50,12 +50,12 @@ public class ModelController implements Runnable {
     public void run() {
         while (true) {
             String[] query = serverController.listenForQuery();
-            String queryType = query[0]; //the type of requested query
+            String queryType;
             String condition = "";
 
-            if (queryType.equals("quit")) {
-                serverController.sendMessage(new Message("quit"));
-                System.out.println("Client has disconnected...");
+            try {
+                queryType = query[0];
+            } catch (ArrayIndexOutOfBoundsException e) {
                 break;
             }
 

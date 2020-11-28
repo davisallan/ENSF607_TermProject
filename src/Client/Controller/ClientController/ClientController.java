@@ -53,14 +53,10 @@ public class ClientController {
 
     public void communicate() {
         Message response;
-        String query = "";
         while (true) {
             try {
                 response = (Message) objectIn.readObject();
                 clientModelController.getClientShop().clearAllLists();
-                if (response.getMessage().equals("quit")) {
-                    shutDown();
-                }
 
                 switch (response.getMessage()) {
                     case "tool":
