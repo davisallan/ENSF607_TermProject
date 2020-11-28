@@ -2,6 +2,9 @@ package Server.Controller.ServerController;
 
 import CommonModel.Model.*;
 import Server.Controller.DBController.DBController;
+import Server.Controller.DBController.DBCustomerController;
+import Server.Controller.DBController.DBOrderController;
+import Server.Controller.DBController.DBToolController;
 import Server.Controller.ModelController.ModelController;
 
 import java.io.*;
@@ -43,7 +46,7 @@ public class Server {
                 client = serverSocket.accept();
                 System.out.println("Client has connected...starting new controller");
 
-                ModelController modelController = new ModelController(new ServerController(client), new DBController(), new Shop(new ToolInventory(new Order()), new SupplierList(), new CustomerList()));
+                ModelController modelController = new ModelController(new ServerController(client), new DBController(new DBToolController(), new DBCustomerController(), new DBOrderController()), new Shop(new ToolInventory(new Order()), new SupplierList(), new CustomerList()));
                 pool.execute(modelController);
             }
         } catch (IOException e) {

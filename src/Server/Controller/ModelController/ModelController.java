@@ -115,7 +115,7 @@ public class ModelController implements Runnable {
                     rs = dbController.selectAllTools();
                     theShop.buildTool(rs);
                     boolean orderLineCreated = theShop.sellItem(Integer.parseInt(condition));
-                    dbController.sellItem(Integer.parseInt(condition));
+                    dbController.sellTool(Integer.parseInt(condition));
                     if (orderLineCreated) {
                         //Add order
                         Order order = theShop.getToolList().getOrder();
@@ -136,7 +136,7 @@ public class ModelController implements Runnable {
                     rs = dbController.searchToolById(Integer.parseInt(condition));
                     theShop.buildTool(rs);
                     theShop.sellItem(Integer.parseInt(condition));
-                    dbController.sellItem(Integer.parseInt(condition));
+                    dbController.sellTool(Integer.parseInt(condition));
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
@@ -145,7 +145,7 @@ public class ModelController implements Runnable {
                     rs = dbController.searchToolByName(condition);
                     theShop.buildTool(rs);
                     theShop.sellItem(condition);
-                    dbController.sellItem(condition);
+                    dbController.sellTool(condition);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
