@@ -25,27 +25,6 @@ public class InventoryViewController {
         gui.addMouseListener(gui.getList1(), new List());
     }
 
-    public void updateGUIResults(ToolInventory toolInventory) {
-        DefaultListModel<String> model = new DefaultListModel<>();
-
-        if (toolInventory.getToolList().size() == 0) {
-            gui.getTextField11().setText("Tool does not exist");
-        }
-
-        for (Tool tool : toolInventory.getToolList())
-            model.addElement(tool.toString());
-
-        gui.getList1().setModel(model);
-    }
-
-    public void setGui(ToolShopGUI gui) {
-        this.gui = gui;
-    }
-
-    public void setClientController(ClientController clientController) {
-        this.clientController = clientController;
-    }
-
     class ClientCardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -56,54 +35,86 @@ public class InventoryViewController {
     class SearchButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if (gui.getToolIDRadioButton().isSelected()) {
-                try {
-                    int toolId = Integer.parseInt(gui.getTextField9().getText());
-                    String message = "toolId-" + toolId;
-                    clientController.sendMessage(new Message(message));
-                } catch (NumberFormatException e) {
-                    gui.getTextField11().setText("Please enter an integer");
-                }
-            }
-            else if (gui.getToolNameRadioButton().isSelected()) {
-                String message = "toolName-" + gui.getTextField9().getText();
-                clientController.sendMessage(new Message(message));
-            }
-            else if (gui.getListAllToolsRadioButton().isSelected()) {
-                clientController.sendMessage(new Message("allTools"));
-            }
+            sendSearchQuery();
         }
     }
 
     class ClearButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            gui.getTextField9().setText("");
-            DefaultListModel<String> model = new DefaultListModel<>();
-            gui.getList1().setModel(model);
-            gui.getButtonGroup1().clearSelection();
-            gui.getTextField11().setText(" ");
+            clearGUI();
         }
     }
 
     class SellButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            String message = "";
-            int index = gui.getList1().getSelectedIndex();
-            Tool tool = clientController.getClientModelController().getClientShop().getToolList().getToolList().get(index);
-            if (gui.getListAllToolsRadioButton().isSelected())
-                message = "sellAllTools-" + tool.getId();
-            else if (gui.getToolIDRadioButton().isSelected())
-                message = "sellToolId-" + tool.getId();
-            else if (gui.getToolNameRadioButton().isSelected())
-                message = "sellToolName-" + tool.getName();
-            clientController.sendMessage(new Message(message));
-            gui.getTextField11().setText("Sale completed");
+            sellTool();
         }
     }
 
     class List extends MouseAdapter {
         public void mouseClicked(MouseEvent me) {}
+    }
+
+    public void updateGUIResults(ToolInventory toolInventory) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        if (toolInventory.getToolList().size() == 0)
+            gui.getTextField11().setText("Tool does not exist");
+
+        for (Tool tool : toolInventory.getToolList())
+            model.addElement(tool.toString());
+
+        gui.getList1().setModel(model);
+    }
+
+    private void sendSearchQuery() {
+        if (gui.getToolIDRadioButton().isSelected()) {
+            try {
+                int toolId = Integer.parseInt(gui.getTextField9().getText());
+                String message = "toolId-" + toolId;
+                clientController.sendMessage(new Message(message));
+            } catch (NumberFormatException e) {
+                gui.getTextField11().setText("Please enter an integer");
+            }
+        }
+        else if (gui.getToolNameRadioButton().isSelected()) {
+            String message = "toolName-" + gui.getTextField9().getText();
+            clientController.sendMessage(new Message(message));
+        }
+        else if (gui.getListAllToolsRadioButton().isSelected()) {
+            clientController.sendMessage(new Message("allTools"));
+        }
+    }
+
+    private void clearGUI() {
+        gui.getTextField9().setText("");
+        DefaultListModel<String> model = new DefaultListModel<>();
+        gui.getList1().setModel(model);
+        gui.getButtonGroup1().clearSelection();
+        gui.getTextField11().setText(" ");
+    }
+
+    private void sellTool() {
+        String message = "";
+        int index = gui.getList1().getSelectedIndex();
+        Tool tool = clientController.getClientModelController().getClientShop().getToolList().getToolList().get(index);
+        if (gui.getListAllToolsRadioButton().isSelected())
+            message = "sellAllTools-" + tool.getId();
+        else if (gui.getToolIDRadioButton().isSelected())
+            message = "sellToolId-" + tool.getId();
+        else if (gui.getToolNameRadioButton().isSelected())
+            message = "sellToolName-" + tool.getName();
+        clientController.sendMessage(new Message(message));
+        gui.getTextField11().setText("Sale completed");
+    }
+
+    public void setGui(ToolShopGUI gui) {
+        this.gui = gui;
+    }
+
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
     }
 }
