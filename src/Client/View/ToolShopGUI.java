@@ -7,58 +7,28 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ToolShopGUI extends JFrame{
-    private JPanel rootPanel;
-    private JPanel clientPanel;
-    private JPanel toolPanel;
-    private JPanel leftPanel;
-    private JLabel searchLabel;
-    private JLabel parameterLabel;
-    private JTextField textField8;
-    private JButton searchButton;
-    private JButton clearButton1;
-    private JPanel rightPanel;
-    private JLabel clientLabel;
-    private JButton saveButton;
-    private JTextField textField1;
-    private JLabel clientIdLabel;
-    private JTextField textField2;
-    private JLabel fNameLabel;
-    private JTextField textField3;
-    private JLabel LNameLabel;
-    private JTextField textField4;
-    private JLabel addressLabel;
-    private JTextField textField5;
-    private JLabel postalCodeLabel;
-    private JTextField textField6;
-    private JLabel numberLabel;
-    private JTextField textField7;
-    private JLabel clientTypeLabel;
-    private JButton clearButton;
-    private JButton deleteButton;
-    private JButton goToToolsButton;
-    private JLabel typeSearchLabel;
-    private JTextField textField9;
-    private JButton searchButton1;
-    private JButton clearButton2;
-    private JButton goToCustomersButton;
-    private JButton sellButton;
-    private JRadioButton toolNameRadioButton;
-    private JRadioButton toolIDRadioButton;
-    private JRadioButton customerIDRadioButton;
-    private JRadioButton lastNameRadioButton;
-    private JRadioButton clientTypeRadioButton;
-    private JRadioButton listAllToolsRadioButton;
-    private JList list1;
-    private JList list2;
-    private JLabel headerLabel;
-    private JTextField textField10;
-    private JTextField textField11;
-    private ButtonGroup buttonGroup;
-    private ButtonGroup buttonGroup2;
+    private JPanel rootPanel, clientPanel, toolPanel, leftPanel, rightPanel;
+    private JLabel searchLabel, parameterLabel, clientLabel, clientIdLabel, fNameLabel, LNameLabel, addressLabel,
+                   postalCodeLabel, numberLabel, clientTypeLabel, typeSearchLabel, headerLabel;
+    private JTextField textField1, textField2, textField3, textField4, textField5, textField6, textField7, textField8,
+                       textField9, textField10, textField11;
+    private JButton searchButton, searchButton1, saveButton, clearButton, clearButton1, clearButton2, deleteButton,
+                    goToToolsButton, goToCustomersButton, sellButton;
+    private JRadioButton toolNameRadioButton, toolIDRadioButton, customerIDRadioButton, lastNameRadioButton,
+                         clientTypeRadioButton, listAllToolsRadioButton;
+    private JList list1, list2;
+    private ButtonGroup buttonGroup, buttonGroup1;
+
+    public ToolShopGUI() {
+        JFrame frame = new JFrame("ToolShopApp");
+        frame.setContentPane(this.rootPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     public void addButtonActionListener(JButton button, ActionListener actionListener) {
         button.addActionListener(actionListener);
@@ -68,42 +38,37 @@ public class ToolShopGUI extends JFrame{
         list.addMouseListener(me);
     }
 
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
+
     public JButton getGoToToolsButton() {
         return goToToolsButton;
     }
-
     public JButton getGoToCustomersButton() {
         return goToCustomersButton;
     }
-
     public JButton getSearchButton() {
         return searchButton;
     }
-
     public JButton getSaveButton() {
         return saveButton;
     }
-
     public JButton getDeleteButton() {
         return deleteButton;
     }
-
     public JButton getSearchButton1() {
         return searchButton1;
     }
-
     public JButton getClearButton() {
         return clearButton;
     }
-
     public JButton getClearButton1() {
         return clearButton1;
     }
-
     public JButton getClearButton2() {
         return clearButton2;
     }
-
     public JButton getSellButton() {
         return sellButton;
     }
@@ -111,23 +76,18 @@ public class ToolShopGUI extends JFrame{
     public JRadioButton getToolNameRadioButton() {
         return toolNameRadioButton;
     }
-
     public JRadioButton getToolIDRadioButton() {
         return toolIDRadioButton;
     }
-
     public JRadioButton getListAllToolsRadioButton() {
         return listAllToolsRadioButton;
     }
-
     public JRadioButton getCustomerIDRadioButton() {
         return customerIDRadioButton;
     }
-
     public JRadioButton getLastNameRadioButton() {
         return lastNameRadioButton;
     }
-
     public JRadioButton getClientTypeRadioButton() {
         return clientTypeRadioButton;
     }
@@ -166,14 +126,9 @@ public class ToolShopGUI extends JFrame{
         return textField11;
     }
 
-    public JPanel getRootPanel() {
-        return rootPanel;
-    }
-
     public JList getList1() {
         return list1;
     }
-
     public JList getList2() {
         return list2;
     }
@@ -181,17 +136,8 @@ public class ToolShopGUI extends JFrame{
     public ButtonGroup getButtonGroup() {
         return buttonGroup;
     }
-
-    public ButtonGroup getButtonGroup2() {
-        return buttonGroup2;
-    }
-
-    public ToolShopGUI() {
-        JFrame frame = new JFrame("CardLayoutGUI");
-        frame.setContentPane(this.rootPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
     }
 
     {
@@ -437,10 +383,10 @@ public class ToolShopGUI extends JFrame{
         buttonGroup.add(customerIDRadioButton);
         buttonGroup.add(lastNameRadioButton);
         buttonGroup.add(clientTypeRadioButton);
-        buttonGroup2 = new ButtonGroup();
-        buttonGroup2.add(toolIDRadioButton);
-        buttonGroup2.add(toolNameRadioButton);
-        buttonGroup2.add(listAllToolsRadioButton);
+        buttonGroup1 = new ButtonGroup();
+        buttonGroup1.add(toolIDRadioButton);
+        buttonGroup1.add(toolNameRadioButton);
+        buttonGroup1.add(listAllToolsRadioButton);
     }
 
     /**
