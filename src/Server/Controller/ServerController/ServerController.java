@@ -56,10 +56,10 @@ public class ServerController {
         }
     }
 
-    public void sendObjects(ToolList toolList) {
+    public void sendObjects(ToolInventory toolInventory) {
 //        System.out.println(toolList.getToolList().get(0));
         try {
-            for (Tool tool : toolList.getToolList()) {
+            for (Tool tool : toolInventory.getToolList()) {
                 objectOut.writeObject(tool);
             }
             objectOut.writeObject(null);

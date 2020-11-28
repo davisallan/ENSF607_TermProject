@@ -66,21 +66,21 @@ public class ModelController implements Runnable {
             switch (queryType) {
                 case "toolId": {
                     rs = dbController.searchToolById(Integer.parseInt(condition));
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
                 }
                 case "toolName": {
                     rs = dbController.searchToolByName(condition);
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
                 }
                 case "allTools": {
                     rs = dbController.selectAllTools();
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     serverController.sendMessage(new Message("tool"));
                     serverController.sendObjects(theShop.getToolList());
                     break;
@@ -113,7 +113,7 @@ public class ModelController implements Runnable {
                 }
                 case "sellAllTools": {
                     rs = dbController.selectAllTools();
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     boolean orderLineCreated = theShop.sellItem(Integer.parseInt(condition));
                     dbController.sellItem(Integer.parseInt(condition));
                     if (orderLineCreated) {
@@ -134,7 +134,7 @@ public class ModelController implements Runnable {
                 }
                 case "sellToolId": {
                     rs = dbController.searchToolById(Integer.parseInt(condition));
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     theShop.sellItem(Integer.parseInt(condition));
                     dbController.sellItem(Integer.parseInt(condition));
                     serverController.sendMessage(new Message("tool"));
@@ -143,7 +143,7 @@ public class ModelController implements Runnable {
                 }
                 case "sellToolName": {
                     rs = dbController.searchToolByName(condition);
-                    theShop.addTools(rs);
+                    theShop.buildTool(rs);
                     theShop.sellItem(condition);
                     dbController.sellItem(condition);
                     serverController.sendMessage(new Message("tool"));

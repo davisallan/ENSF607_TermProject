@@ -43,7 +43,7 @@ public class Server {
                 client = serverSocket.accept();
                 System.out.println("Client has connected...starting new controller");
 
-                ModelController modelController = new ModelController(new ServerController(client), new DBController(), new Shop(new ToolList(new Order()), new SupplierList(), new CustomerList()));
+                ModelController modelController = new ModelController(new ServerController(client), new DBController(), new Shop(new ToolInventory(new Order()), new SupplierList(), new CustomerList()));
                 pool.execute(modelController);
             }
         } catch (IOException e) {

@@ -25,14 +25,14 @@ public class InventoryViewController {
         gui.addMouseListener(gui.getList1(), new List1());
     }
 
-    public void updateGUIResults(ToolList toolList) {
+    public void updateGUIResults(ToolInventory toolInventory) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        if (toolList.getToolList().size() == 0) {
+        if (toolInventory.getToolList().size() == 0) {
             gui.getTextField11().setText("Tool does not exist");
         }
 
-        for (Tool tool : toolList.getToolList())
+        for (Tool tool : toolInventory.getToolList())
             model.addElement(tool.toString());
 
         gui.getList1().setModel(model);
