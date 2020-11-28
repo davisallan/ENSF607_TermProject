@@ -124,7 +124,7 @@ public class ModelController implements Runnable {
                         int size = order.getOrderLines().size();
                         OrderLine orderLine = order.getOrderLines().get(size - 1);
                         dbController.addOrderLine(orderLine.getOrderId(),
-                                                  orderLine.getItemToOrder().getId(),
+                                                  orderLine.getToolToOrder().getId(),
                                                   orderLine.getSupplierId(),
                                                   orderLine.getOrderQty());
                     }

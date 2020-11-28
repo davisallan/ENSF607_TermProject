@@ -2,15 +2,13 @@ package CommonModel.Model;
 
 public class OrderLine {
 
-    private Tool toolToOrder;
-    private int toolId;
+    private Tool tool;
     private int orderQty;
     private int supplierId;
     private int orderId;
 
     public OrderLine(Tool tool, int orderQty, Order order) {
-        setItemToOrder(tool);
-
+        setToolToOrder(tool);
         setOrderQty(orderQty);
         setOrderId(order.getOrderNum());
         setSupplierId(tool.getSupplierID());
@@ -32,12 +30,12 @@ public class OrderLine {
         this.orderId = orderId;
     }
 
-    public Tool getItemToOrder() {
-        return toolToOrder;
+    public Tool getToolToOrder() {
+        return tool;
     }
 
-    public void setItemToOrder(Tool toolToOrder) {
-        this.toolToOrder = toolToOrder;
+    public void setToolToOrder(Tool toolToOrder) {
+        this.tool = toolToOrder;
     }
 
     public int getOrderQty() {
@@ -48,11 +46,10 @@ public class OrderLine {
         this.orderQty = orderQty;
     }
 
-    //TODO we may actually need the association between tool and supplier for orderlines... for now i am ignoring
     @Override
     public String toString() {
-        return String.format("%-25s %-10s", "Item description:", toolToOrder.getName()) + "\n" +
+        return String.format("%-25s %-10s", "Item description:", tool.getName()) + "\n" +
                 String.format("%-25s %-10s", "Amount ordered:", getOrderQty()) + "\n" +
-                String.format("%-25s %-10s", "Supplier:", toolToOrder.getSupplierName()) + "\n";
+                String.format("%-25s %-10s", "Supplier:", tool.getSupplierName()) + "\n";
     }
 }
