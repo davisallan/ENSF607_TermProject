@@ -1,8 +1,8 @@
 package Server.Controller.ServerController;
 
+import CommonModel.Model.*;
 import Server.Controller.DBController.DBController;
 import Server.Controller.ModelController.ModelController;
-import CommonModel.Model.Shop;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -43,7 +43,7 @@ public class Server {
                 client = serverSocket.accept();
                 System.out.println("Client has connected...starting new controller");
 
-                ModelController modelController = new ModelController(new ServerController(client), new DBController(), new Shop());
+                ModelController modelController = new ModelController(new ServerController(client), new DBController(), new Shop(new ToolList(new Order()), new SupplierList(), new CustomerList()));
                 pool.execute(modelController);
             }
         } catch (IOException e) {

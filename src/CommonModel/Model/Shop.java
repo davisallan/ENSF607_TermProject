@@ -9,10 +9,10 @@ public class Shop {
     private SupplierList supplierList;
     private CustomerList customerList;
 
-    public Shop() {
-        toolList = new ToolList(new Order());
-        supplierList = new SupplierList();
-        customerList = new CustomerList();
+    public Shop(ToolList toolList, SupplierList supplierList, CustomerList customerList) {
+        setToolList(toolList);
+        setSupplierList(supplierList);
+        setCustomerList(customerList);
     }
 
     //TODO move the addCustomers/addTools methods to their respective classes
@@ -122,4 +122,6 @@ public class Shop {
     public CustomerList getCustomerList() {
         return customerList;
     }
+
+
 }

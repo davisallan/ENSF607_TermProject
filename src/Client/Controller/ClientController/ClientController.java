@@ -113,7 +113,7 @@ public class ClientController {
     }
 
     public static void main(String[] args) {
-        Shop theShop = new Shop();
+        Shop theShop = new Shop(new ToolList(new Order()), new SupplierList(), new CustomerList());
         ToolShopGUI gui = new ToolShopGUI();
         ClientModelController clientModelController = new ClientModelController(theShop);
         ClientController client = new ClientController("localhost", 8099, clientModelController);
