@@ -20,14 +20,6 @@ public class ServerController {
         }
     }
 
-    public ObjectInputStream getObjectIn() {
-        return objectIn;
-    }
-
-    public ObjectOutputStream getObjectOut() {
-        return objectOut;
-    }
-
     public String[] listenForQuery() {
         String[] query = {};
         try {
@@ -80,4 +72,13 @@ public class ServerController {
             e.printStackTrace();
         }
     }
+
+    public ObjectInputStream getObjectIn() {
+        return objectIn;
+    }
+
+    public ObjectOutputStream getObjectOut() {
+        return objectOut;
+    }
+
 }
