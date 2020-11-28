@@ -36,6 +36,7 @@ public class ClientMgmtController {
         for (Customer customer : customerList.getCustomers())
             model.addElement(customer.getCustomerId() + " " + customer.getFirstName() + " " +
                             customer.getLastName() + " " + customer.getType());
+
         gui.getList2().setModel(model);
     }
 

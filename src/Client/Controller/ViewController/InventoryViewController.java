@@ -19,10 +19,10 @@ public class InventoryViewController {
         setClientController(clientController);
         cardLayout = (CardLayout) gui.getRootPanel().getLayout();
         gui.addButtonActionListener(gui.getGoToCustomersButton(), new ClientCardListener());
-        gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton1());
-        gui.addButtonActionListener(gui.getClearButton2(), new ClearButton2());
+        gui.addButtonActionListener(gui.getSearchButton1(), new SearchButton());
+        gui.addButtonActionListener(gui.getClearButton2(), new ClearButton());
         gui.addButtonActionListener(gui.getSellButton(), new SellButton());
-        gui.addMouseListener(gui.getList1(), new List1());
+        gui.addMouseListener(gui.getList1(), new List());
     }
 
     public void updateGUIResults(ToolInventory toolInventory) {
@@ -46,10 +46,6 @@ public class InventoryViewController {
         this.clientController = clientController;
     }
 
-    public ClientController getClientController() {
-        return clientController;
-    }
-
     class ClientCardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -57,7 +53,7 @@ public class InventoryViewController {
         }
     }
 
-    class SearchButton1 implements ActionListener {
+    class SearchButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if (gui.getToolIDRadioButton().isSelected()) {
@@ -79,13 +75,14 @@ public class InventoryViewController {
         }
     }
 
-    class ClearButton2 implements ActionListener {
+    class ClearButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             gui.getTextField9().setText("");
             DefaultListModel<String> model = new DefaultListModel<>();
             gui.getList1().setModel(model);
             gui.getButtonGroup1().clearSelection();
+            gui.getTextField11().setText(" ");
         }
     }
 
@@ -106,7 +103,7 @@ public class InventoryViewController {
         }
     }
 
-    class List1 extends MouseAdapter {
+    class List extends MouseAdapter {
         public void mouseClicked(MouseEvent me) {}
     }
 }
