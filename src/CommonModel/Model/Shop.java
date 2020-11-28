@@ -22,11 +22,11 @@ public class Shop {
         customerList.buildCustomer(rs);
     }
 
-    public boolean sellItem(int id) {
+    public boolean sellTool(int id) {
         return toolInventory.sellItem(id);
     }
 
-    public boolean sellItem(String name) {
+    public boolean sellTool(String name) {
         return toolInventory.sellItem(name);
     }
 

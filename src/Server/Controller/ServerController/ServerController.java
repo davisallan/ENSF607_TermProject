@@ -4,6 +4,7 @@ import CommonModel.Model.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerController {
 
@@ -32,6 +33,8 @@ public class ServerController {
         try {
             Message msg = (Message) objectIn.readObject();
             query = msg.getMessage().split("-");
+        } catch (SocketException e) {
+            System.out.println("Client has disconnected...");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
