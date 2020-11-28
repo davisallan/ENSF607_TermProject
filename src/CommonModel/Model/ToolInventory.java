@@ -44,6 +44,24 @@ public class ToolInventory {
         }
     }
 
+    public boolean sellItem(int id) {
+        for (Tool tool : getToolList())
+            if (tool.getId() == id)
+                return decreaseQty(tool);
+        return false;
+    }
+
+    public boolean sellItem(String name) {
+        for (Tool tool : getToolList())
+            if (tool.getName().equals(name))
+                return decreaseQty(tool);
+        return false;
+    }
+
+    public boolean decreaseQty(Tool tool) {
+        return tool.decreaseQty(order);
+    }
+
     public void clearList() {
         toolList.clear();
     }
@@ -65,9 +83,4 @@ public class ToolInventory {
     public void addTool(Tool i) {
         toolList.add(i);
     }
-
-    public boolean decreaseQty(Tool tool) {
-        return tool.decreaseQty(order);
-    }
-
 }

@@ -111,13 +111,13 @@ public class DBController implements DBCredentials{
         try {
             String query = "UPDATE customer SET lName = ?, fName = ?, cType = ?, phoneNum = ?, address = ?, postalCode = ? WHERE customerId = ?";
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, customerList.getCustomerList().get(0).getLastName());
-            stmt.setString(2, customerList.getCustomerList().get(0).getFirstName());
-            stmt.setString(3, String.valueOf(customerList.getCustomerList().get(0).getType()));
-            stmt.setString(4, customerList.getCustomerList().get(0).getPhoneNum());
-            stmt.setString(5, customerList.getCustomerList().get(0).getAddress());
-            stmt.setString(6, customerList.getCustomerList().get(0).getPostalCode());
-            stmt.setInt(7, customerList.getCustomerList().get(0).getCustomerId());
+            stmt.setString(1, customerList.getCustomers().get(0).getLastName());
+            stmt.setString(2, customerList.getCustomers().get(0).getFirstName());
+            stmt.setString(3, String.valueOf(customerList.getCustomers().get(0).getType()));
+            stmt.setString(4, customerList.getCustomers().get(0).getPhoneNum());
+            stmt.setString(5, customerList.getCustomers().get(0).getAddress());
+            stmt.setString(6, customerList.getCustomers().get(0).getPostalCode());
+            stmt.setInt(7, customerList.getCustomers().get(0).getCustomerId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

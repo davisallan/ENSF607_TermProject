@@ -71,7 +71,7 @@ public class ServerController {
     public void sendObjects(CustomerList customerList) {
 //        System.out.println(customerList.getCustomerList().get(0));
         try {
-            for (Customer customer : customerList.getCustomerList()) {
+            for (Customer customer : customerList.getCustomers()) {
                 objectOut.writeObject(customer);
             }
             objectOut.writeObject(null);

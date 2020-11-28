@@ -87,21 +87,21 @@ public class ModelController implements Runnable {
                 }
                 case "customerId": {
                     rs = dbController.searchCustomerByID(Integer.parseInt(condition));
-                    theShop.addCustomers(rs);
+                    theShop.buildCustomers(rs);
                     serverController.sendMessage(new Message("customer"));
                     serverController.sendObjects(theShop.getCustomerList());
                     break;
                 }
                 case "customerLName": {
                     rs = dbController.searchCustomerByLName(condition);
-                    theShop.addCustomers(rs);
+                    theShop.buildCustomers(rs);
                     serverController.sendMessage(new Message("customer"));
                     serverController.sendObjects(theShop.getCustomerList());
                     break;
                 }
                 case "customerType": {
                     rs = dbController.searchByCustomerType(condition);
-                    theShop.addCustomers(rs);
+                    theShop.buildCustomers(rs);
                     serverController.sendMessage(new Message("customer"));
                     serverController.sendObjects(theShop.getCustomerList());
                     break;

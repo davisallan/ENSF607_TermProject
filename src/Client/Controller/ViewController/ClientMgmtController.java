@@ -33,7 +33,7 @@ public class ClientMgmtController {
     public void updateGUIResults(CustomerList customerList) {
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        for (Customer customer : customerList.getCustomerList())
+        for (Customer customer : customerList.getCustomers())
             model.addElement(customer.getCustomerId() + " " + customer.getFirstName() + " " +
                             customer.getLastName() + " " + customer.getType());
         gui.getList2().setModel(model);
@@ -154,7 +154,7 @@ public class ClientMgmtController {
         public void mouseClicked(MouseEvent me) {
             JList selection = (JList)me.getSource();
             int index = selection.locationToIndex(me.getPoint());
-            Customer customer = clientController.getClientModelController().getClientShop().getCustomerList().getCustomerList().get(index);
+            Customer customer = clientController.getClientModelController().getClientShop().getCustomerList().getCustomers().get(index);
             gui.getTextField1().setText(Integer.toString(customer.getCustomerId()));
             gui.getTextField2().setText(customer.getFirstName());
             gui.getTextField3().setText(customer.getLastName());

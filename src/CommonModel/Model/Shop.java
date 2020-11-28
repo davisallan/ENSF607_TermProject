@@ -1,7 +1,6 @@
 package CommonModel.Model;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Shop {
 
@@ -19,57 +18,26 @@ public class Shop {
         toolInventory.buildTool(rs);
     }
 
+    public void buildCustomers(ResultSet rs) {
+        customerList.buildCustomer(rs);
+    }
+
     public boolean decreaseQty(Tool tool) {
         return toolInventory.decreaseQty(tool);
     }
 
     public boolean sellItem(int id) {
-        for (Tool tool : toolInventory.getToolList())
-            if (tool.getId() == id)
-                return decreaseQty(tool);
-        return false;
+        return toolInventory.sellItem(id);
     }
 
     public boolean sellItem(String name) {
-        for (Tool tool : toolInventory.getToolList())
-            if (tool.getName().equals(name))
-                return decreaseQty(tool);
-        return false;
-    }
-
-    public void addCustomers(ResultSet rs) {
-        try {
-            while (rs.next()) {
-                if (rs.getString("ctype").equals("R")) {
-                    customerList.addCustomer(new Residential(
-                            rs.getInt("customerId"),
-                            rs.getString("lName"),
-                            rs.getString("fName"),
-                            rs.getString("cType").charAt(0),
-                            rs.getString("phoneNum"),
-                            rs.getString("address"),
-                            rs.getString("postalCode")));
-                } else {
-                    customerList.addCustomer(new Commercial(
-                            rs.getInt("customerId"),
-                            rs.getString("lName"),
-                            rs.getString("fName"),
-                            rs.getString("cType").charAt(0),
-                            rs.getString("phoneNum"),
-                            rs.getString("address"),
-                            rs.getString("postalCode")));
-                }
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return toolInventory.sellItem(name);
     }
 
     public void clearAllLists() {
         toolInventory.clearList();
         supplierList.getSupplierList().clear();
-        customerList.getCustomerList().clear();
+        customerList.getCustomers().clear();
     }
 
     public void setToolList(ToolInventory toolInventory) {
@@ -84,10 +52,6 @@ public class Shop {
         this.customerList = customerList;
     }
 
-    public SupplierList getSupplierList() {
-        return supplierList;
-    }
-
     public ToolInventory getToolList() {
         return toolInventory;
     }
@@ -95,6 +59,4 @@ public class Shop {
     public CustomerList getCustomerList() {
         return customerList;
     }
-
-
 }

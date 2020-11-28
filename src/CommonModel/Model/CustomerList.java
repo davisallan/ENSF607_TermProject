@@ -1,14 +1,44 @@
 package CommonModel.Model;
 
-import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomerList implements Serializable {
+public class CustomerList {
 
-    private ArrayList<Customer> customerList;
+    private ArrayList<Customer> customers;
 
     public CustomerList() {
-        customerList = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
+
+    public void buildCustomer(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                if (rs.getString("ctype").equals("R")) {
+                    addCustomer(new Residential(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
+                } else {
+                    addCustomer(new Commercial(
+                            rs.getInt("customerId"),
+                            rs.getString("lName"),
+                            rs.getString("fName"),
+                            rs.getString("cType").charAt(0),
+                            rs.getString("phoneNum"),
+                            rs.getString("address"),
+                            rs.getString("postalCode")));
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Residential buildResidential(String [] customerInfo) {
@@ -24,16 +54,10 @@ public class CustomerList implements Serializable {
     }
 
     public void addCustomer(Customer c) {
-        customerList.add(c);
+        customers.add(c);
     }
 
-    public void display() {
-        for (Customer c: customerList) {
-            System.out.println(c);
-        }
-    }
-
-    public ArrayList<Customer> getCustomerList() {
-        return customerList;
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
 }
