@@ -24,28 +24,6 @@ public class ModelController implements Runnable {
         setServerController(serverController);
     }
 
-    public void setServerController(ServerController serverController) {
-        this.serverController = serverController;
-    }
-
-    public void setDbController(DBController dbController) {
-        this.dbController = dbController;
-    }
-
-    public void setTheShop(Shop theShop) {
-        this.theShop = theShop;
-    }
-
-    public void closeConnections() {
-        try {
-            dbController.close();
-            serverController.getObjectIn().close();
-            serverController.getObjectOut().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void run() {
         while (true) {
@@ -65,94 +43,50 @@ public class ModelController implements Runnable {
 
             switch (queryType) {
                 case "toolId": {
-                    rs = dbController.searchToolById(Integer.parseInt(condition));
-                    theShop.buildTool(rs);
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    toolIdQuery(condition);
                     break;
                 }
                 case "toolName": {
-                    rs = dbController.searchToolByName(condition);
-                    theShop.buildTool(rs);
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    toolNameQuery(condition);
                     break;
                 }
                 case "allTools": {
-                    rs = dbController.selectAllTools();
-                    theShop.buildTool(rs);
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    allToolQuery();
                     break;
                 }
                 case "customerId": {
-                    rs = dbController.searchCustomerByID(Integer.parseInt(condition));
-                    theShop.buildCustomers(rs);
-                    serverController.sendMessage(new Message("customer"));
-                    serverController.sendObjects(theShop.getCustomerList());
+                    customerIdQuery(condition);
                     break;
                 }
                 case "customerLName": {
-                    rs = dbController.searchCustomerByLName(condition);
-                    theShop.buildCustomers(rs);
-                    serverController.sendMessage(new Message("customer"));
-                    serverController.sendObjects(theShop.getCustomerList());
+                    customerLNameQuery(condition);
                     break;
                 }
                 case "customerType": {
-                    rs = dbController.searchByCustomerType(condition);
-                    theShop.buildCustomers(rs);
-                    serverController.sendMessage(new Message("customer"));
-                    serverController.sendObjects(theShop.getCustomerList());
+                    customerTypeQuery(condition);
                     break;
                 }
                 case "updateCustomer": {
-                    theShop.getCustomerList().addCustomer((Customer) serverController.listenForObject());
-                    dbController.updateUser(theShop.getCustomerList());
+                    updateCustomer();
                     break;
                 }
                 case "sellAllTools": {
                     rs = dbController.selectAllTools();
-                    theShop.buildTool(rs);
-                    boolean orderLineCreated = theShop.sellItem(Integer.parseInt(condition));
-                    dbController.sellTool(Integer.parseInt(condition));
-                    if (orderLineCreated) {
-                        //Add order
-                        Order order = theShop.getToolList().getOrder();
-                        dbController.addOrder(order.getOrderNum(), order.getDate());
-                        //Add order line
-                        int size = order.getOrderLines().size();
-                        OrderLine orderLine = order.getOrderLines().get(size - 1);
-                        dbController.addOrderLine(orderLine.getOrderId(),
-                                                  orderLine.getToolToOrder().getId(),
-                                                  orderLine.getSupplierId(),
-                                                  orderLine.getOrderQty());
-                    }
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    sellToolId(rs, condition);
                     break;
                 }
                 case "sellToolId": {
                     rs = dbController.searchToolById(Integer.parseInt(condition));
-                    theShop.buildTool(rs);
-                    theShop.sellItem(Integer.parseInt(condition));
-                    dbController.sellTool(Integer.parseInt(condition));
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    sellToolId(rs, condition);
                     break;
                 }
                 case "sellToolName": {
                     rs = dbController.searchToolByName(condition);
-                    theShop.buildTool(rs);
-                    theShop.sellItem(condition);
-                    dbController.sellTool(condition);
-                    serverController.sendMessage(new Message("tool"));
-                    serverController.sendObjects(theShop.getToolList());
+                    sellToolName(rs, condition);
                     break;
                 }
                 case "deleteCustomer": {
                     dbController.deleteUser(Integer.parseInt(condition));
-
                     break;
                 }
             }
@@ -160,6 +94,116 @@ public class ModelController implements Runnable {
         }
         closeConnections();
     }
+
+    private void buildTools(ResultSet rs) {
+        theShop.buildTool(rs);
+    }
+
+    private void buildCustomers(ResultSet rs) {
+        theShop.buildCustomers(rs);
+    }
+
+    private void sendTools() {
+        serverController.sendMessage(new Message("tool"));
+        serverController.sendObjects(theShop.getToolList());
+    }
+
+    private void sendCustomers() {
+        serverController.sendMessage(new Message("customer"));
+        serverController.sendObjects(theShop.getCustomerList());
+    }
+
+    private void toolIdQuery(String condition) {
+        rs = dbController.searchToolById(Integer.parseInt(condition));
+        buildTools(rs);
+        sendTools();
+    }
+
+    private void toolNameQuery(String condition) {
+        rs = dbController.searchToolByName(condition);
+        buildTools(rs);
+        sendTools();
+    }
+
+    private void allToolQuery() {
+        rs = dbController.selectAllTools();
+        buildTools(rs);
+        sendTools();
+    }
+
+    private void customerIdQuery(String condition) {
+        rs = dbController.searchCustomerByID(Integer.parseInt(condition));
+        buildCustomers(rs);
+        sendCustomers();
+    }
+
+    private void customerLNameQuery(String condition) {
+        rs = dbController.searchCustomerByLName(condition);
+        buildCustomers(rs);
+        sendCustomers();
+    }
+
+    private void customerTypeQuery(String condition) {
+        rs = dbController.searchByCustomerType(condition);
+        buildCustomers(rs);
+        sendCustomers();
+    }
+
+    private void updateCustomer() {
+        theShop.getCustomerList().addCustomer((Customer) serverController.listenForObject());
+        dbController.updateCustomer(theShop.getCustomerList());
+    }
+
+    private void sellToolId(ResultSet rs, String condition) {
+        buildTools(rs);
+        boolean orderLineCreated = theShop.sellTool(Integer.parseInt(condition));
+        dbController.sellTool(Integer.parseInt(condition));
+        checkOrderLine(orderLineCreated);
+        sendTools();
+    }
+
+    private void sellToolName(ResultSet rs, String condition) {
+        buildTools(rs);
+        boolean orderLineCreated = theShop.sellTool(condition);
+        dbController.sellTool(condition);
+        checkOrderLine(orderLineCreated);
+        sendTools();
+    }
+
+    private void checkOrderLine(boolean orderLineCreated) {
+        if (orderLineCreated) {
+            //Add order
+            Order order = theShop.getToolList().getOrder();
+            dbController.addOrder(order.getOrderNum(), order.getDate());
+            //Add order line
+            int size = order.getOrderLines().size();
+            OrderLine orderLine = order.getOrderLines().get(size - 1);
+            dbController.addOrderLine(orderLine.getOrderId(),
+                    orderLine.getToolToOrder().getId(),
+                    orderLine.getSupplierId(),
+                    orderLine.getOrderQty());
+        }
+    }
+
+    public void closeConnections() {
+        try {
+            dbController.close();
+            serverController.getObjectIn().close();
+            serverController.getObjectOut().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setServerController(ServerController serverController) {
+        this.serverController = serverController;
+    }
+
+    public void setDbController(DBController dbController) {
+        this.dbController = dbController;
+    }
+
+    public void setTheShop(Shop theShop) {
+        this.theShop = theShop;
+    }
 }
-
-

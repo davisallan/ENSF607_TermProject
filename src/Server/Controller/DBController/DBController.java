@@ -78,7 +78,7 @@ public class DBController implements DBCredentials{
         return dbCustomer.searchByCustomerType(type);
     }
 
-    public void updateUser(CustomerList customerList) {
+    public void updateCustomer(CustomerList customerList) {
         dbCustomer.updateUser(customerList);
     }
 
