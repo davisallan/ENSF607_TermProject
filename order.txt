@@ -1,14 +1,10 @@
 
 ***************************************************************
-ORDER ID:                 80004               
-Date Ordered:             2020-11-27          
+ORDER ID:                 29378               
+Date Ordered:             2021-01-31          
 
-Item description:         Widgets   
-Amount ordered:           43        
-Supplier:                 Winork Manufacturing Inc.
-
-Item description:         Wing Bats 
-Amount ordered:           40        
-Supplier:                 Wiley Inc.
+Item description:         Tin Wits  
+Amount ordered:           28        
+Supplier:                 Tic Tac Manufacturing
 
 ***************************************************************
