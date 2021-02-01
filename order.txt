@@ -1,0 +1,14 @@
+
+***************************************************************
+ORDER ID:                 80004               
+Date Ordered:             2020-11-27          
+
+Item description:         Widgets   
+Amount ordered:           43        
+Supplier:                 Winork Manufacturing Inc.
+
+Item description:         Wing Bats 
+Amount ordered:           40        
+Supplier:                 Wiley Inc.
+
+***************************************************************
