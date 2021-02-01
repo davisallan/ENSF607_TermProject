@@ -7,6 +7,9 @@ Client and Server architecture implemented and are running locally, communicatin
 
 Architechture of the program was drawn in UML, please see the file "ENSF607_UML_SantiagoFlores_DavisAllan_UPDATED.pdf" if you are interested in viewing the diagrams.
 
+## Program Demo
+![](program_demo.gif)
+
 ## Project Objectives
 1. Conceptual database design based on a narrative
 2. Logical database design through relational model mapping
@@ -20,9 +23,6 @@ Architechture of the program was drawn in UML, please see the file "ENSF607_UML_
 - Java 11
 - MySQL Workbench
 - JDBC
-
-## Program Demo
-![](program_demo.gif)
 
 ## Running the Program
 To run this program, follow these steps:
