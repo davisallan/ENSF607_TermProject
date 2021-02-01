@@ -19,8 +19,8 @@ Client and Server architecture implemented and are running locally, communicatin
 - MySQL Workbench
 - JDBC
 
-## Screen Shots
-
+## Program Demo
+![](program_demo.gif)
 
 ## Running the Program
 To run this program, follow these steps:
