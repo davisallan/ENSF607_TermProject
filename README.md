@@ -5,6 +5,8 @@ This project is the combined final between ENSF607 and ENSF608. We were tasked w
 distributed inventory and client management system using MVC design pattern, Java, MySQL, and JDBC. 
 Client and Server architecture implemented and are running locally, communicating over sockets.
 
+Architechture of the program was drawn in UML, please see the file "ENSF607_UML_SantiagoFlores_DavisAllan_UPDATED.pdf" if you are interested in viewing the diagrams.
+
 ## Project Objectives
 1. Conceptual database design based on a narrative
 2. Logical database design through relational model mapping
